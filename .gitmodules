@@ -1,0 +1,3 @@
+[submodule "src/contents/articles"]
+	path = src/contents/articles
+	url = git@github.com:Pure-Func-Inc/blog-articles.git
