@@ -15,6 +15,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-graphql-codegen',
+    'gatsby-transformer-yaml',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
