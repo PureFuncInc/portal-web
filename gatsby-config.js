@@ -14,8 +14,16 @@ module.exports = {
     'gatsby-plugin-image',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
-    'gatsby-plugin-graphql-codegen',
+    'gatsby-plugin-fontawesome-css',
     'gatsby-transformer-yaml',
+    {
+      resolve: 'gatsby-plugin-graphql-codegen',
+      options: {
+        codegenConfig: {
+          maybeValue: 'T | undefined',
+        },
+      },
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

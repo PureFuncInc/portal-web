@@ -16,7 +16,7 @@ export const SimpleLayout: React.FC<LayoutProps> = ({
     <LayoutContainer>
       <Header>
         <LogoContainer>
-          <Link to='/' >
+          <Link to='/'>
             <Logo />
           </Link>
         </LogoContainer>

@@ -1,5 +1,5 @@
-export type Maybe<T> = T | null;
-export type InputMaybe<T> = Maybe<T>;
+export type Maybe<T> = T | undefined;
+export type InputMaybe<T> = T | undefined;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -678,8 +678,8 @@ export type PeopleYaml = Node & {
 };
 
 export type PeopleYamlName = {
-  mandarin?: Maybe<Array<Maybe<Scalars['String']>>>;
-  english?: Maybe<Array<Maybe<Scalars['String']>>>;
+  mandarin?: Maybe<Scalars['String']>;
+  english?: Maybe<Scalars['String']>;
 };
 
 export type PeopleYamlContact = {
@@ -691,6 +691,7 @@ export type PeopleYamlSocialNetworks = {
   github?: Maybe<Scalars['String']>;
   line?: Maybe<Scalars['String']>;
   telegram?: Maybe<Scalars['String']>;
+  facebook?: Maybe<Scalars['String']>;
 };
 
 export type StaticImage = Node & {
@@ -1370,6 +1371,7 @@ export type PeopleYamlSocialNetworksFilterInput = {
   github?: InputMaybe<StringQueryOperatorInput>;
   line?: InputMaybe<StringQueryOperatorInput>;
   telegram?: InputMaybe<StringQueryOperatorInput>;
+  facebook?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type FileConnection = {
@@ -1763,6 +1765,7 @@ export type FileFieldsEnum =
   | 'childrenPeopleYaml___socialNetworks___github'
   | 'childrenPeopleYaml___socialNetworks___line'
   | 'childrenPeopleYaml___socialNetworks___telegram'
+  | 'childrenPeopleYaml___socialNetworks___facebook'
   | 'childPeopleYaml___id'
   | 'childPeopleYaml___parent___id'
   | 'childPeopleYaml___parent___parent___id'
@@ -1813,6 +1816,7 @@ export type FileFieldsEnum =
   | 'childPeopleYaml___socialNetworks___github'
   | 'childPeopleYaml___socialNetworks___line'
   | 'childPeopleYaml___socialNetworks___telegram'
+  | 'childPeopleYaml___socialNetworks___facebook'
   | 'id'
   | 'parent___id'
   | 'parent___parent___id'
@@ -3840,7 +3844,8 @@ export type PeopleYamlFieldsEnum =
   | 'contact___email'
   | 'socialNetworks___github'
   | 'socialNetworks___line'
-  | 'socialNetworks___telegram';
+  | 'socialNetworks___telegram'
+  | 'socialNetworks___facebook';
 
 export type PeopleYamlGroupConnection = {
   totalCount: Scalars['Int'];
@@ -4143,37 +4148,37 @@ export type ArticleQueryVariables = Exact<{
 }>;
 
 
-export type ArticleQuery = { article: { nodes: Array<{ name: string, changeTime: any, birthTime: any, childMdx?: { body: string, frontmatter?: { title: string } | null | undefined } | null | undefined }> } };
+export type ArticleQuery = { article: { nodes: Array<{ name: string, changeTime: any, birthTime: any, childMdx?: { body: string, frontmatter?: { title: string } | undefined } | undefined }> } };
 
 export type PersonQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
 
 
-export type PersonQuery = { person?: { expertise?: Array<string | null | undefined> | null | undefined, headline?: string | null | undefined, id: string, slug?: string | null | undefined, story?: string | null | undefined, title?: string | null | undefined, name?: { english?: Array<string | null | undefined> | null | undefined, mandarin?: Array<string | null | undefined> | null | undefined } | null | undefined, contact?: { email?: string | null | undefined, phone?: string | null | undefined } | null | undefined } | null | undefined };
+export type PersonQuery = { person?: { expertise?: Array<string | undefined> | undefined, headline?: string | undefined, id: string, slug?: string | undefined, story?: string | undefined, title?: string | undefined, name?: { english?: string | undefined, mandarin?: string | undefined } | undefined, contact?: { email?: string | undefined, phone?: string | undefined } | undefined, socialNetworks?: { github?: string | undefined, line?: string | undefined, telegram?: string | undefined, facebook?: string | undefined } | undefined } | undefined, profilePicture?: { id: string, childImageSharp?: { gatsbyImageData: any } | undefined } | undefined };
 
-export type GatsbyImageSharpFixedFragment = { base64?: string | null | undefined, width: number, height: number, src: string, srcSet: string };
+export type GatsbyImageSharpFixedFragment = { base64?: string | undefined, width: number, height: number, src: string, srcSet: string };
 
-export type GatsbyImageSharpFixed_TracedSvgFragment = { tracedSVG?: string | null | undefined, width: number, height: number, src: string, srcSet: string };
+export type GatsbyImageSharpFixed_TracedSvgFragment = { tracedSVG?: string | undefined, width: number, height: number, src: string, srcSet: string };
 
-export type GatsbyImageSharpFixed_WithWebpFragment = { base64?: string | null | undefined, width: number, height: number, src: string, srcSet: string, srcWebp?: string | null | undefined, srcSetWebp?: string | null | undefined };
+export type GatsbyImageSharpFixed_WithWebpFragment = { base64?: string | undefined, width: number, height: number, src: string, srcSet: string, srcWebp?: string | undefined, srcSetWebp?: string | undefined };
 
-export type GatsbyImageSharpFixed_WithWebp_TracedSvgFragment = { tracedSVG?: string | null | undefined, width: number, height: number, src: string, srcSet: string, srcWebp?: string | null | undefined, srcSetWebp?: string | null | undefined };
+export type GatsbyImageSharpFixed_WithWebp_TracedSvgFragment = { tracedSVG?: string | undefined, width: number, height: number, src: string, srcSet: string, srcWebp?: string | undefined, srcSetWebp?: string | undefined };
 
 export type GatsbyImageSharpFixed_NoBase64Fragment = { width: number, height: number, src: string, srcSet: string };
 
-export type GatsbyImageSharpFixed_WithWebp_NoBase64Fragment = { width: number, height: number, src: string, srcSet: string, srcWebp?: string | null | undefined, srcSetWebp?: string | null | undefined };
+export type GatsbyImageSharpFixed_WithWebp_NoBase64Fragment = { width: number, height: number, src: string, srcSet: string, srcWebp?: string | undefined, srcSetWebp?: string | undefined };
 
-export type GatsbyImageSharpFluidFragment = { base64?: string | null | undefined, aspectRatio: number, src: string, srcSet: string, sizes: string };
+export type GatsbyImageSharpFluidFragment = { base64?: string | undefined, aspectRatio: number, src: string, srcSet: string, sizes: string };
 
 export type GatsbyImageSharpFluidLimitPresentationSizeFragment = { maxHeight: number, maxWidth: number };
 
-export type GatsbyImageSharpFluid_TracedSvgFragment = { tracedSVG?: string | null | undefined, aspectRatio: number, src: string, srcSet: string, sizes: string };
+export type GatsbyImageSharpFluid_TracedSvgFragment = { tracedSVG?: string | undefined, aspectRatio: number, src: string, srcSet: string, sizes: string };
 
-export type GatsbyImageSharpFluid_WithWebpFragment = { base64?: string | null | undefined, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null | undefined, srcSetWebp?: string | null | undefined, sizes: string };
+export type GatsbyImageSharpFluid_WithWebpFragment = { base64?: string | undefined, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | undefined, srcSetWebp?: string | undefined, sizes: string };
 
-export type GatsbyImageSharpFluid_WithWebp_TracedSvgFragment = { tracedSVG?: string | null | undefined, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null | undefined, srcSetWebp?: string | null | undefined, sizes: string };
+export type GatsbyImageSharpFluid_WithWebp_TracedSvgFragment = { tracedSVG?: string | undefined, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | undefined, srcSetWebp?: string | undefined, sizes: string };
 
 export type GatsbyImageSharpFluid_NoBase64Fragment = { aspectRatio: number, src: string, srcSet: string, sizes: string };
 
-export type GatsbyImageSharpFluid_WithWebp_NoBase64Fragment = { aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null | undefined, srcSetWebp?: string | null | undefined, sizes: string };
+export type GatsbyImageSharpFluid_WithWebp_NoBase64Fragment = { aspectRatio: number, src: string, srcSet: string, srcWebp?: string | undefined, srcSetWebp?: string | undefined, sizes: string };

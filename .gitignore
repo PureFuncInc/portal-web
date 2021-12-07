@@ -6,3 +6,7 @@ public
 .env
 .env.test
 .env.development
+
+# jetbrains
+.idea
+.run
