@@ -26,7 +26,7 @@ const ArticlePageTemplate: React.FC<ArticlePageTemplateProps> = ({ data }) => {
 export default ArticlePageTemplate
 
 export const query = graphql`
-  query Article($name: String) {
+  query Article($name: String!) {
     article: allFile(filter: {name: {eq: $name}}, limit: 1) {
       nodes {
         name

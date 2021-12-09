@@ -1,44 +1,41 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Link } from 'gatsby'
 import { SEO } from '@/components/common/SEO'
 import type { LayoutProps } from '@/components/layouts/LayoutProps'
-import { Logo } from '@/components/common/Logo'
-import { Container } from '@/components/common/Container'
+import { FloatingHeader } from '@/components/common/FloatingHeader'
+import { Footer } from '@/components/common/Footer'
 
 export const SimpleLayout: React.FC<LayoutProps> = ({
   children,
   title,
 }) => (
-  <>
+  <Container>
     <SEO title={title} />
 
     <LayoutContainer>
-      <Header>
-        <LogoContainer>
-          <Link to='/' >
-            <Logo />
-          </Link>
-        </LogoContainer>
-      </Header>
+      <FloatingHeader />
 
-      <main>
+      <MainContainer>
         {children}
-      </main>
+      </MainContainer>
     </LayoutContainer>
-  </>
+
+    <Footer />
+  </Container>
 )
 
-const LayoutContainer = styled.div`
-  margin: 20px 10vw;
-`
-
-const Header = styled.header`
+const Container = styled.div`
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
   justify-content: space-between;
+  min-height: 100vh;
 `
 
-const LogoContainer = styled(Container)`
-  width: 160px;
+const LayoutContainer = styled.div`
+  margin: 0 10vw;
+  min-height: 60vh;
+`
+
+const MainContainer = styled.main`
+  margin-top: 25px;
 `
