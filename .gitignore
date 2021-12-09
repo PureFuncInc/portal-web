@@ -10,3 +10,6 @@ public
 # jetbrains
 .idea
 .run
+
+# macos
+.DS_Store
