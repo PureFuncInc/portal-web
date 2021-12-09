@@ -6,5 +6,5 @@ export interface SEOProps {
 }
 
 export const SEO: React.FC<SEOProps> = ({ title }) => (
-  <Helmet title={`${title} : PureFunc`} />
+  <Helmet title={title ? `${title} : PureFunc` : 'PureFunc'} />
 )

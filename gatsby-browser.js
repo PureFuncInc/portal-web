@@ -1,12 +1,16 @@
 import { css, Global, ThemeProvider } from '@emotion/react'
 import emotionReset from 'emotion-reset'
 import React from 'react'
-import { lightTheme } from './src/utilities/themes/light'
+import { MDXProvider } from '@mdx-js/react'
+import { defaultTheme } from './src/utilities/themes/default'
+import MDXRenderComponents from './src/components/common/mdx/MDXRenderComponents'
 
 export const wrapRootElement = ({ element }) => (
-  <ThemeProvider theme={lightTheme}>
+  <ThemeProvider theme={defaultTheme}>
     <Global styles={theme => getGlobalStyles(theme)} />
-    {element}
+    <MDXProvider components={MDXRenderComponents}>
+      {element}
+    </MDXProvider>
   </ThemeProvider>
 )
 

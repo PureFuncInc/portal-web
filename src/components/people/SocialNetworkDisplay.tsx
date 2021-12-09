@@ -9,16 +9,20 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled from '@emotion/styled'
+import { faCompass } from '@fortawesome/free-solid-svg-icons'
+import { Link } from '@/components/common/Link'
 
 export interface SocialNetworkDisplayProps {
   socialNetworks?: Record<string, string>
+  className?: string
 }
 
 export const SocialNetworkDisplay: React.FC<SocialNetworkDisplayProps> = ({
   socialNetworks = {},
+  className,
 }) => {
   return (
-    <>
+    <Container className={className}>
       {
         Object.entries(socialNetworks)
           .filter(([ , url ]) => url)
@@ -26,27 +30,24 @@ export const SocialNetworkDisplay: React.FC<SocialNetworkDisplayProps> = ({
             <Link
               key={name}
               target='_blank'
-              href={url}
+              to={url}
               rel="noreferrer">
               <Icon icon={iconMap[name]} />
             </Link>
           ))
       }
-    </>
+    </Container>
   )
 }
 
-const Link = styled.a(({ theme }) => `
-  &, &:visited, &:active {
-    color: ${theme.color.text};
-  }
-`)
+const Container = styled.div()
 
 const Icon = styled(FontAwesomeIcon)`
-  font-size: 60px;
+  font-size: 48px;
 `
 
 const iconMap: Record<string, IconDefinition> = {
+  portal: faCompass,
   facebook: faFacebook,
   github: faGithub,
   line: faLine,

@@ -7,6 +7,7 @@ import type { PersonQuery } from '../../graphql-types'
 import { SimpleLayout } from '@/components/layouts/SimpleLayout'
 import { SocialNetworkDisplay } from '@/components/people/SocialNetworkDisplay'
 import { RoundedGatsbyImage } from '@/components/common/RoundedImage'
+import { ContactsDisplay } from '@/components/people/ContactsDisplay'
 
 export interface PeoplePageTemplateProps {
   data: PersonQuery
@@ -50,23 +51,59 @@ const PeoplePageTemplate: React.FC<PeoplePageTemplateProps> = ({
           </Title>
 
           <Content>
-            <Label>
-              Story
-            </Label>
+            <ContentBlock>
+              <Label>
+                Story
+              </Label>
 
-            <Story>
-              {person?.story}
-            </Story>
+              <Story>
+                {person?.story}
+              </Story>
+            </ContentBlock>
 
-            <Label>
-              Contacts
-            </Label>
+            <ContentBlock>
+              <Label>
+                Expertise
+              </Label>
 
-            <Label>
-              Social Networks
-            </Label>
+              <ul>
+                {person?.expertise?.map((item, i) => (
+                  <li key={i}>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </ContentBlock>
 
-            <SocialNetworkDisplay socialNetworks={person?.socialNetworks} />
+            <ContentBlock>
+              <Label>
+                Achievements
+              </Label>
+
+              <ul>
+                {person?.achievements?.map((item, i) => (
+                  <li key={i}>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </ContentBlock>
+
+            <ContentBlock>
+              <Label>
+                Contacts
+              </Label>
+
+              <ContactsDisplay contact={person?.contact} />
+            </ContentBlock>
+
+            <ContentBlock>
+              <Label>
+                Social Networks
+              </Label>
+
+              <SocialNetworkDisplay socialNetworks={person?.socialNetworks} />
+            </ContentBlock>
           </Content>
         </ContentContainer>
       </Container>
@@ -85,14 +122,15 @@ export const query = graphql`
       }
       contact {
         email
-        phone
       }
       socialNetworks {
         github
-        line
         telegram
         facebook
+        linkedin
+        portal
       }
+      achievements
       expertise
       headline
       id
@@ -143,7 +181,7 @@ const Name = styled.h2`
 `
 
 const BigName = styled(Name)`
-  font-size: 2.2em;
+  font-size: 3.2em;
 `
 
 const ProfilePicture = styled(RoundedGatsbyImage)`
@@ -163,10 +201,25 @@ const Content = styled.div`
   margin-top: 25px;
 `
 
+const ContentBlock = styled.div`
+  display: flex;
+  margin-bottom: 15px;
+
+  & > * {
+    flex: 1;
+  }
+`
+
 const Label = styled.div`
-  display: inline-block;
-  border-bottom: dotted 2px #ccc;
-  color: #666;
+  color: #999;
+  flex-grow: 0;
+  flex-basis: 120px;
+  border-style: solid;
+  border-color: #999;
+  border-width: 0 0 1px 1px;
+  border-radius: 0 0 0 5px;
+  padding: 15px;
+  margin-right: 15px;
 `
 
 const Story = styled.p`

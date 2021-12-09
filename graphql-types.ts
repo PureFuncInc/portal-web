@@ -674,6 +674,7 @@ export type PeopleYaml = Node & {
   headline?: Maybe<Scalars['String']>;
   story?: Maybe<Scalars['String']>;
   contact?: Maybe<PeopleYamlContact>;
+  achievements?: Maybe<Array<Maybe<Scalars['String']>>>;
   socialNetworks?: Maybe<PeopleYamlSocialNetworks>;
 };
 
@@ -683,14 +684,14 @@ export type PeopleYamlName = {
 };
 
 export type PeopleYamlContact = {
-  phone?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
 };
 
 export type PeopleYamlSocialNetworks = {
   github?: Maybe<Scalars['String']>;
-  line?: Maybe<Scalars['String']>;
   telegram?: Maybe<Scalars['String']>;
+  portal?: Maybe<Scalars['String']>;
+  linkedin?: Maybe<Scalars['String']>;
   facebook?: Maybe<Scalars['String']>;
 };
 
@@ -1098,6 +1099,7 @@ export type QueryPeopleYamlArgs = {
   headline?: InputMaybe<StringQueryOperatorInput>;
   story?: InputMaybe<StringQueryOperatorInput>;
   contact?: InputMaybe<PeopleYamlContactFilterInput>;
+  achievements?: InputMaybe<StringQueryOperatorInput>;
   socialNetworks?: InputMaybe<PeopleYamlSocialNetworksFilterInput>;
 };
 
@@ -1354,6 +1356,7 @@ export type PeopleYamlFilterInput = {
   headline?: InputMaybe<StringQueryOperatorInput>;
   story?: InputMaybe<StringQueryOperatorInput>;
   contact?: InputMaybe<PeopleYamlContactFilterInput>;
+  achievements?: InputMaybe<StringQueryOperatorInput>;
   socialNetworks?: InputMaybe<PeopleYamlSocialNetworksFilterInput>;
 };
 
@@ -1363,14 +1366,14 @@ export type PeopleYamlNameFilterInput = {
 };
 
 export type PeopleYamlContactFilterInput = {
-  phone?: InputMaybe<StringQueryOperatorInput>;
   email?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type PeopleYamlSocialNetworksFilterInput = {
   github?: InputMaybe<StringQueryOperatorInput>;
-  line?: InputMaybe<StringQueryOperatorInput>;
   telegram?: InputMaybe<StringQueryOperatorInput>;
+  portal?: InputMaybe<StringQueryOperatorInput>;
+  linkedin?: InputMaybe<StringQueryOperatorInput>;
   facebook?: InputMaybe<StringQueryOperatorInput>;
 };
 
@@ -1760,11 +1763,12 @@ export type FileFieldsEnum =
   | 'childrenPeopleYaml___expertise'
   | 'childrenPeopleYaml___headline'
   | 'childrenPeopleYaml___story'
-  | 'childrenPeopleYaml___contact___phone'
   | 'childrenPeopleYaml___contact___email'
+  | 'childrenPeopleYaml___achievements'
   | 'childrenPeopleYaml___socialNetworks___github'
-  | 'childrenPeopleYaml___socialNetworks___line'
   | 'childrenPeopleYaml___socialNetworks___telegram'
+  | 'childrenPeopleYaml___socialNetworks___portal'
+  | 'childrenPeopleYaml___socialNetworks___linkedin'
   | 'childrenPeopleYaml___socialNetworks___facebook'
   | 'childPeopleYaml___id'
   | 'childPeopleYaml___parent___id'
@@ -1811,11 +1815,12 @@ export type FileFieldsEnum =
   | 'childPeopleYaml___expertise'
   | 'childPeopleYaml___headline'
   | 'childPeopleYaml___story'
-  | 'childPeopleYaml___contact___phone'
   | 'childPeopleYaml___contact___email'
+  | 'childPeopleYaml___achievements'
   | 'childPeopleYaml___socialNetworks___github'
-  | 'childPeopleYaml___socialNetworks___line'
   | 'childPeopleYaml___socialNetworks___telegram'
+  | 'childPeopleYaml___socialNetworks___portal'
+  | 'childPeopleYaml___socialNetworks___linkedin'
   | 'childPeopleYaml___socialNetworks___facebook'
   | 'id'
   | 'parent___id'
@@ -3840,11 +3845,12 @@ export type PeopleYamlFieldsEnum =
   | 'expertise'
   | 'headline'
   | 'story'
-  | 'contact___phone'
   | 'contact___email'
+  | 'achievements'
   | 'socialNetworks___github'
-  | 'socialNetworks___line'
   | 'socialNetworks___telegram'
+  | 'socialNetworks___portal'
+  | 'socialNetworks___linkedin'
   | 'socialNetworks___facebook';
 
 export type PeopleYamlGroupConnection = {
@@ -4143,6 +4149,11 @@ export type StaticImageSortInput = {
   order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
 
+export type ArticlesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ArticlesQuery = { articles: { nodes: Array<{ id: string, name: string, childMdx?: { slug?: string | undefined, frontmatter?: { title: string } | undefined } | undefined }> } };
+
 export type ArticleQueryVariables = Exact<{
   name: Scalars['String'];
 }>;
@@ -4155,7 +4166,7 @@ export type PersonQueryVariables = Exact<{
 }>;
 
 
-export type PersonQuery = { person?: { expertise?: Array<string | undefined> | undefined, headline?: string | undefined, id: string, slug?: string | undefined, story?: string | undefined, title?: string | undefined, name?: { english?: string | undefined, mandarin?: string | undefined } | undefined, contact?: { email?: string | undefined, phone?: string | undefined } | undefined, socialNetworks?: { github?: string | undefined, line?: string | undefined, telegram?: string | undefined, facebook?: string | undefined } | undefined } | undefined, profilePicture?: { id: string, childImageSharp?: { gatsbyImageData: any } | undefined } | undefined };
+export type PersonQuery = { person?: { achievements?: Array<string | undefined> | undefined, expertise?: Array<string | undefined> | undefined, headline?: string | undefined, id: string, slug?: string | undefined, story?: string | undefined, title?: string | undefined, name?: { english?: string | undefined, mandarin?: string | undefined } | undefined, contact?: { email?: string | undefined } | undefined, socialNetworks?: { github?: string | undefined, telegram?: string | undefined, facebook?: string | undefined, linkedin?: string | undefined, portal?: string | undefined } | undefined } | undefined, profilePicture?: { id: string, childImageSharp?: { gatsbyImageData: any } | undefined } | undefined };
 
 export type GatsbyImageSharpFixedFragment = { base64?: string | undefined, width: number, height: number, src: string, srcSet: string };
 
