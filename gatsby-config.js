@@ -8,6 +8,8 @@ module.exports = {
   siteMetadata: {
     siteUrl: 'https://purefunc.net',
     title: '$_purefunc',
+    youtube: 'https://www.youtube.com/channel/UCiaBjaYilzLG5mmSqpP8fWg',
+    facebook: 'https://www.facebook.com/groups/purefunc/',
   },
   plugins: [
     'gatsby-plugin-emotion',
@@ -66,7 +68,7 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         google: {
-          families: [ 'Noto Sans TC', 'Noto Sans', 'Noto Serif' ],
+          families: [ 'Noto Sans TC', 'Fira Mono' ],
         },
       },
     },
