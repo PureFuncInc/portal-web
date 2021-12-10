@@ -8,6 +8,11 @@ module.exports = {
   siteMetadata: {
     siteUrl: 'https://purefunc.net',
     title: '$_purefunc',
+    email: 'hi@purefunc.net',
+    image: '/placeholder.png',
+    youtube: 'https://www.youtube.com/channel/UCiaBjaYilzLG5mmSqpP8fWg',
+    facebook: 'https://www.facebook.com/groups/purefunc/',
+    twitter: 'https://www.twitter.com/purefunc/',
   },
   plugins: [
     'gatsby-plugin-emotion',

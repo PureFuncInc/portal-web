@@ -698,7 +698,7 @@ type Query {
   imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput): ImageSharp
   mdx(body: StringQueryOperatorInput, children: NodeFilterListInput, excerpt: StringQueryOperatorInput, fileAbsolutePath: StringQueryOperatorInput, frontmatter: MdxFrontmatterFilterInput, headings: MdxHeadingMdxFilterListInput, html: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, mdxAST: JSONQueryOperatorInput, parent: NodeFilterInput, rawBody: StringQueryOperatorInput, slug: StringQueryOperatorInput, tableOfContents: JSONQueryOperatorInput, timeToRead: IntQueryOperatorInput, wordCount: MdxWordCountFilterInput): Mdx
   peopleYaml(achievements: StringQueryOperatorInput, children: NodeFilterListInput, contact: PeopleYamlContactFilterInput, expertise: StringQueryOperatorInput, headline: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: PeopleYamlNameFilterInput, parent: NodeFilterInput, slug: StringQueryOperatorInput, socialNetworks: PeopleYamlSocialNetworksFilterInput, story: StringQueryOperatorInput, title: StringQueryOperatorInput): PeopleYaml
-  site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, jsxRuntime: StringQueryOperatorInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
+  site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
   siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
   siteFunction(absoluteCompiledFilePath: StringQueryOperatorInput, children: NodeFilterListInput, functionRoute: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, matchPath: StringQueryOperatorInput, originalAbsoluteFilePath: StringQueryOperatorInput, originalRelativeFilePath: StringQueryOperatorInput, parent: NodeFilterInput, pluginName: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput): SiteFunction
   sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, pageContext: JSONQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput): SitePage
@@ -721,10 +721,7 @@ type Site implements Node {
   host: String
   id: ID!
   internal: Internal!
-  jsxRuntime: String
   parent: Node
-  pathPrefix: String
-  polyfill: Boolean
   port: Int
   siteMetadata: SiteSiteMetadata
 }
@@ -952,8 +949,13 @@ type SitePluginGroupConnection {
 
 type SiteSiteMetadata {
   description: String
+  email: String
+  facebook: String
+  image: String
   siteUrl: String
   title: String
+  twitter: String
+  youtube: String
 }
 
 type StaticImage implements Node {
@@ -2251,7 +2253,6 @@ enum SiteFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
-  jsxRuntime
   parent___children
   parent___children___children
   parent___children___children___children
@@ -2290,12 +2291,15 @@ enum SiteFieldsEnum {
   parent___parent___internal___type
   parent___parent___parent___children
   parent___parent___parent___id
-  pathPrefix
-  polyfill
   port
   siteMetadata___description
+  siteMetadata___email
+  siteMetadata___facebook
+  siteMetadata___image
   siteMetadata___siteUrl
   siteMetadata___title
+  siteMetadata___twitter
+  siteMetadata___youtube
 }
 
 enum SiteFunctionFieldsEnum {
@@ -3145,10 +3149,7 @@ input SiteFilterInput {
   host: StringQueryOperatorInput
   id: StringQueryOperatorInput
   internal: InternalFilterInput
-  jsxRuntime: StringQueryOperatorInput
   parent: NodeFilterInput
-  pathPrefix: StringQueryOperatorInput
-  polyfill: BooleanQueryOperatorInput
   port: IntQueryOperatorInput
   siteMetadata: SiteSiteMetadataFilterInput
 }
@@ -3214,8 +3215,13 @@ input SitePluginSortInput {
 
 input SiteSiteMetadataFilterInput {
   description: StringQueryOperatorInput
+  email: StringQueryOperatorInput
+  facebook: StringQueryOperatorInput
+  image: StringQueryOperatorInput
   siteUrl: StringQueryOperatorInput
   title: StringQueryOperatorInput
+  twitter: StringQueryOperatorInput
+  youtube: StringQueryOperatorInput
 }
 
 input SiteSortInput {
