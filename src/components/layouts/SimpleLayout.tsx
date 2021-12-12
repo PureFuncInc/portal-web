@@ -32,7 +32,7 @@ const Container = styled.div`
 `
 
 const LayoutContainer = styled.div`
-  margin: 0 10vw;
+  margin: 0 15vw;
   min-height: 60vh;
 `
 

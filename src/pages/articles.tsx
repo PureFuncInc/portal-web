@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import { SimpleLayout } from '@/components/layouts/SimpleLayout'
 import type { ArticlesQuery } from '@/../graphql-types'
 import { Link } from '@/components/common/Link'
+import { PageTitle } from '@/components/common/PageTitle'
 
 export interface ArticlesPageProps {
   data: ArticlesQuery
@@ -12,11 +13,11 @@ const ArticlesPage: React.FC<ArticlesPageProps> = ({
   data,
 }) => {
   return (
-    <SimpleLayout title='Articles'>
+    <SimpleLayout title='部落格'>
 
-      <h1>
-        Articles
-      </h1>
+      <PageTitle>
+        部落格
+      </PageTitle>
 
       <nav>
         {data.articles.nodes.map(article => (

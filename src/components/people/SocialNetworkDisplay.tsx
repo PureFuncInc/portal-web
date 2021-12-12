@@ -6,10 +6,12 @@ import {
   faLine,
   faLinkedin,
   faTelegram,
+  faTwitter,
+  faYoutube,
 } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled from '@emotion/styled'
-import { faCompass } from '@fortawesome/free-solid-svg-icons'
+import { faCompass, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { Link } from '@/components/common/Link'
 
 export interface SocialNetworkDisplayProps {
@@ -22,35 +24,67 @@ export const SocialNetworkDisplay: React.FC<SocialNetworkDisplayProps> = ({
   className,
 }) => {
   return (
-    <Container className={className}>
+    <List className={className}>
       {
         Object.entries(socialNetworks)
-          .filter(([ , url ]) => url)
+          .filter(([ name, url ]) => url && name in iconMap)
           .map(([ name, url ]) => (
-            <Link
-              key={name}
-              target='_blank'
-              to={url}
-              rel="noreferrer">
-              <Icon icon={iconMap[name]} />
-            </Link>
+            <ListItem key={name}>
+              <Link to={url}>
+                <Icon
+                  fixedWidth
+                  icon={iconMap[name]} />
+
+                <ContentContainer>
+                  <Label>
+                    {name.toUpperCase()}
+                  </Label>
+
+                  <span>
+                    {url}
+                  </span>
+                </ContentContainer>
+              </Link>
+            </ListItem>
           ))
       }
-    </Container>
+    </List>
   )
 }
 
-const Container = styled.div()
+const List = styled.ul`
+  list-style: none;
+`
+
+const ListItem = styled.li`
+  display: flex;
+  padding: 6px 0;
+`
+
+const ContentContainer = styled.div`
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
+`
+
+const Label = styled.span`
+  font-size: ${({ theme }) => theme.size.littler};
+`
 
 const Icon = styled(FontAwesomeIcon)`
-  font-size: 48px;
+  font-size: 24px;
+  line-height: 48px;
 `
 
 const iconMap: Record<string, IconDefinition> = {
   portal: faCompass,
+  email: faEnvelope,
+  youtube: faYoutube,
   facebook: faFacebook,
   github: faGithub,
   line: faLine,
+  twitter: faTwitter,
   linkedin: faLinkedin,
   telegram: faTelegram,
 }
