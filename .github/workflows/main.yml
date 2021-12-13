@@ -1,0 +1,51 @@
+name: CI
+
+# Controls when the workflow will run
+on:
+  release:
+    types: [ published ]
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Caching Gatsby
+        id: gatsby-cache-build
+        uses: actions/cache@v2
+        with:
+          path: |
+            public
+            .cache
+          key: ${{ runner.os }}-gatsby-build-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-gatsby-build-
+      - name: Installing dependencies
+        run: yarn install
+      - name: Building Gatsby site
+        run: yarn build --log-pages
+        env:
+          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
+          CI: true
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Publish to GHCR
+        uses: macbre/push-to-ghcr@v8
+        with:
+          # Your secrets.GITHUB_TOKEN
+          github_token: ${{ github.token }}
+          # Image name, e.g. my-user-name/my-repo
+          image_name: purefuncinc/portal-web
