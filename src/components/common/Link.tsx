@@ -38,16 +38,19 @@ export const Link = forwardRef<never, LinkProps>(({
 
 Link.displayName = 'Link'
 
-const Anchor = styled.a(({ theme }) => `
+const Anchor = styled.a`
   display: flex;
   align-items: center;
-  &, &:visited, &:active {
-    color: ${theme.color.text};
-  }
-`)
+  text-decoration: none;
 
-const GatsbyAnchor = styled(GatsbyLink)(({ theme }) => `
   &, &:visited, &:active {
-    color: ${theme.color.text};
+    color: ${({ theme }) => theme.color.text};
   }
-`)
+`
+
+const GatsbyAnchor = styled(GatsbyLink)`
+  text-decoration: none;
+  &, &:visited, &:active {
+    color: ${({ theme }) => theme.color.text};
+  }
+`
