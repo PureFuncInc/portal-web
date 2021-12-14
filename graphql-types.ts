@@ -688,9 +688,9 @@ export type PeopleYamlContact = {
 export type PeopleYamlSocialNetworks = {
   github?: Maybe<Scalars['String']>;
   telegram?: Maybe<Scalars['String']>;
-  portal?: Maybe<Scalars['String']>;
   linkedin?: Maybe<Scalars['String']>;
   facebook?: Maybe<Scalars['String']>;
+  portal?: Maybe<Scalars['String']>;
 };
 
 export type Query = {
@@ -1215,9 +1215,9 @@ export type PeopleYamlContactFilterInput = {
 export type PeopleYamlSocialNetworksFilterInput = {
   github?: InputMaybe<StringQueryOperatorInput>;
   telegram?: InputMaybe<StringQueryOperatorInput>;
-  portal?: InputMaybe<StringQueryOperatorInput>;
   linkedin?: InputMaybe<StringQueryOperatorInput>;
   facebook?: InputMaybe<StringQueryOperatorInput>;
+  portal?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type FileConnection = {
@@ -1610,9 +1610,9 @@ export type FileFieldsEnum =
   | 'childrenPeopleYaml___achievements'
   | 'childrenPeopleYaml___socialNetworks___github'
   | 'childrenPeopleYaml___socialNetworks___telegram'
-  | 'childrenPeopleYaml___socialNetworks___portal'
   | 'childrenPeopleYaml___socialNetworks___linkedin'
   | 'childrenPeopleYaml___socialNetworks___facebook'
+  | 'childrenPeopleYaml___socialNetworks___portal'
   | 'childPeopleYaml___id'
   | 'childPeopleYaml___parent___id'
   | 'childPeopleYaml___parent___parent___id'
@@ -1662,9 +1662,9 @@ export type FileFieldsEnum =
   | 'childPeopleYaml___achievements'
   | 'childPeopleYaml___socialNetworks___github'
   | 'childPeopleYaml___socialNetworks___telegram'
-  | 'childPeopleYaml___socialNetworks___portal'
   | 'childPeopleYaml___socialNetworks___linkedin'
   | 'childPeopleYaml___socialNetworks___facebook'
+  | 'childPeopleYaml___socialNetworks___portal'
   | 'id'
   | 'parent___id'
   | 'parent___parent___id'
@@ -3688,9 +3688,9 @@ export type PeopleYamlFieldsEnum =
   | 'achievements'
   | 'socialNetworks___github'
   | 'socialNetworks___telegram'
-  | 'socialNetworks___portal'
   | 'socialNetworks___linkedin'
-  | 'socialNetworks___facebook';
+  | 'socialNetworks___facebook'
+  | 'socialNetworks___portal';
 
 export type PeopleYamlGroupConnection = {
   totalCount: Scalars['Int'];
