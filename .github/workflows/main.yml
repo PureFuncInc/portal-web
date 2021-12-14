@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  release:
+    types:
+      - published
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Caching Gatsby
+        id: gatsby-cache-build
+        uses: actions/cache@v2
+        with:
+          path: |
+            public
+            .cache
+          key: ${{ runner.os }}-gatsby-build-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-gatsby-build-
+      - name: Installing dependencies
+        run: yarn install
+      - name: Building Gatsby site
+        run: yarn build --log-pages
+        env:
+          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
+          CI: true
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: gatsby-artifacts-${{ github.run_id }}
+          path: public
+          retention-days: 1
+  publish:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - uses: actions/checkout@v2
+      - name: Retrieve artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: gatsby-artifacts-${{ github.run_id }}
+          path: public
+      - name: Publish to GHCR
+        uses: macbre/push-to-ghcr@v8
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          image_name: purefuncinc/portal-web
