@@ -1,17 +1,13 @@
 name: CI
 
-# Controls when the workflow will run
 on:
   release:
-    types: [ published ]
-  # Triggers the workflow on push or pull request events but only for the main branch
+    types:
+      - published
   push:
-    branches: [ main ]
+    branches:
+      - main
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -38,14 +34,25 @@ jobs:
         env:
           GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
           CI: true
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: gatsby-artifacts-${{ github.run_id }}
+          path: public
+          retention-days: 1
   publish:
     runs-on: ubuntu-latest
+    needs:
+      - build
     steps:
       - uses: actions/checkout@v2
+      - name: Retrieve artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: gatsby-artifacts-${{ github.run_id }}
+          path: public
       - name: Publish to GHCR
         uses: macbre/push-to-ghcr@v8
         with:
-          # Your secrets.GITHUB_TOKEN
-          github_token: ${{ github.token }}
-          # Image name, e.g. my-user-name/my-repo
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           image_name: purefuncinc/portal-web
