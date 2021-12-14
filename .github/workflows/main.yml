@@ -1,4 +1,4 @@
-name: CI
+name: Release
 
 on:
   release:
@@ -41,6 +41,8 @@ jobs:
           retention-days: 1
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     needs:
       - build
     steps:
@@ -53,5 +55,5 @@ jobs:
       - name: Publish to GHCR
         uses: macbre/push-to-ghcr@v8
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ github.token }}
           image_name: purefuncinc/portal-web
