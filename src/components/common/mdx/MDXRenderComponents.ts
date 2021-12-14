@@ -1,27 +1,31 @@
 import styled from '@emotion/styled'
 import type { MDXProviderComponentsProp } from '@mdx-js/react'
 
-export const H1 = styled.h1(({ theme }) => `
-  color: ${theme.color.text};
-  font-size: ${theme.size.greatest};
+export const H1 = styled.h1`
+  color: ${({ theme }) => theme.color.text};
+  font-size: ${({ theme }) => theme.size.greatest};
+  margin-top: ${({ theme }) => theme.size.greatest};
   margin-bottom: 25px;
-`)
+`
 
-export const H2 = styled.h1(({ theme }) => `
-  color: ${theme.color.text};
-  font-size: ${theme.size.greater};
+export const H2 = styled.h1`
+  color: ${({ theme }) => theme.color.text};
+  font-size: ${({ theme }) => theme.size.greater};
+  margin-top: ${({ theme }) => theme.size.greater};
   margin-bottom: 25px;
-`)
+`
 
-export const H3 = styled.h1(({ theme }) => `
-  color: ${theme.color.text};
-  font-size: ${theme.size.great};
+export const H3 = styled.h1`
+  color: ${({ theme }) => theme.color.text};
+  font-size: ${({ theme }) => theme.size.great};
+  margin-top: ${({ theme }) => theme.size.great};
   margin-bottom: 25px;
-`)
+`
 
-export const Paragraph = styled.p(({ theme }) => `
-  color: ${theme.color.text};
-`)
+export const Paragraph = styled.p`
+  color: ${({ theme }) => theme.color.text};
+  line-height: 1.25rem;
+`
 
 export default {
   h1: H1,

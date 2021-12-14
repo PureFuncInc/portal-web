@@ -7,10 +7,10 @@ import { Footer } from '@/components/common/Footer'
 
 export const SimpleLayout: React.FC<LayoutProps> = ({
   children,
-  title,
+  ...seoProps
 }) => (
   <Container>
-    <SEO title={title} />
+    <SEO {...seoProps} />
 
     <LayoutContainer>
       <FloatingHeader />
@@ -32,7 +32,7 @@ const Container = styled.div`
 `
 
 const LayoutContainer = styled.div`
-  margin: 0 10vw;
+  margin: 0 15vw 120px;
   min-height: 60vh;
 `
 

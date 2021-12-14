@@ -12,24 +12,24 @@ export const NavMenu: React.FC<NavMenuProps> = ({
   return (
     <Nav className={className}>
       <NavItem>
-        <NavLink to='/about-us'>
-          About PureFunc
-        </NavLink>
+        <Link to='/about-us'>
+          關於 PureFunc
+        </Link>
       </NavItem>
       <NavItem>
-        <NavLink to='/articles'>
-          Blog
-        </NavLink>
+        <Link to='/articles'>
+          部落格
+        </Link>
       </NavItem>
       <NavItem>
-        <NavLink to='/portfolio'>
-          Portfolio
-        </NavLink>
+        <Link to='/portfolio'>
+          代表作
+        </Link>
       </NavItem>
       <NavItem>
-        <NavLink to='/contact-us'>
-          Contact
-        </NavLink>
+        <Link to='/contact-us'>
+          聯絡我們
+        </Link>
       </NavItem>
     </Nav>
   )
@@ -44,8 +44,4 @@ const Nav = styled.nav`
 const NavItem = styled.li`
   flex-grow: 1;
   padding: 25px 35px;
-`
-
-const NavLink = styled(Link)`
-  text-decoration: none;
 `

@@ -578,6 +578,8 @@ type MdxEdge {
 }
 
 type MdxFrontmatter {
+  category: String
+  embeddedImagesLocal: [File]
   title: String!
 }
 
@@ -952,8 +954,13 @@ type SitePluginGroupConnection {
 
 type SiteSiteMetadata {
   description: String
+  email: String
+  facebook: String
+  image: String
   siteUrl: String
   title: String
+  twitter: String
+  youtube: String
 }
 
 type StaticImage implements Node {
@@ -1319,6 +1326,47 @@ enum FileFieldsEnum {
   childMdx___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___fileAbsolutePath
+  childMdx___frontmatter___category
+  childMdx___frontmatter___embeddedImagesLocal
+  childMdx___frontmatter___embeddedImagesLocal___absolutePath
+  childMdx___frontmatter___embeddedImagesLocal___accessTime
+  childMdx___frontmatter___embeddedImagesLocal___atime
+  childMdx___frontmatter___embeddedImagesLocal___atimeMs
+  childMdx___frontmatter___embeddedImagesLocal___base
+  childMdx___frontmatter___embeddedImagesLocal___birthTime
+  childMdx___frontmatter___embeddedImagesLocal___birthtime
+  childMdx___frontmatter___embeddedImagesLocal___birthtimeMs
+  childMdx___frontmatter___embeddedImagesLocal___blksize
+  childMdx___frontmatter___embeddedImagesLocal___blocks
+  childMdx___frontmatter___embeddedImagesLocal___changeTime
+  childMdx___frontmatter___embeddedImagesLocal___children
+  childMdx___frontmatter___embeddedImagesLocal___childrenImageSharp
+  childMdx___frontmatter___embeddedImagesLocal___childrenMdx
+  childMdx___frontmatter___embeddedImagesLocal___childrenPeopleYaml
+  childMdx___frontmatter___embeddedImagesLocal___ctime
+  childMdx___frontmatter___embeddedImagesLocal___ctimeMs
+  childMdx___frontmatter___embeddedImagesLocal___dev
+  childMdx___frontmatter___embeddedImagesLocal___dir
+  childMdx___frontmatter___embeddedImagesLocal___ext
+  childMdx___frontmatter___embeddedImagesLocal___extension
+  childMdx___frontmatter___embeddedImagesLocal___gid
+  childMdx___frontmatter___embeddedImagesLocal___id
+  childMdx___frontmatter___embeddedImagesLocal___ino
+  childMdx___frontmatter___embeddedImagesLocal___mode
+  childMdx___frontmatter___embeddedImagesLocal___modifiedTime
+  childMdx___frontmatter___embeddedImagesLocal___mtime
+  childMdx___frontmatter___embeddedImagesLocal___mtimeMs
+  childMdx___frontmatter___embeddedImagesLocal___name
+  childMdx___frontmatter___embeddedImagesLocal___nlink
+  childMdx___frontmatter___embeddedImagesLocal___prettySize
+  childMdx___frontmatter___embeddedImagesLocal___publicURL
+  childMdx___frontmatter___embeddedImagesLocal___rdev
+  childMdx___frontmatter___embeddedImagesLocal___relativeDirectory
+  childMdx___frontmatter___embeddedImagesLocal___relativePath
+  childMdx___frontmatter___embeddedImagesLocal___root
+  childMdx___frontmatter___embeddedImagesLocal___size
+  childMdx___frontmatter___embeddedImagesLocal___sourceInstanceName
+  childMdx___frontmatter___embeddedImagesLocal___uid
   childMdx___frontmatter___title
   childMdx___headings @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___headings___depth @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1498,6 +1546,47 @@ enum FileFieldsEnum {
   childrenMdx___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childrenMdx___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childrenMdx___fileAbsolutePath
+  childrenMdx___frontmatter___category
+  childrenMdx___frontmatter___embeddedImagesLocal
+  childrenMdx___frontmatter___embeddedImagesLocal___absolutePath
+  childrenMdx___frontmatter___embeddedImagesLocal___accessTime
+  childrenMdx___frontmatter___embeddedImagesLocal___atime
+  childrenMdx___frontmatter___embeddedImagesLocal___atimeMs
+  childrenMdx___frontmatter___embeddedImagesLocal___base
+  childrenMdx___frontmatter___embeddedImagesLocal___birthTime
+  childrenMdx___frontmatter___embeddedImagesLocal___birthtime
+  childrenMdx___frontmatter___embeddedImagesLocal___birthtimeMs
+  childrenMdx___frontmatter___embeddedImagesLocal___blksize
+  childrenMdx___frontmatter___embeddedImagesLocal___blocks
+  childrenMdx___frontmatter___embeddedImagesLocal___changeTime
+  childrenMdx___frontmatter___embeddedImagesLocal___children
+  childrenMdx___frontmatter___embeddedImagesLocal___childrenImageSharp
+  childrenMdx___frontmatter___embeddedImagesLocal___childrenMdx
+  childrenMdx___frontmatter___embeddedImagesLocal___childrenPeopleYaml
+  childrenMdx___frontmatter___embeddedImagesLocal___ctime
+  childrenMdx___frontmatter___embeddedImagesLocal___ctimeMs
+  childrenMdx___frontmatter___embeddedImagesLocal___dev
+  childrenMdx___frontmatter___embeddedImagesLocal___dir
+  childrenMdx___frontmatter___embeddedImagesLocal___ext
+  childrenMdx___frontmatter___embeddedImagesLocal___extension
+  childrenMdx___frontmatter___embeddedImagesLocal___gid
+  childrenMdx___frontmatter___embeddedImagesLocal___id
+  childrenMdx___frontmatter___embeddedImagesLocal___ino
+  childrenMdx___frontmatter___embeddedImagesLocal___mode
+  childrenMdx___frontmatter___embeddedImagesLocal___modifiedTime
+  childrenMdx___frontmatter___embeddedImagesLocal___mtime
+  childrenMdx___frontmatter___embeddedImagesLocal___mtimeMs
+  childrenMdx___frontmatter___embeddedImagesLocal___name
+  childrenMdx___frontmatter___embeddedImagesLocal___nlink
+  childrenMdx___frontmatter___embeddedImagesLocal___prettySize
+  childrenMdx___frontmatter___embeddedImagesLocal___publicURL
+  childrenMdx___frontmatter___embeddedImagesLocal___rdev
+  childrenMdx___frontmatter___embeddedImagesLocal___relativeDirectory
+  childrenMdx___frontmatter___embeddedImagesLocal___relativePath
+  childrenMdx___frontmatter___embeddedImagesLocal___root
+  childrenMdx___frontmatter___embeddedImagesLocal___size
+  childrenMdx___frontmatter___embeddedImagesLocal___sourceInstanceName
+  childrenMdx___frontmatter___embeddedImagesLocal___uid
   childrenMdx___frontmatter___title
   childrenMdx___headings @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childrenMdx___headings___depth @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1936,6 +2025,105 @@ enum MdxFieldsEnum {
   children___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   fileAbsolutePath
+  frontmatter___category
+  frontmatter___embeddedImagesLocal
+  frontmatter___embeddedImagesLocal___absolutePath
+  frontmatter___embeddedImagesLocal___accessTime
+  frontmatter___embeddedImagesLocal___atime
+  frontmatter___embeddedImagesLocal___atimeMs
+  frontmatter___embeddedImagesLocal___base
+  frontmatter___embeddedImagesLocal___birthTime
+  frontmatter___embeddedImagesLocal___birthtime
+  frontmatter___embeddedImagesLocal___birthtimeMs
+  frontmatter___embeddedImagesLocal___blksize
+  frontmatter___embeddedImagesLocal___blocks
+  frontmatter___embeddedImagesLocal___changeTime
+  frontmatter___embeddedImagesLocal___childImageSharp___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childImageSharp___gatsbyImageData @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childImageSharp___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childMdx___body
+  frontmatter___embeddedImagesLocal___childMdx___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childMdx___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childMdx___fileAbsolutePath
+  frontmatter___embeddedImagesLocal___childMdx___headings @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childMdx___html @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childMdx___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childMdx___mdxAST @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childMdx___rawBody
+  frontmatter___embeddedImagesLocal___childMdx___slug
+  frontmatter___embeddedImagesLocal___childMdx___tableOfContents @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childMdx___timeToRead @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childPeopleYaml___achievements
+  frontmatter___embeddedImagesLocal___childPeopleYaml___children
+  frontmatter___embeddedImagesLocal___childPeopleYaml___expertise
+  frontmatter___embeddedImagesLocal___childPeopleYaml___headline
+  frontmatter___embeddedImagesLocal___childPeopleYaml___id
+  frontmatter___embeddedImagesLocal___childPeopleYaml___slug
+  frontmatter___embeddedImagesLocal___childPeopleYaml___story
+  frontmatter___embeddedImagesLocal___childPeopleYaml___title
+  frontmatter___embeddedImagesLocal___children
+  frontmatter___embeddedImagesLocal___childrenImageSharp
+  frontmatter___embeddedImagesLocal___childrenImageSharp___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childrenImageSharp___gatsbyImageData @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childrenImageSharp___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childrenMdx
+  frontmatter___embeddedImagesLocal___childrenMdx___body
+  frontmatter___embeddedImagesLocal___childrenMdx___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childrenMdx___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childrenMdx___fileAbsolutePath
+  frontmatter___embeddedImagesLocal___childrenMdx___headings @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childrenMdx___html @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childrenMdx___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childrenMdx___mdxAST @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childrenMdx___rawBody
+  frontmatter___embeddedImagesLocal___childrenMdx___slug
+  frontmatter___embeddedImagesLocal___childrenMdx___tableOfContents @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childrenMdx___timeToRead @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___embeddedImagesLocal___childrenPeopleYaml
+  frontmatter___embeddedImagesLocal___childrenPeopleYaml___achievements
+  frontmatter___embeddedImagesLocal___childrenPeopleYaml___children
+  frontmatter___embeddedImagesLocal___childrenPeopleYaml___expertise
+  frontmatter___embeddedImagesLocal___childrenPeopleYaml___headline
+  frontmatter___embeddedImagesLocal___childrenPeopleYaml___id
+  frontmatter___embeddedImagesLocal___childrenPeopleYaml___slug
+  frontmatter___embeddedImagesLocal___childrenPeopleYaml___story
+  frontmatter___embeddedImagesLocal___childrenPeopleYaml___title
+  frontmatter___embeddedImagesLocal___children___children
+  frontmatter___embeddedImagesLocal___children___id
+  frontmatter___embeddedImagesLocal___ctime
+  frontmatter___embeddedImagesLocal___ctimeMs
+  frontmatter___embeddedImagesLocal___dev
+  frontmatter___embeddedImagesLocal___dir
+  frontmatter___embeddedImagesLocal___ext
+  frontmatter___embeddedImagesLocal___extension
+  frontmatter___embeddedImagesLocal___gid
+  frontmatter___embeddedImagesLocal___id
+  frontmatter___embeddedImagesLocal___ino
+  frontmatter___embeddedImagesLocal___internal___content
+  frontmatter___embeddedImagesLocal___internal___contentDigest
+  frontmatter___embeddedImagesLocal___internal___description
+  frontmatter___embeddedImagesLocal___internal___fieldOwners
+  frontmatter___embeddedImagesLocal___internal___ignoreType
+  frontmatter___embeddedImagesLocal___internal___mediaType
+  frontmatter___embeddedImagesLocal___internal___owner
+  frontmatter___embeddedImagesLocal___internal___type
+  frontmatter___embeddedImagesLocal___mode
+  frontmatter___embeddedImagesLocal___modifiedTime
+  frontmatter___embeddedImagesLocal___mtime
+  frontmatter___embeddedImagesLocal___mtimeMs
+  frontmatter___embeddedImagesLocal___name
+  frontmatter___embeddedImagesLocal___nlink
+  frontmatter___embeddedImagesLocal___parent___children
+  frontmatter___embeddedImagesLocal___parent___id
+  frontmatter___embeddedImagesLocal___prettySize
+  frontmatter___embeddedImagesLocal___publicURL
+  frontmatter___embeddedImagesLocal___rdev
+  frontmatter___embeddedImagesLocal___relativeDirectory
+  frontmatter___embeddedImagesLocal___relativePath
+  frontmatter___embeddedImagesLocal___root
+  frontmatter___embeddedImagesLocal___size
+  frontmatter___embeddedImagesLocal___sourceInstanceName
+  frontmatter___embeddedImagesLocal___uid
   frontmatter___title
   headings @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   headings___depth @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2294,8 +2482,13 @@ enum SiteFieldsEnum {
   polyfill
   port
   siteMetadata___description
+  siteMetadata___email
+  siteMetadata___facebook
+  siteMetadata___image
   siteMetadata___siteUrl
   siteMetadata___title
+  siteMetadata___twitter
+  siteMetadata___youtube
 }
 
 enum SiteFunctionFieldsEnum {
@@ -2893,6 +3086,10 @@ input FileFilterInput {
   uid: IntQueryOperatorInput
 }
 
+input FileFilterListInput {
+  elemMatch: FileFilterInput
+}
+
 input FileSortInput {
   fields: [FileFieldsEnum]
   order: [SortOrderEnum] = [ASC]
@@ -3033,6 +3230,8 @@ input MdxFilterListInput {
 }
 
 input MdxFrontmatterFilterInput {
+  category: StringQueryOperatorInput
+  embeddedImagesLocal: FileFilterListInput
   title: StringQueryOperatorInput
 }
 
@@ -3214,8 +3413,13 @@ input SitePluginSortInput {
 
 input SiteSiteMetadataFilterInput {
   description: StringQueryOperatorInput
+  email: StringQueryOperatorInput
+  facebook: StringQueryOperatorInput
+  image: StringQueryOperatorInput
   siteUrl: StringQueryOperatorInput
   title: StringQueryOperatorInput
+  twitter: StringQueryOperatorInput
+  youtube: StringQueryOperatorInput
 }
 
 input SiteSortInput {
