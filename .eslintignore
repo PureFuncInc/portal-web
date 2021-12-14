@@ -146,3 +146,7 @@ Temporary Items
 
 # graphql-codegen
 graphql-types.ts
+
+# JetBrains
+.run/
+.idea/
