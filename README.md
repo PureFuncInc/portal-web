@@ -17,4 +17,4 @@
 
 ## 🛠 Contribute
 
-You probably won't contribute to this repo, since it is the company's website.
+You probably won't contribute to this repo, since it is the company's site.
