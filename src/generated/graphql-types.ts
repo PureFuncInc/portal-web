@@ -251,8 +251,9 @@ export type DirectoryCtimeArgs = {
 export type Site = Node & {
   buildTime?: Maybe<Scalars['Date']>;
   siteMetadata?: Maybe<SiteSiteMetadata>;
-  port?: Maybe<Scalars['Int']>;
-  host?: Maybe<Scalars['String']>;
+  polyfill?: Maybe<Scalars['Boolean']>;
+  pathPrefix?: Maybe<Scalars['String']>;
+  jsxRuntime?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -608,6 +609,8 @@ export type ImageSharpResize = {
 
 export type MdxFrontmatter = {
   title: Scalars['String'];
+  category?: Maybe<Scalars['String']>;
+  embeddedImagesLocal?: Maybe<Array<Maybe<File>>>;
 };
 
 export type MdxHeadingMdx = {
@@ -697,109 +700,6 @@ export type PeopleYamlSocialNetworks = {
   portal?: Maybe<Scalars['String']>;
 };
 
-export type StaticImage = Node & {
-  id: Scalars['ID'];
-  parent?: Maybe<Node>;
-  children: Array<Node>;
-  internal: Internal;
-  sourceInstanceName?: Maybe<Scalars['String']>;
-  relativePath?: Maybe<Scalars['String']>;
-  extension?: Maybe<Scalars['String']>;
-  prettySize?: Maybe<Scalars['String']>;
-  modifiedTime?: Maybe<Scalars['Date']>;
-  accessTime?: Maybe<Scalars['Date']>;
-  changeTime?: Maybe<Scalars['Date']>;
-  birthTime?: Maybe<Scalars['Date']>;
-  root?: Maybe<Scalars['String']>;
-  dir?: Maybe<Scalars['String']>;
-  base?: Maybe<Scalars['String']>;
-  ext?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  absolutePath?: Maybe<Scalars['String']>;
-  relativeDirectory?: Maybe<Scalars['String']>;
-  dev?: Maybe<Scalars['Int']>;
-  mode?: Maybe<Scalars['Int']>;
-  nlink?: Maybe<Scalars['Int']>;
-  uid?: Maybe<Scalars['Int']>;
-  rdev?: Maybe<Scalars['Int']>;
-  blksize?: Maybe<Scalars['Int']>;
-  ino?: Maybe<Scalars['Int']>;
-  size?: Maybe<Scalars['Int']>;
-  blocks?: Maybe<Scalars['Int']>;
-  atimeMs?: Maybe<Scalars['Float']>;
-  mtimeMs?: Maybe<Scalars['Float']>;
-  ctimeMs?: Maybe<Scalars['Float']>;
-  birthtimeMs?: Maybe<Scalars['Float']>;
-  atime?: Maybe<Scalars['Date']>;
-  mtime?: Maybe<Scalars['Date']>;
-  ctime?: Maybe<Scalars['Date']>;
-  birthtime?: Maybe<Scalars['Date']>;
-};
-
-
-export type StaticImageModifiedTimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageAccessTimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageChangeTimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageBirthTimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageAtimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageMtimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageCtimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageBirthtimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
 export type Query = {
   file?: Maybe<File>;
   allFile: FileConnection;
@@ -821,8 +721,6 @@ export type Query = {
   allMdx: MdxConnection;
   peopleYaml?: Maybe<PeopleYaml>;
   allPeopleYaml: PeopleYamlConnection;
-  staticImage?: Maybe<StaticImage>;
-  allStaticImage: StaticImageConnection;
 };
 
 
@@ -932,8 +830,9 @@ export type QueryAllDirectoryArgs = {
 export type QuerySiteArgs = {
   buildTime?: InputMaybe<DateQueryOperatorInput>;
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
-  port?: InputMaybe<IntQueryOperatorInput>;
-  host?: InputMaybe<StringQueryOperatorInput>;
+  polyfill?: InputMaybe<BooleanQueryOperatorInput>;
+  pathPrefix?: InputMaybe<StringQueryOperatorInput>;
+  jsxRuntime?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -1110,54 +1009,6 @@ export type QueryAllPeopleYamlArgs = {
   limit?: InputMaybe<Scalars['Int']>;
 };
 
-
-export type QueryStaticImageArgs = {
-  id?: InputMaybe<StringQueryOperatorInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
-  sourceInstanceName?: InputMaybe<StringQueryOperatorInput>;
-  relativePath?: InputMaybe<StringQueryOperatorInput>;
-  extension?: InputMaybe<StringQueryOperatorInput>;
-  prettySize?: InputMaybe<StringQueryOperatorInput>;
-  modifiedTime?: InputMaybe<DateQueryOperatorInput>;
-  accessTime?: InputMaybe<DateQueryOperatorInput>;
-  changeTime?: InputMaybe<DateQueryOperatorInput>;
-  birthTime?: InputMaybe<DateQueryOperatorInput>;
-  root?: InputMaybe<StringQueryOperatorInput>;
-  dir?: InputMaybe<StringQueryOperatorInput>;
-  base?: InputMaybe<StringQueryOperatorInput>;
-  ext?: InputMaybe<StringQueryOperatorInput>;
-  name?: InputMaybe<StringQueryOperatorInput>;
-  absolutePath?: InputMaybe<StringQueryOperatorInput>;
-  relativeDirectory?: InputMaybe<StringQueryOperatorInput>;
-  dev?: InputMaybe<IntQueryOperatorInput>;
-  mode?: InputMaybe<IntQueryOperatorInput>;
-  nlink?: InputMaybe<IntQueryOperatorInput>;
-  uid?: InputMaybe<IntQueryOperatorInput>;
-  rdev?: InputMaybe<IntQueryOperatorInput>;
-  blksize?: InputMaybe<IntQueryOperatorInput>;
-  ino?: InputMaybe<IntQueryOperatorInput>;
-  size?: InputMaybe<IntQueryOperatorInput>;
-  blocks?: InputMaybe<IntQueryOperatorInput>;
-  atimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  mtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  ctimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  birthtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  atime?: InputMaybe<DateQueryOperatorInput>;
-  mtime?: InputMaybe<DateQueryOperatorInput>;
-  ctime?: InputMaybe<DateQueryOperatorInput>;
-  birthtime?: InputMaybe<DateQueryOperatorInput>;
-};
-
-
-export type QueryAllStaticImageArgs = {
-  filter?: InputMaybe<StaticImageFilterInput>;
-  sort?: InputMaybe<StaticImageSortInput>;
-  skip?: InputMaybe<Scalars['Int']>;
-  limit?: InputMaybe<Scalars['Int']>;
-};
-
 export type StringQueryOperatorInput = {
   eq?: InputMaybe<Scalars['String']>;
   ne?: InputMaybe<Scalars['String']>;
@@ -1322,21 +1173,59 @@ export type MdxFilterInput = {
 
 export type MdxFrontmatterFilterInput = {
   title?: InputMaybe<StringQueryOperatorInput>;
+  category?: InputMaybe<StringQueryOperatorInput>;
+  embeddedImagesLocal?: InputMaybe<FileFilterListInput>;
 };
 
-export type MdxHeadingMdxFilterListInput = {
-  elemMatch?: InputMaybe<MdxHeadingMdxFilterInput>;
+export type FileFilterListInput = {
+  elemMatch?: InputMaybe<FileFilterInput>;
 };
 
-export type MdxHeadingMdxFilterInput = {
-  value?: InputMaybe<StringQueryOperatorInput>;
-  depth?: InputMaybe<IntQueryOperatorInput>;
-};
-
-export type MdxWordCountFilterInput = {
-  paragraphs?: InputMaybe<IntQueryOperatorInput>;
-  sentences?: InputMaybe<IntQueryOperatorInput>;
-  words?: InputMaybe<IntQueryOperatorInput>;
+export type FileFilterInput = {
+  sourceInstanceName?: InputMaybe<StringQueryOperatorInput>;
+  absolutePath?: InputMaybe<StringQueryOperatorInput>;
+  relativePath?: InputMaybe<StringQueryOperatorInput>;
+  extension?: InputMaybe<StringQueryOperatorInput>;
+  size?: InputMaybe<IntQueryOperatorInput>;
+  prettySize?: InputMaybe<StringQueryOperatorInput>;
+  modifiedTime?: InputMaybe<DateQueryOperatorInput>;
+  accessTime?: InputMaybe<DateQueryOperatorInput>;
+  changeTime?: InputMaybe<DateQueryOperatorInput>;
+  birthTime?: InputMaybe<DateQueryOperatorInput>;
+  root?: InputMaybe<StringQueryOperatorInput>;
+  dir?: InputMaybe<StringQueryOperatorInput>;
+  base?: InputMaybe<StringQueryOperatorInput>;
+  ext?: InputMaybe<StringQueryOperatorInput>;
+  name?: InputMaybe<StringQueryOperatorInput>;
+  relativeDirectory?: InputMaybe<StringQueryOperatorInput>;
+  dev?: InputMaybe<IntQueryOperatorInput>;
+  mode?: InputMaybe<IntQueryOperatorInput>;
+  nlink?: InputMaybe<IntQueryOperatorInput>;
+  uid?: InputMaybe<IntQueryOperatorInput>;
+  gid?: InputMaybe<IntQueryOperatorInput>;
+  rdev?: InputMaybe<IntQueryOperatorInput>;
+  ino?: InputMaybe<FloatQueryOperatorInput>;
+  atimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  mtimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  ctimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  atime?: InputMaybe<DateQueryOperatorInput>;
+  mtime?: InputMaybe<DateQueryOperatorInput>;
+  ctime?: InputMaybe<DateQueryOperatorInput>;
+  birthtime?: InputMaybe<DateQueryOperatorInput>;
+  birthtimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  blksize?: InputMaybe<IntQueryOperatorInput>;
+  blocks?: InputMaybe<IntQueryOperatorInput>;
+  publicURL?: InputMaybe<StringQueryOperatorInput>;
+  childrenImageSharp?: InputMaybe<ImageSharpFilterListInput>;
+  childImageSharp?: InputMaybe<ImageSharpFilterInput>;
+  childrenMdx?: InputMaybe<MdxFilterListInput>;
+  childMdx?: InputMaybe<MdxFilterInput>;
+  childrenPeopleYaml?: InputMaybe<PeopleYamlFilterListInput>;
+  childPeopleYaml?: InputMaybe<PeopleYamlFilterInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
 };
 
 export type PeopleYamlFilterListInput = {
@@ -1374,6 +1263,21 @@ export type PeopleYamlSocialNetworksFilterInput = {
   linkedin?: InputMaybe<StringQueryOperatorInput>;
   facebook?: InputMaybe<StringQueryOperatorInput>;
   portal?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type MdxHeadingMdxFilterListInput = {
+  elemMatch?: InputMaybe<MdxHeadingMdxFilterInput>;
+};
+
+export type MdxHeadingMdxFilterInput = {
+  value?: InputMaybe<StringQueryOperatorInput>;
+  depth?: InputMaybe<IntQueryOperatorInput>;
+};
+
+export type MdxWordCountFilterInput = {
+  paragraphs?: InputMaybe<IntQueryOperatorInput>;
+  sentences?: InputMaybe<IntQueryOperatorInput>;
+  words?: InputMaybe<IntQueryOperatorInput>;
 };
 
 export type FileConnection = {
@@ -1611,6 +1515,47 @@ export type FileFieldsEnum =
   | 'childrenMdx___rawBody'
   | 'childrenMdx___fileAbsolutePath'
   | 'childrenMdx___frontmatter___title'
+  | 'childrenMdx___frontmatter___category'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___sourceInstanceName'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___absolutePath'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___relativePath'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___extension'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___size'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___prettySize'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___modifiedTime'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___accessTime'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___changeTime'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___birthTime'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___root'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___dir'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___base'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___ext'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___name'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___relativeDirectory'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___dev'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___mode'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___nlink'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___uid'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___gid'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___rdev'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___ino'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___atimeMs'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___mtimeMs'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___ctimeMs'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___atime'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___mtime'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___ctime'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___birthtime'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___birthtimeMs'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___blksize'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___blocks'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___publicURL'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___childrenImageSharp'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___childrenMdx'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___childrenPeopleYaml'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___id'
+  | 'childrenMdx___frontmatter___embeddedImagesLocal___children'
   | 'childrenMdx___slug'
   | 'childrenMdx___body'
   | 'childrenMdx___excerpt'
@@ -1665,6 +1610,47 @@ export type FileFieldsEnum =
   | 'childMdx___rawBody'
   | 'childMdx___fileAbsolutePath'
   | 'childMdx___frontmatter___title'
+  | 'childMdx___frontmatter___category'
+  | 'childMdx___frontmatter___embeddedImagesLocal'
+  | 'childMdx___frontmatter___embeddedImagesLocal___sourceInstanceName'
+  | 'childMdx___frontmatter___embeddedImagesLocal___absolutePath'
+  | 'childMdx___frontmatter___embeddedImagesLocal___relativePath'
+  | 'childMdx___frontmatter___embeddedImagesLocal___extension'
+  | 'childMdx___frontmatter___embeddedImagesLocal___size'
+  | 'childMdx___frontmatter___embeddedImagesLocal___prettySize'
+  | 'childMdx___frontmatter___embeddedImagesLocal___modifiedTime'
+  | 'childMdx___frontmatter___embeddedImagesLocal___accessTime'
+  | 'childMdx___frontmatter___embeddedImagesLocal___changeTime'
+  | 'childMdx___frontmatter___embeddedImagesLocal___birthTime'
+  | 'childMdx___frontmatter___embeddedImagesLocal___root'
+  | 'childMdx___frontmatter___embeddedImagesLocal___dir'
+  | 'childMdx___frontmatter___embeddedImagesLocal___base'
+  | 'childMdx___frontmatter___embeddedImagesLocal___ext'
+  | 'childMdx___frontmatter___embeddedImagesLocal___name'
+  | 'childMdx___frontmatter___embeddedImagesLocal___relativeDirectory'
+  | 'childMdx___frontmatter___embeddedImagesLocal___dev'
+  | 'childMdx___frontmatter___embeddedImagesLocal___mode'
+  | 'childMdx___frontmatter___embeddedImagesLocal___nlink'
+  | 'childMdx___frontmatter___embeddedImagesLocal___uid'
+  | 'childMdx___frontmatter___embeddedImagesLocal___gid'
+  | 'childMdx___frontmatter___embeddedImagesLocal___rdev'
+  | 'childMdx___frontmatter___embeddedImagesLocal___ino'
+  | 'childMdx___frontmatter___embeddedImagesLocal___atimeMs'
+  | 'childMdx___frontmatter___embeddedImagesLocal___mtimeMs'
+  | 'childMdx___frontmatter___embeddedImagesLocal___ctimeMs'
+  | 'childMdx___frontmatter___embeddedImagesLocal___atime'
+  | 'childMdx___frontmatter___embeddedImagesLocal___mtime'
+  | 'childMdx___frontmatter___embeddedImagesLocal___ctime'
+  | 'childMdx___frontmatter___embeddedImagesLocal___birthtime'
+  | 'childMdx___frontmatter___embeddedImagesLocal___birthtimeMs'
+  | 'childMdx___frontmatter___embeddedImagesLocal___blksize'
+  | 'childMdx___frontmatter___embeddedImagesLocal___blocks'
+  | 'childMdx___frontmatter___embeddedImagesLocal___publicURL'
+  | 'childMdx___frontmatter___embeddedImagesLocal___childrenImageSharp'
+  | 'childMdx___frontmatter___embeddedImagesLocal___childrenMdx'
+  | 'childMdx___frontmatter___embeddedImagesLocal___childrenPeopleYaml'
+  | 'childMdx___frontmatter___embeddedImagesLocal___id'
+  | 'childMdx___frontmatter___embeddedImagesLocal___children'
   | 'childMdx___slug'
   | 'childMdx___body'
   | 'childMdx___excerpt'
@@ -1947,53 +1933,6 @@ export type FileGroupConnectionGroupArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
   field: FileFieldsEnum;
-};
-
-export type FileFilterInput = {
-  sourceInstanceName?: InputMaybe<StringQueryOperatorInput>;
-  absolutePath?: InputMaybe<StringQueryOperatorInput>;
-  relativePath?: InputMaybe<StringQueryOperatorInput>;
-  extension?: InputMaybe<StringQueryOperatorInput>;
-  size?: InputMaybe<IntQueryOperatorInput>;
-  prettySize?: InputMaybe<StringQueryOperatorInput>;
-  modifiedTime?: InputMaybe<DateQueryOperatorInput>;
-  accessTime?: InputMaybe<DateQueryOperatorInput>;
-  changeTime?: InputMaybe<DateQueryOperatorInput>;
-  birthTime?: InputMaybe<DateQueryOperatorInput>;
-  root?: InputMaybe<StringQueryOperatorInput>;
-  dir?: InputMaybe<StringQueryOperatorInput>;
-  base?: InputMaybe<StringQueryOperatorInput>;
-  ext?: InputMaybe<StringQueryOperatorInput>;
-  name?: InputMaybe<StringQueryOperatorInput>;
-  relativeDirectory?: InputMaybe<StringQueryOperatorInput>;
-  dev?: InputMaybe<IntQueryOperatorInput>;
-  mode?: InputMaybe<IntQueryOperatorInput>;
-  nlink?: InputMaybe<IntQueryOperatorInput>;
-  uid?: InputMaybe<IntQueryOperatorInput>;
-  gid?: InputMaybe<IntQueryOperatorInput>;
-  rdev?: InputMaybe<IntQueryOperatorInput>;
-  ino?: InputMaybe<FloatQueryOperatorInput>;
-  atimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  mtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  ctimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  atime?: InputMaybe<DateQueryOperatorInput>;
-  mtime?: InputMaybe<DateQueryOperatorInput>;
-  ctime?: InputMaybe<DateQueryOperatorInput>;
-  birthtime?: InputMaybe<DateQueryOperatorInput>;
-  birthtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  blksize?: InputMaybe<IntQueryOperatorInput>;
-  blocks?: InputMaybe<IntQueryOperatorInput>;
-  publicURL?: InputMaybe<StringQueryOperatorInput>;
-  childrenImageSharp?: InputMaybe<ImageSharpFilterListInput>;
-  childImageSharp?: InputMaybe<ImageSharpFilterInput>;
-  childrenMdx?: InputMaybe<MdxFilterListInput>;
-  childMdx?: InputMaybe<MdxFilterInput>;
-  childrenPeopleYaml?: InputMaybe<PeopleYamlFilterListInput>;
-  childPeopleYaml?: InputMaybe<PeopleYamlFilterInput>;
-  id?: InputMaybe<StringQueryOperatorInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
 };
 
 export type FileSortInput = {
@@ -2319,8 +2258,9 @@ export type SiteFieldsEnum =
   | 'siteMetadata___youtube'
   | 'siteMetadata___facebook'
   | 'siteMetadata___twitter'
-  | 'port'
-  | 'host'
+  | 'polyfill'
+  | 'pathPrefix'
+  | 'jsxRuntime'
   | 'id'
   | 'parent___id'
   | 'parent___parent___id'
@@ -2452,8 +2392,9 @@ export type SiteGroupConnectionGroupArgs = {
 export type SiteFilterInput = {
   buildTime?: InputMaybe<DateQueryOperatorInput>;
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
-  port?: InputMaybe<IntQueryOperatorInput>;
-  host?: InputMaybe<StringQueryOperatorInput>;
+  polyfill?: InputMaybe<BooleanQueryOperatorInput>;
+  pathPrefix?: InputMaybe<StringQueryOperatorInput>;
+  jsxRuntime?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -3563,6 +3504,105 @@ export type MdxFieldsEnum =
   | 'rawBody'
   | 'fileAbsolutePath'
   | 'frontmatter___title'
+  | 'frontmatter___category'
+  | 'frontmatter___embeddedImagesLocal'
+  | 'frontmatter___embeddedImagesLocal___sourceInstanceName'
+  | 'frontmatter___embeddedImagesLocal___absolutePath'
+  | 'frontmatter___embeddedImagesLocal___relativePath'
+  | 'frontmatter___embeddedImagesLocal___extension'
+  | 'frontmatter___embeddedImagesLocal___size'
+  | 'frontmatter___embeddedImagesLocal___prettySize'
+  | 'frontmatter___embeddedImagesLocal___modifiedTime'
+  | 'frontmatter___embeddedImagesLocal___accessTime'
+  | 'frontmatter___embeddedImagesLocal___changeTime'
+  | 'frontmatter___embeddedImagesLocal___birthTime'
+  | 'frontmatter___embeddedImagesLocal___root'
+  | 'frontmatter___embeddedImagesLocal___dir'
+  | 'frontmatter___embeddedImagesLocal___base'
+  | 'frontmatter___embeddedImagesLocal___ext'
+  | 'frontmatter___embeddedImagesLocal___name'
+  | 'frontmatter___embeddedImagesLocal___relativeDirectory'
+  | 'frontmatter___embeddedImagesLocal___dev'
+  | 'frontmatter___embeddedImagesLocal___mode'
+  | 'frontmatter___embeddedImagesLocal___nlink'
+  | 'frontmatter___embeddedImagesLocal___uid'
+  | 'frontmatter___embeddedImagesLocal___gid'
+  | 'frontmatter___embeddedImagesLocal___rdev'
+  | 'frontmatter___embeddedImagesLocal___ino'
+  | 'frontmatter___embeddedImagesLocal___atimeMs'
+  | 'frontmatter___embeddedImagesLocal___mtimeMs'
+  | 'frontmatter___embeddedImagesLocal___ctimeMs'
+  | 'frontmatter___embeddedImagesLocal___atime'
+  | 'frontmatter___embeddedImagesLocal___mtime'
+  | 'frontmatter___embeddedImagesLocal___ctime'
+  | 'frontmatter___embeddedImagesLocal___birthtime'
+  | 'frontmatter___embeddedImagesLocal___birthtimeMs'
+  | 'frontmatter___embeddedImagesLocal___blksize'
+  | 'frontmatter___embeddedImagesLocal___blocks'
+  | 'frontmatter___embeddedImagesLocal___publicURL'
+  | 'frontmatter___embeddedImagesLocal___childrenImageSharp'
+  | 'frontmatter___embeddedImagesLocal___childrenImageSharp___gatsbyImageData'
+  | 'frontmatter___embeddedImagesLocal___childrenImageSharp___id'
+  | 'frontmatter___embeddedImagesLocal___childrenImageSharp___children'
+  | 'frontmatter___embeddedImagesLocal___childImageSharp___gatsbyImageData'
+  | 'frontmatter___embeddedImagesLocal___childImageSharp___id'
+  | 'frontmatter___embeddedImagesLocal___childImageSharp___children'
+  | 'frontmatter___embeddedImagesLocal___childrenMdx'
+  | 'frontmatter___embeddedImagesLocal___childrenMdx___rawBody'
+  | 'frontmatter___embeddedImagesLocal___childrenMdx___fileAbsolutePath'
+  | 'frontmatter___embeddedImagesLocal___childrenMdx___slug'
+  | 'frontmatter___embeddedImagesLocal___childrenMdx___body'
+  | 'frontmatter___embeddedImagesLocal___childrenMdx___excerpt'
+  | 'frontmatter___embeddedImagesLocal___childrenMdx___headings'
+  | 'frontmatter___embeddedImagesLocal___childrenMdx___html'
+  | 'frontmatter___embeddedImagesLocal___childrenMdx___mdxAST'
+  | 'frontmatter___embeddedImagesLocal___childrenMdx___tableOfContents'
+  | 'frontmatter___embeddedImagesLocal___childrenMdx___timeToRead'
+  | 'frontmatter___embeddedImagesLocal___childrenMdx___id'
+  | 'frontmatter___embeddedImagesLocal___childrenMdx___children'
+  | 'frontmatter___embeddedImagesLocal___childMdx___rawBody'
+  | 'frontmatter___embeddedImagesLocal___childMdx___fileAbsolutePath'
+  | 'frontmatter___embeddedImagesLocal___childMdx___slug'
+  | 'frontmatter___embeddedImagesLocal___childMdx___body'
+  | 'frontmatter___embeddedImagesLocal___childMdx___excerpt'
+  | 'frontmatter___embeddedImagesLocal___childMdx___headings'
+  | 'frontmatter___embeddedImagesLocal___childMdx___html'
+  | 'frontmatter___embeddedImagesLocal___childMdx___mdxAST'
+  | 'frontmatter___embeddedImagesLocal___childMdx___tableOfContents'
+  | 'frontmatter___embeddedImagesLocal___childMdx___timeToRead'
+  | 'frontmatter___embeddedImagesLocal___childMdx___id'
+  | 'frontmatter___embeddedImagesLocal___childMdx___children'
+  | 'frontmatter___embeddedImagesLocal___childrenPeopleYaml'
+  | 'frontmatter___embeddedImagesLocal___childrenPeopleYaml___id'
+  | 'frontmatter___embeddedImagesLocal___childrenPeopleYaml___children'
+  | 'frontmatter___embeddedImagesLocal___childrenPeopleYaml___slug'
+  | 'frontmatter___embeddedImagesLocal___childrenPeopleYaml___title'
+  | 'frontmatter___embeddedImagesLocal___childrenPeopleYaml___expertise'
+  | 'frontmatter___embeddedImagesLocal___childrenPeopleYaml___headline'
+  | 'frontmatter___embeddedImagesLocal___childrenPeopleYaml___story'
+  | 'frontmatter___embeddedImagesLocal___childrenPeopleYaml___achievements'
+  | 'frontmatter___embeddedImagesLocal___childPeopleYaml___id'
+  | 'frontmatter___embeddedImagesLocal___childPeopleYaml___children'
+  | 'frontmatter___embeddedImagesLocal___childPeopleYaml___slug'
+  | 'frontmatter___embeddedImagesLocal___childPeopleYaml___title'
+  | 'frontmatter___embeddedImagesLocal___childPeopleYaml___expertise'
+  | 'frontmatter___embeddedImagesLocal___childPeopleYaml___headline'
+  | 'frontmatter___embeddedImagesLocal___childPeopleYaml___story'
+  | 'frontmatter___embeddedImagesLocal___childPeopleYaml___achievements'
+  | 'frontmatter___embeddedImagesLocal___id'
+  | 'frontmatter___embeddedImagesLocal___parent___id'
+  | 'frontmatter___embeddedImagesLocal___parent___children'
+  | 'frontmatter___embeddedImagesLocal___children'
+  | 'frontmatter___embeddedImagesLocal___children___id'
+  | 'frontmatter___embeddedImagesLocal___children___children'
+  | 'frontmatter___embeddedImagesLocal___internal___content'
+  | 'frontmatter___embeddedImagesLocal___internal___contentDigest'
+  | 'frontmatter___embeddedImagesLocal___internal___description'
+  | 'frontmatter___embeddedImagesLocal___internal___fieldOwners'
+  | 'frontmatter___embeddedImagesLocal___internal___ignoreType'
+  | 'frontmatter___embeddedImagesLocal___internal___mediaType'
+  | 'frontmatter___embeddedImagesLocal___internal___owner'
+  | 'frontmatter___embeddedImagesLocal___internal___type'
   | 'slug'
   | 'body'
   | 'excerpt'
@@ -3902,256 +3942,6 @@ export type PeopleYamlSortInput = {
   order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
 
-export type StaticImageConnection = {
-  totalCount: Scalars['Int'];
-  edges: Array<StaticImageEdge>;
-  nodes: Array<StaticImage>;
-  pageInfo: PageInfo;
-  distinct: Array<Scalars['String']>;
-  max?: Maybe<Scalars['Float']>;
-  min?: Maybe<Scalars['Float']>;
-  sum?: Maybe<Scalars['Float']>;
-  group: Array<StaticImageGroupConnection>;
-};
-
-
-export type StaticImageConnectionDistinctArgs = {
-  field: StaticImageFieldsEnum;
-};
-
-
-export type StaticImageConnectionMaxArgs = {
-  field: StaticImageFieldsEnum;
-};
-
-
-export type StaticImageConnectionMinArgs = {
-  field: StaticImageFieldsEnum;
-};
-
-
-export type StaticImageConnectionSumArgs = {
-  field: StaticImageFieldsEnum;
-};
-
-
-export type StaticImageConnectionGroupArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  field: StaticImageFieldsEnum;
-};
-
-export type StaticImageEdge = {
-  next?: Maybe<StaticImage>;
-  node: StaticImage;
-  previous?: Maybe<StaticImage>;
-};
-
-export type StaticImageFieldsEnum =
-  | 'id'
-  | 'parent___id'
-  | 'parent___parent___id'
-  | 'parent___parent___parent___id'
-  | 'parent___parent___parent___children'
-  | 'parent___parent___children'
-  | 'parent___parent___children___id'
-  | 'parent___parent___children___children'
-  | 'parent___parent___internal___content'
-  | 'parent___parent___internal___contentDigest'
-  | 'parent___parent___internal___description'
-  | 'parent___parent___internal___fieldOwners'
-  | 'parent___parent___internal___ignoreType'
-  | 'parent___parent___internal___mediaType'
-  | 'parent___parent___internal___owner'
-  | 'parent___parent___internal___type'
-  | 'parent___children'
-  | 'parent___children___id'
-  | 'parent___children___parent___id'
-  | 'parent___children___parent___children'
-  | 'parent___children___children'
-  | 'parent___children___children___id'
-  | 'parent___children___children___children'
-  | 'parent___children___internal___content'
-  | 'parent___children___internal___contentDigest'
-  | 'parent___children___internal___description'
-  | 'parent___children___internal___fieldOwners'
-  | 'parent___children___internal___ignoreType'
-  | 'parent___children___internal___mediaType'
-  | 'parent___children___internal___owner'
-  | 'parent___children___internal___type'
-  | 'parent___internal___content'
-  | 'parent___internal___contentDigest'
-  | 'parent___internal___description'
-  | 'parent___internal___fieldOwners'
-  | 'parent___internal___ignoreType'
-  | 'parent___internal___mediaType'
-  | 'parent___internal___owner'
-  | 'parent___internal___type'
-  | 'children'
-  | 'children___id'
-  | 'children___parent___id'
-  | 'children___parent___parent___id'
-  | 'children___parent___parent___children'
-  | 'children___parent___children'
-  | 'children___parent___children___id'
-  | 'children___parent___children___children'
-  | 'children___parent___internal___content'
-  | 'children___parent___internal___contentDigest'
-  | 'children___parent___internal___description'
-  | 'children___parent___internal___fieldOwners'
-  | 'children___parent___internal___ignoreType'
-  | 'children___parent___internal___mediaType'
-  | 'children___parent___internal___owner'
-  | 'children___parent___internal___type'
-  | 'children___children'
-  | 'children___children___id'
-  | 'children___children___parent___id'
-  | 'children___children___parent___children'
-  | 'children___children___children'
-  | 'children___children___children___id'
-  | 'children___children___children___children'
-  | 'children___children___internal___content'
-  | 'children___children___internal___contentDigest'
-  | 'children___children___internal___description'
-  | 'children___children___internal___fieldOwners'
-  | 'children___children___internal___ignoreType'
-  | 'children___children___internal___mediaType'
-  | 'children___children___internal___owner'
-  | 'children___children___internal___type'
-  | 'children___internal___content'
-  | 'children___internal___contentDigest'
-  | 'children___internal___description'
-  | 'children___internal___fieldOwners'
-  | 'children___internal___ignoreType'
-  | 'children___internal___mediaType'
-  | 'children___internal___owner'
-  | 'children___internal___type'
-  | 'internal___content'
-  | 'internal___contentDigest'
-  | 'internal___description'
-  | 'internal___fieldOwners'
-  | 'internal___ignoreType'
-  | 'internal___mediaType'
-  | 'internal___owner'
-  | 'internal___type'
-  | 'sourceInstanceName'
-  | 'relativePath'
-  | 'extension'
-  | 'prettySize'
-  | 'modifiedTime'
-  | 'accessTime'
-  | 'changeTime'
-  | 'birthTime'
-  | 'root'
-  | 'dir'
-  | 'base'
-  | 'ext'
-  | 'name'
-  | 'absolutePath'
-  | 'relativeDirectory'
-  | 'dev'
-  | 'mode'
-  | 'nlink'
-  | 'uid'
-  | 'rdev'
-  | 'blksize'
-  | 'ino'
-  | 'size'
-  | 'blocks'
-  | 'atimeMs'
-  | 'mtimeMs'
-  | 'ctimeMs'
-  | 'birthtimeMs'
-  | 'atime'
-  | 'mtime'
-  | 'ctime'
-  | 'birthtime';
-
-export type StaticImageGroupConnection = {
-  totalCount: Scalars['Int'];
-  edges: Array<StaticImageEdge>;
-  nodes: Array<StaticImage>;
-  pageInfo: PageInfo;
-  distinct: Array<Scalars['String']>;
-  max?: Maybe<Scalars['Float']>;
-  min?: Maybe<Scalars['Float']>;
-  sum?: Maybe<Scalars['Float']>;
-  group: Array<StaticImageGroupConnection>;
-  field: Scalars['String'];
-  fieldValue?: Maybe<Scalars['String']>;
-};
-
-
-export type StaticImageGroupConnectionDistinctArgs = {
-  field: StaticImageFieldsEnum;
-};
-
-
-export type StaticImageGroupConnectionMaxArgs = {
-  field: StaticImageFieldsEnum;
-};
-
-
-export type StaticImageGroupConnectionMinArgs = {
-  field: StaticImageFieldsEnum;
-};
-
-
-export type StaticImageGroupConnectionSumArgs = {
-  field: StaticImageFieldsEnum;
-};
-
-
-export type StaticImageGroupConnectionGroupArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  field: StaticImageFieldsEnum;
-};
-
-export type StaticImageFilterInput = {
-  id?: InputMaybe<StringQueryOperatorInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
-  sourceInstanceName?: InputMaybe<StringQueryOperatorInput>;
-  relativePath?: InputMaybe<StringQueryOperatorInput>;
-  extension?: InputMaybe<StringQueryOperatorInput>;
-  prettySize?: InputMaybe<StringQueryOperatorInput>;
-  modifiedTime?: InputMaybe<DateQueryOperatorInput>;
-  accessTime?: InputMaybe<DateQueryOperatorInput>;
-  changeTime?: InputMaybe<DateQueryOperatorInput>;
-  birthTime?: InputMaybe<DateQueryOperatorInput>;
-  root?: InputMaybe<StringQueryOperatorInput>;
-  dir?: InputMaybe<StringQueryOperatorInput>;
-  base?: InputMaybe<StringQueryOperatorInput>;
-  ext?: InputMaybe<StringQueryOperatorInput>;
-  name?: InputMaybe<StringQueryOperatorInput>;
-  absolutePath?: InputMaybe<StringQueryOperatorInput>;
-  relativeDirectory?: InputMaybe<StringQueryOperatorInput>;
-  dev?: InputMaybe<IntQueryOperatorInput>;
-  mode?: InputMaybe<IntQueryOperatorInput>;
-  nlink?: InputMaybe<IntQueryOperatorInput>;
-  uid?: InputMaybe<IntQueryOperatorInput>;
-  rdev?: InputMaybe<IntQueryOperatorInput>;
-  blksize?: InputMaybe<IntQueryOperatorInput>;
-  ino?: InputMaybe<IntQueryOperatorInput>;
-  size?: InputMaybe<IntQueryOperatorInput>;
-  blocks?: InputMaybe<IntQueryOperatorInput>;
-  atimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  mtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  ctimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  birthtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  atime?: InputMaybe<DateQueryOperatorInput>;
-  mtime?: InputMaybe<DateQueryOperatorInput>;
-  ctime?: InputMaybe<DateQueryOperatorInput>;
-  birthtime?: InputMaybe<DateQueryOperatorInput>;
-};
-
-export type StaticImageSortInput = {
-  fields?: InputMaybe<Array<InputMaybe<StaticImageFieldsEnum>>>;
-  order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
-};
-
 export type ArticlesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4161,6 +3951,11 @@ export type ContactQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type ContactQuery = { site?: { siteMetadata?: { email?: string | undefined, youtube?: string | undefined, facebook?: string | undefined, twitter?: string | undefined } | undefined } | undefined };
+
+export type PortfolioQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PortfolioQuery = { projects: { nodes: Array<{ id: string, name: string, childMdx?: { slug?: string | undefined, frontmatter?: { category?: string | undefined, title: string, embeddedImagesLocal?: Array<{ childImageSharp?: { gatsbyImageData: any } | undefined } | undefined> | undefined } | undefined } | undefined }> } };
 
 export type ArticleQueryVariables = Exact<{
   name: Scalars['String'];

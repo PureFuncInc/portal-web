@@ -5,5 +5,6 @@ export const PageTitle = styled.h1`
   padding: 15px 35px;
   margin: 15px 0 12vh 60px;
   font-size: 4em;
+  font-weight: bold;
   background-color: #FFF;
 `

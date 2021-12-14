@@ -4,23 +4,27 @@ import type { MDXProviderComponentsProp } from '@mdx-js/react'
 export const H1 = styled.h1`
   color: ${({ theme }) => theme.color.text};
   font-size: ${({ theme }) => theme.size.greatest};
+  margin-top: ${({ theme }) => theme.size.greatest};
   margin-bottom: 25px;
 `
 
 export const H2 = styled.h1`
   color: ${({ theme }) => theme.color.text};
   font-size: ${({ theme }) => theme.size.greater};
+  margin-top: ${({ theme }) => theme.size.greater};
   margin-bottom: 25px;
 `
 
 export const H3 = styled.h1`
   color: ${({ theme }) => theme.color.text};
   font-size: ${({ theme }) => theme.size.great};
+  margin-top: ${({ theme }) => theme.size.great};
   margin-bottom: 25px;
 `
 
 export const Paragraph = styled.p`
   color: ${({ theme }) => theme.color.text};
+  line-height: 1.25rem;
 `
 
 export default {

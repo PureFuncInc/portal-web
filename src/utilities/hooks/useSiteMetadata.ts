@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby'
-import type { SiteMetadataQuery } from '../../../graphql-types'
+import type { SiteMetadataQuery } from '@/generated/graphql-types'
 
 export function useSiteMetadata(): NonNullable<SiteMetadataQuery['site']>['siteMetadata'] {
   const query = useStaticQuery<SiteMetadataQuery>(

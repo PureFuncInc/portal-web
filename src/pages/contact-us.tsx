@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
-import type { ContactQuery } from '../../graphql-types'
+import type { ContactQuery } from '@/generated/graphql-types'
 import { SimpleLayout } from '@/components/layouts/SimpleLayout'
 import { PageTitle } from '@/components/common/PageTitle'
 import { SocialNetworkDisplay } from '@/components/people/SocialNetworkDisplay'
+import { Label } from '@/components/common/Label'
 
 export interface ContactUsPageProps {
   data: ContactQuery
@@ -52,9 +53,6 @@ const Section = styled.section`
   align-items: flex-start;
 `
 
-const SectionLabel = styled.div`
+const SectionLabel = styled(Label)`
   flex: 0 0 5vw;
-  padding: 15px;
-  margin-right: 15px;
-  background-color: #FFF;
 `
