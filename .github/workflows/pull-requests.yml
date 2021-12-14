@@ -20,8 +20,6 @@ jobs:
           VALIDATE_MARKDOWN: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ github.token }}
-          JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.js
-          TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.js
   build:
     runs-on: ubuntu-latest
     steps:
