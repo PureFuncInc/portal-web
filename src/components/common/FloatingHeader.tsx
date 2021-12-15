@@ -14,7 +14,7 @@ export const FloatingHeader: React.FC = () => {
 
       <Nav />
 
-      <Background />
+      <Background rotate={false} />
     </Container>
   )
 }

@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react'
 import styled from '@emotion/styled'
-import { css } from '@emotion/react'
-import { generateRandomColor } from '@/utilities/generateRandomColor'
+import { css, keyframes } from '@emotion/react'
+import { generateRandomColor } from '@/utilities/generateColor'
 
 export interface GradientBackgroundProps {
-  opacity?: number
+  rotate?: boolean
 
   className?: string
 }
@@ -12,7 +12,7 @@ export interface GradientBackgroundProps {
 export const GradientBackground: React.FC<GradientBackgroundProps> = ({
   children,
   className,
-  opacity = 0.45,
+  rotate = true,
 }) => {
   const gradientColorVars = useMemo(
     () => {
@@ -21,24 +21,33 @@ export const GradientBackground: React.FC<GradientBackgroundProps> = ({
         .map(() => generateRandomColor())
 
       return css`
+        --rotate-animation-play-state: ${rotate ? 'running' : 'paused'};
         --left-top-corner: ${colors[0]};
         --right-top-corner: ${colors[1]};
         --right-bottom-corner: ${colors[2]};
         --left-bottom-corner: ${colors[3]};
       `
     },
-    [],
+    [ rotate ],
   )
 
   return (
     <Background
       className={className}
-      style={{ opacity }}
       css={gradientColorVars}>
       {children}
     </Background>
   )
 }
+
+const RotateAnimation = keyframes`
+  from {
+    transform: rotateZ(0turn);
+  }
+  to {
+    transform: rotateZ(1turn);
+  }
+`
 
 const Background = styled.div`
   z-index: -1;
@@ -47,16 +56,23 @@ const Background = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background-image: linear-gradient(45deg, var(--right-top-corner), var(--left-bottom-corner));
+  overflow: hidden;
+  background-color: #FFF;
 
   &:before {
-    content: '';
+    animation-name: ${RotateAnimation};
+    animation-play-state: var(--rotate-animation-play-state);
+    animation-duration: 60s;
+    animation-iteration-count: infinite;
     position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    mask-image: linear-gradient(to bottom, transparent, black);
-    background-image: linear-gradient(135deg, var(--right-bottom-corner), var(--left-top-corner));
+    content: '';
+    top: -100%;
+    left: -100%;
+    bottom: -100%;
+    right: -100%;
+    background-image: radial-gradient(at right top, var(--right-top-corner), transparent 60%),
+                      radial-gradient(at right bottom, var(--right-bottom-corner), transparent 60%),
+                      radial-gradient(at left bottom, var(--left-bottom-corner), transparent 60%),
+                      radial-gradient(at left top, var(--left-top-corner), transparent 60%);
   }
 `

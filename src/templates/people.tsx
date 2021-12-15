@@ -8,6 +8,7 @@ import { SimpleLayout } from '@/components/layouts/SimpleLayout'
 import { SocialNetworkDisplay } from '@/components/people/SocialNetworkDisplay'
 import { RoundedGatsbyImage } from '@/components/common/RoundedImage'
 import { ContactsDisplay } from '@/components/people/ContactsDisplay'
+import { Label } from '@/components/common/Label'
 
 export interface PeoplePageTemplateProps {
   data: PersonQuery
@@ -52,9 +53,9 @@ const PeoplePageTemplate: React.FC<PeoplePageTemplateProps> = ({
 
           <Content>
             <ContentBlock>
-              <Label>
+              <ContentLabel>
                 Story
-              </Label>
+              </ContentLabel>
 
               <Story>
                 {person?.story}
@@ -62,9 +63,9 @@ const PeoplePageTemplate: React.FC<PeoplePageTemplateProps> = ({
             </ContentBlock>
 
             <ContentBlock>
-              <Label>
+              <ContentLabel>
                 Expertise
-              </Label>
+              </ContentLabel>
 
               <ul>
                 {person?.expertise?.map((item, i) => (
@@ -76,9 +77,9 @@ const PeoplePageTemplate: React.FC<PeoplePageTemplateProps> = ({
             </ContentBlock>
 
             <ContentBlock>
-              <Label>
+              <ContentLabel>
                 Achievements
-              </Label>
+              </ContentLabel>
 
               <ul>
                 {person?.achievements?.map((item, i) => (
@@ -90,17 +91,17 @@ const PeoplePageTemplate: React.FC<PeoplePageTemplateProps> = ({
             </ContentBlock>
 
             <ContentBlock>
-              <Label>
+              <ContentLabel>
                 Contacts
-              </Label>
+              </ContentLabel>
 
               <ContactsDisplay contact={person?.contact} />
             </ContentBlock>
 
             <ContentBlock>
-              <Label>
+              <ContentLabel>
                 Social Networks
-              </Label>
+              </ContentLabel>
 
               <SocialNetworkDisplay socialNetworks={person?.socialNetworks} />
             </ContentBlock>
@@ -181,7 +182,7 @@ const Name = styled.h2`
 `
 
 const BigName = styled(Name)`
-  font-size: 3.2em;
+  font-size: 4em;
 `
 
 const ProfilePicture = styled(RoundedGatsbyImage)`
@@ -210,16 +211,9 @@ const ContentBlock = styled.div`
   }
 `
 
-const Label = styled.div`
-  color: #999;
+const ContentLabel = styled(Label)`
   flex-grow: 0;
   flex-basis: 120px;
-  border-style: solid;
-  border-color: #999;
-  border-width: 0 0 1px 1px;
-  border-radius: 0 0 0 5px;
-  padding: 15px;
-  margin-right: 15px;
 `
 
 const Story = styled.p`
