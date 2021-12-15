@@ -7,4 +7,5 @@ export const PageTitle = styled.h1`
   font-size: 4em;
   font-weight: bold;
   background-color: #FFF;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.45);
 `
