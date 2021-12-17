@@ -50,8 +50,5 @@
     "@purefuncinc/eslint-config-react": "^0.1.0",
     "@types/mdx-js__react": "^1.5.5",
     "@types/react-helmet": "^6.1.4"
-  },
-  "engines": {
-    "node": "^14.18"
   }
 }
