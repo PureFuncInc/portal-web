@@ -67,10 +67,6 @@ export type File = Node & {
   childrenMdx?: Maybe<Array<Maybe<Mdx>>>;
   /** Returns the first child node of type Mdx or null if there are no children of given type on this node */
   childMdx?: Maybe<Mdx>;
-  /** Returns all children nodes filtered by type WorkflowsYaml */
-  childrenWorkflowsYaml?: Maybe<Array<Maybe<WorkflowsYaml>>>;
-  /** Returns the first child node of type WorkflowsYaml or null if there are no children of given type on this node */
-  childWorkflowsYaml?: Maybe<WorkflowsYaml>;
   /** Returns all children nodes filtered by type PeopleYaml */
   childrenPeopleYaml?: Maybe<Array<Maybe<PeopleYaml>>>;
   /** Returns the first child node of type PeopleYaml or null if there are no children of given type on this node */
@@ -257,9 +253,6 @@ export type Site = Node & {
   siteMetadata?: Maybe<SiteSiteMetadata>;
   port?: Maybe<Scalars['Int']>;
   host?: Maybe<Scalars['String']>;
-  polyfill?: Maybe<Scalars['Boolean']>;
-  pathPrefix?: Maybe<Scalars['String']>;
-  jsxRuntime?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -615,9 +608,6 @@ export type ImageSharpResize = {
 
 export type MdxFrontmatter = {
   title: Scalars['String'];
-  slug?: Maybe<Scalars['String']>;
-  publishTime?: Maybe<Scalars['Float']>;
-  author?: Maybe<Scalars['String']>;
   category?: Maybe<Scalars['String']>;
   embeddedImagesLocal?: Maybe<Array<Maybe<File>>>;
 };
@@ -676,45 +666,6 @@ export type MdxTableOfContentsArgs = {
   maxDepth?: InputMaybe<Scalars['Int']>;
 };
 
-export type WorkflowsYaml = Node & {
-  id: Scalars['ID'];
-  parent?: Maybe<Node>;
-  children: Array<Node>;
-  internal: Internal;
-  name?: Maybe<Scalars['String']>;
-  on?: Maybe<WorkflowsYamlOn>;
-  jobs?: Maybe<WorkflowsYamlJobs>;
-};
-
-export type WorkflowsYamlOn = {
-  push?: Maybe<WorkflowsYamlOnPush>;
-};
-
-export type WorkflowsYamlOnPush = {
-  branches?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-export type WorkflowsYamlJobs = {
-  notify?: Maybe<WorkflowsYamlJobsNotify>;
-};
-
-export type WorkflowsYamlJobsNotify = {
-  runs_on?: Maybe<Scalars['String']>;
-  steps?: Maybe<Array<Maybe<WorkflowsYamlJobsNotifySteps>>>;
-};
-
-export type WorkflowsYamlJobsNotifySteps = {
-  name?: Maybe<Scalars['String']>;
-  uses?: Maybe<Scalars['String']>;
-  with?: Maybe<WorkflowsYamlJobsNotifyStepsWith>;
-};
-
-export type WorkflowsYamlJobsNotifyStepsWith = {
-  token?: Maybe<Scalars['String']>;
-  repository?: Maybe<Scalars['String']>;
-  event_type?: Maybe<Scalars['String']>;
-};
-
 export type PeopleYaml = Node & {
   id: Scalars['ID'];
   parent?: Maybe<Node>;
@@ -723,10 +674,10 @@ export type PeopleYaml = Node & {
   slug?: Maybe<Scalars['String']>;
   name?: Maybe<PeopleYamlName>;
   title?: Maybe<Scalars['String']>;
-  image?: Maybe<File>;
   expertise?: Maybe<Array<Maybe<Scalars['String']>>>;
   headline?: Maybe<Scalars['String']>;
   story?: Maybe<Scalars['String']>;
+  contact?: Maybe<PeopleYamlContact>;
   achievements?: Maybe<Array<Maybe<Scalars['String']>>>;
   socialNetworks?: Maybe<PeopleYamlSocialNetworks>;
 };
@@ -736,13 +687,119 @@ export type PeopleYamlName = {
   english?: Maybe<Scalars['String']>;
 };
 
-export type PeopleYamlSocialNetworks = {
+export type PeopleYamlContact = {
   email?: Maybe<Scalars['String']>;
+};
+
+export type PeopleYamlSocialNetworks = {
   github?: Maybe<Scalars['String']>;
   telegram?: Maybe<Scalars['String']>;
   linkedin?: Maybe<Scalars['String']>;
   facebook?: Maybe<Scalars['String']>;
   portal?: Maybe<Scalars['String']>;
+};
+
+export type StaticImage = Node & {
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  sourceInstanceName?: Maybe<Scalars['String']>;
+  relativePath?: Maybe<Scalars['String']>;
+  extension?: Maybe<Scalars['String']>;
+  prettySize?: Maybe<Scalars['String']>;
+  modifiedTime?: Maybe<Scalars['Date']>;
+  accessTime?: Maybe<Scalars['Date']>;
+  changeTime?: Maybe<Scalars['Date']>;
+  birthTime?: Maybe<Scalars['Date']>;
+  root?: Maybe<Scalars['String']>;
+  dir?: Maybe<Scalars['String']>;
+  base?: Maybe<Scalars['String']>;
+  ext?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  absolutePath?: Maybe<Scalars['String']>;
+  relativeDirectory?: Maybe<Scalars['String']>;
+  dev?: Maybe<Scalars['Int']>;
+  mode?: Maybe<Scalars['Int']>;
+  nlink?: Maybe<Scalars['Int']>;
+  uid?: Maybe<Scalars['Int']>;
+  rdev?: Maybe<Scalars['Int']>;
+  blksize?: Maybe<Scalars['Int']>;
+  ino?: Maybe<Scalars['Int']>;
+  size?: Maybe<Scalars['Int']>;
+  blocks?: Maybe<Scalars['Int']>;
+  atimeMs?: Maybe<Scalars['Float']>;
+  mtimeMs?: Maybe<Scalars['Float']>;
+  ctimeMs?: Maybe<Scalars['Float']>;
+  birthtimeMs?: Maybe<Scalars['Float']>;
+  atime?: Maybe<Scalars['Date']>;
+  mtime?: Maybe<Scalars['Date']>;
+  ctime?: Maybe<Scalars['Date']>;
+  birthtime?: Maybe<Scalars['Date']>;
+};
+
+
+export type StaticImageModifiedTimeArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type StaticImageAccessTimeArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type StaticImageChangeTimeArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type StaticImageBirthTimeArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type StaticImageAtimeArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type StaticImageMtimeArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type StaticImageCtimeArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type StaticImageBirthtimeArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
 };
 
 export type Query = {
@@ -764,10 +821,10 @@ export type Query = {
   allImageSharp: ImageSharpConnection;
   mdx?: Maybe<Mdx>;
   allMdx: MdxConnection;
-  workflowsYaml?: Maybe<WorkflowsYaml>;
-  allWorkflowsYaml: WorkflowsYamlConnection;
   peopleYaml?: Maybe<PeopleYaml>;
   allPeopleYaml: PeopleYamlConnection;
+  staticImage?: Maybe<StaticImage>;
+  allStaticImage: StaticImageConnection;
 };
 
 
@@ -810,8 +867,6 @@ export type QueryFileArgs = {
   childImageSharp?: InputMaybe<ImageSharpFilterInput>;
   childrenMdx?: InputMaybe<MdxFilterListInput>;
   childMdx?: InputMaybe<MdxFilterInput>;
-  childrenWorkflowsYaml?: InputMaybe<WorkflowsYamlFilterListInput>;
-  childWorkflowsYaml?: InputMaybe<WorkflowsYamlFilterInput>;
   childrenPeopleYaml?: InputMaybe<PeopleYamlFilterListInput>;
   childPeopleYaml?: InputMaybe<PeopleYamlFilterInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
@@ -881,9 +936,6 @@ export type QuerySiteArgs = {
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
   port?: InputMaybe<IntQueryOperatorInput>;
   host?: InputMaybe<StringQueryOperatorInput>;
-  polyfill?: InputMaybe<BooleanQueryOperatorInput>;
-  pathPrefix?: InputMaybe<StringQueryOperatorInput>;
-  jsxRuntime?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -1036,25 +1088,6 @@ export type QueryAllMdxArgs = {
 };
 
 
-export type QueryWorkflowsYamlArgs = {
-  id?: InputMaybe<StringQueryOperatorInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
-  name?: InputMaybe<StringQueryOperatorInput>;
-  on?: InputMaybe<WorkflowsYamlOnFilterInput>;
-  jobs?: InputMaybe<WorkflowsYamlJobsFilterInput>;
-};
-
-
-export type QueryAllWorkflowsYamlArgs = {
-  filter?: InputMaybe<WorkflowsYamlFilterInput>;
-  sort?: InputMaybe<WorkflowsYamlSortInput>;
-  skip?: InputMaybe<Scalars['Int']>;
-  limit?: InputMaybe<Scalars['Int']>;
-};
-
-
 export type QueryPeopleYamlArgs = {
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
@@ -1063,10 +1096,10 @@ export type QueryPeopleYamlArgs = {
   slug?: InputMaybe<StringQueryOperatorInput>;
   name?: InputMaybe<PeopleYamlNameFilterInput>;
   title?: InputMaybe<StringQueryOperatorInput>;
-  image?: InputMaybe<FileFilterInput>;
   expertise?: InputMaybe<StringQueryOperatorInput>;
   headline?: InputMaybe<StringQueryOperatorInput>;
   story?: InputMaybe<StringQueryOperatorInput>;
+  contact?: InputMaybe<PeopleYamlContactFilterInput>;
   achievements?: InputMaybe<StringQueryOperatorInput>;
   socialNetworks?: InputMaybe<PeopleYamlSocialNetworksFilterInput>;
 };
@@ -1075,6 +1108,54 @@ export type QueryPeopleYamlArgs = {
 export type QueryAllPeopleYamlArgs = {
   filter?: InputMaybe<PeopleYamlFilterInput>;
   sort?: InputMaybe<PeopleYamlSortInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryStaticImageArgs = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+  sourceInstanceName?: InputMaybe<StringQueryOperatorInput>;
+  relativePath?: InputMaybe<StringQueryOperatorInput>;
+  extension?: InputMaybe<StringQueryOperatorInput>;
+  prettySize?: InputMaybe<StringQueryOperatorInput>;
+  modifiedTime?: InputMaybe<DateQueryOperatorInput>;
+  accessTime?: InputMaybe<DateQueryOperatorInput>;
+  changeTime?: InputMaybe<DateQueryOperatorInput>;
+  birthTime?: InputMaybe<DateQueryOperatorInput>;
+  root?: InputMaybe<StringQueryOperatorInput>;
+  dir?: InputMaybe<StringQueryOperatorInput>;
+  base?: InputMaybe<StringQueryOperatorInput>;
+  ext?: InputMaybe<StringQueryOperatorInput>;
+  name?: InputMaybe<StringQueryOperatorInput>;
+  absolutePath?: InputMaybe<StringQueryOperatorInput>;
+  relativeDirectory?: InputMaybe<StringQueryOperatorInput>;
+  dev?: InputMaybe<IntQueryOperatorInput>;
+  mode?: InputMaybe<IntQueryOperatorInput>;
+  nlink?: InputMaybe<IntQueryOperatorInput>;
+  uid?: InputMaybe<IntQueryOperatorInput>;
+  rdev?: InputMaybe<IntQueryOperatorInput>;
+  blksize?: InputMaybe<IntQueryOperatorInput>;
+  ino?: InputMaybe<IntQueryOperatorInput>;
+  size?: InputMaybe<IntQueryOperatorInput>;
+  blocks?: InputMaybe<IntQueryOperatorInput>;
+  atimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  mtimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  ctimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  birthtimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  atime?: InputMaybe<DateQueryOperatorInput>;
+  mtime?: InputMaybe<DateQueryOperatorInput>;
+  ctime?: InputMaybe<DateQueryOperatorInput>;
+  birthtime?: InputMaybe<DateQueryOperatorInput>;
+};
+
+
+export type QueryAllStaticImageArgs = {
+  filter?: InputMaybe<StaticImageFilterInput>;
+  sort?: InputMaybe<StaticImageSortInput>;
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
 };
@@ -1243,9 +1324,6 @@ export type MdxFilterInput = {
 
 export type MdxFrontmatterFilterInput = {
   title?: InputMaybe<StringQueryOperatorInput>;
-  slug?: InputMaybe<StringQueryOperatorInput>;
-  publishTime?: InputMaybe<FloatQueryOperatorInput>;
-  author?: InputMaybe<StringQueryOperatorInput>;
   category?: InputMaybe<StringQueryOperatorInput>;
   embeddedImagesLocal?: InputMaybe<FileFilterListInput>;
 };
@@ -1293,61 +1371,12 @@ export type FileFilterInput = {
   childImageSharp?: InputMaybe<ImageSharpFilterInput>;
   childrenMdx?: InputMaybe<MdxFilterListInput>;
   childMdx?: InputMaybe<MdxFilterInput>;
-  childrenWorkflowsYaml?: InputMaybe<WorkflowsYamlFilterListInput>;
-  childWorkflowsYaml?: InputMaybe<WorkflowsYamlFilterInput>;
   childrenPeopleYaml?: InputMaybe<PeopleYamlFilterListInput>;
   childPeopleYaml?: InputMaybe<PeopleYamlFilterInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
   internal?: InputMaybe<InternalFilterInput>;
-};
-
-export type WorkflowsYamlFilterListInput = {
-  elemMatch?: InputMaybe<WorkflowsYamlFilterInput>;
-};
-
-export type WorkflowsYamlFilterInput = {
-  id?: InputMaybe<StringQueryOperatorInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
-  name?: InputMaybe<StringQueryOperatorInput>;
-  on?: InputMaybe<WorkflowsYamlOnFilterInput>;
-  jobs?: InputMaybe<WorkflowsYamlJobsFilterInput>;
-};
-
-export type WorkflowsYamlOnFilterInput = {
-  push?: InputMaybe<WorkflowsYamlOnPushFilterInput>;
-};
-
-export type WorkflowsYamlOnPushFilterInput = {
-  branches?: InputMaybe<StringQueryOperatorInput>;
-};
-
-export type WorkflowsYamlJobsFilterInput = {
-  notify?: InputMaybe<WorkflowsYamlJobsNotifyFilterInput>;
-};
-
-export type WorkflowsYamlJobsNotifyFilterInput = {
-  runs_on?: InputMaybe<StringQueryOperatorInput>;
-  steps?: InputMaybe<WorkflowsYamlJobsNotifyStepsFilterListInput>;
-};
-
-export type WorkflowsYamlJobsNotifyStepsFilterListInput = {
-  elemMatch?: InputMaybe<WorkflowsYamlJobsNotifyStepsFilterInput>;
-};
-
-export type WorkflowsYamlJobsNotifyStepsFilterInput = {
-  name?: InputMaybe<StringQueryOperatorInput>;
-  uses?: InputMaybe<StringQueryOperatorInput>;
-  with?: InputMaybe<WorkflowsYamlJobsNotifyStepsWithFilterInput>;
-};
-
-export type WorkflowsYamlJobsNotifyStepsWithFilterInput = {
-  token?: InputMaybe<StringQueryOperatorInput>;
-  repository?: InputMaybe<StringQueryOperatorInput>;
-  event_type?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type PeopleYamlFilterListInput = {
@@ -1362,10 +1391,10 @@ export type PeopleYamlFilterInput = {
   slug?: InputMaybe<StringQueryOperatorInput>;
   name?: InputMaybe<PeopleYamlNameFilterInput>;
   title?: InputMaybe<StringQueryOperatorInput>;
-  image?: InputMaybe<FileFilterInput>;
   expertise?: InputMaybe<StringQueryOperatorInput>;
   headline?: InputMaybe<StringQueryOperatorInput>;
   story?: InputMaybe<StringQueryOperatorInput>;
+  contact?: InputMaybe<PeopleYamlContactFilterInput>;
   achievements?: InputMaybe<StringQueryOperatorInput>;
   socialNetworks?: InputMaybe<PeopleYamlSocialNetworksFilterInput>;
 };
@@ -1375,8 +1404,11 @@ export type PeopleYamlNameFilterInput = {
   english?: InputMaybe<StringQueryOperatorInput>;
 };
 
-export type PeopleYamlSocialNetworksFilterInput = {
+export type PeopleYamlContactFilterInput = {
   email?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type PeopleYamlSocialNetworksFilterInput = {
   github?: InputMaybe<StringQueryOperatorInput>;
   telegram?: InputMaybe<StringQueryOperatorInput>;
   linkedin?: InputMaybe<StringQueryOperatorInput>;
@@ -1634,9 +1666,6 @@ export type FileFieldsEnum =
   | 'childrenMdx___rawBody'
   | 'childrenMdx___fileAbsolutePath'
   | 'childrenMdx___frontmatter___title'
-  | 'childrenMdx___frontmatter___slug'
-  | 'childrenMdx___frontmatter___publishTime'
-  | 'childrenMdx___frontmatter___author'
   | 'childrenMdx___frontmatter___category'
   | 'childrenMdx___frontmatter___embeddedImagesLocal'
   | 'childrenMdx___frontmatter___embeddedImagesLocal___sourceInstanceName'
@@ -1675,7 +1704,6 @@ export type FileFieldsEnum =
   | 'childrenMdx___frontmatter___embeddedImagesLocal___publicURL'
   | 'childrenMdx___frontmatter___embeddedImagesLocal___childrenImageSharp'
   | 'childrenMdx___frontmatter___embeddedImagesLocal___childrenMdx'
-  | 'childrenMdx___frontmatter___embeddedImagesLocal___childrenWorkflowsYaml'
   | 'childrenMdx___frontmatter___embeddedImagesLocal___childrenPeopleYaml'
   | 'childrenMdx___frontmatter___embeddedImagesLocal___id'
   | 'childrenMdx___frontmatter___embeddedImagesLocal___children'
@@ -1733,9 +1761,6 @@ export type FileFieldsEnum =
   | 'childMdx___rawBody'
   | 'childMdx___fileAbsolutePath'
   | 'childMdx___frontmatter___title'
-  | 'childMdx___frontmatter___slug'
-  | 'childMdx___frontmatter___publishTime'
-  | 'childMdx___frontmatter___author'
   | 'childMdx___frontmatter___category'
   | 'childMdx___frontmatter___embeddedImagesLocal'
   | 'childMdx___frontmatter___embeddedImagesLocal___sourceInstanceName'
@@ -1774,7 +1799,6 @@ export type FileFieldsEnum =
   | 'childMdx___frontmatter___embeddedImagesLocal___publicURL'
   | 'childMdx___frontmatter___embeddedImagesLocal___childrenImageSharp'
   | 'childMdx___frontmatter___embeddedImagesLocal___childrenMdx'
-  | 'childMdx___frontmatter___embeddedImagesLocal___childrenWorkflowsYaml'
   | 'childMdx___frontmatter___embeddedImagesLocal___childrenPeopleYaml'
   | 'childMdx___frontmatter___embeddedImagesLocal___id'
   | 'childMdx___frontmatter___embeddedImagesLocal___children'
@@ -1829,91 +1853,6 @@ export type FileFieldsEnum =
   | 'childMdx___internal___mediaType'
   | 'childMdx___internal___owner'
   | 'childMdx___internal___type'
-  | 'childrenWorkflowsYaml'
-  | 'childrenWorkflowsYaml___id'
-  | 'childrenWorkflowsYaml___parent___id'
-  | 'childrenWorkflowsYaml___parent___parent___id'
-  | 'childrenWorkflowsYaml___parent___parent___children'
-  | 'childrenWorkflowsYaml___parent___children'
-  | 'childrenWorkflowsYaml___parent___children___id'
-  | 'childrenWorkflowsYaml___parent___children___children'
-  | 'childrenWorkflowsYaml___parent___internal___content'
-  | 'childrenWorkflowsYaml___parent___internal___contentDigest'
-  | 'childrenWorkflowsYaml___parent___internal___description'
-  | 'childrenWorkflowsYaml___parent___internal___fieldOwners'
-  | 'childrenWorkflowsYaml___parent___internal___ignoreType'
-  | 'childrenWorkflowsYaml___parent___internal___mediaType'
-  | 'childrenWorkflowsYaml___parent___internal___owner'
-  | 'childrenWorkflowsYaml___parent___internal___type'
-  | 'childrenWorkflowsYaml___children'
-  | 'childrenWorkflowsYaml___children___id'
-  | 'childrenWorkflowsYaml___children___parent___id'
-  | 'childrenWorkflowsYaml___children___parent___children'
-  | 'childrenWorkflowsYaml___children___children'
-  | 'childrenWorkflowsYaml___children___children___id'
-  | 'childrenWorkflowsYaml___children___children___children'
-  | 'childrenWorkflowsYaml___children___internal___content'
-  | 'childrenWorkflowsYaml___children___internal___contentDigest'
-  | 'childrenWorkflowsYaml___children___internal___description'
-  | 'childrenWorkflowsYaml___children___internal___fieldOwners'
-  | 'childrenWorkflowsYaml___children___internal___ignoreType'
-  | 'childrenWorkflowsYaml___children___internal___mediaType'
-  | 'childrenWorkflowsYaml___children___internal___owner'
-  | 'childrenWorkflowsYaml___children___internal___type'
-  | 'childrenWorkflowsYaml___internal___content'
-  | 'childrenWorkflowsYaml___internal___contentDigest'
-  | 'childrenWorkflowsYaml___internal___description'
-  | 'childrenWorkflowsYaml___internal___fieldOwners'
-  | 'childrenWorkflowsYaml___internal___ignoreType'
-  | 'childrenWorkflowsYaml___internal___mediaType'
-  | 'childrenWorkflowsYaml___internal___owner'
-  | 'childrenWorkflowsYaml___internal___type'
-  | 'childrenWorkflowsYaml___name'
-  | 'childrenWorkflowsYaml___on___push___branches'
-  | 'childrenWorkflowsYaml___jobs___notify___runs_on'
-  | 'childrenWorkflowsYaml___jobs___notify___steps'
-  | 'childWorkflowsYaml___id'
-  | 'childWorkflowsYaml___parent___id'
-  | 'childWorkflowsYaml___parent___parent___id'
-  | 'childWorkflowsYaml___parent___parent___children'
-  | 'childWorkflowsYaml___parent___children'
-  | 'childWorkflowsYaml___parent___children___id'
-  | 'childWorkflowsYaml___parent___children___children'
-  | 'childWorkflowsYaml___parent___internal___content'
-  | 'childWorkflowsYaml___parent___internal___contentDigest'
-  | 'childWorkflowsYaml___parent___internal___description'
-  | 'childWorkflowsYaml___parent___internal___fieldOwners'
-  | 'childWorkflowsYaml___parent___internal___ignoreType'
-  | 'childWorkflowsYaml___parent___internal___mediaType'
-  | 'childWorkflowsYaml___parent___internal___owner'
-  | 'childWorkflowsYaml___parent___internal___type'
-  | 'childWorkflowsYaml___children'
-  | 'childWorkflowsYaml___children___id'
-  | 'childWorkflowsYaml___children___parent___id'
-  | 'childWorkflowsYaml___children___parent___children'
-  | 'childWorkflowsYaml___children___children'
-  | 'childWorkflowsYaml___children___children___id'
-  | 'childWorkflowsYaml___children___children___children'
-  | 'childWorkflowsYaml___children___internal___content'
-  | 'childWorkflowsYaml___children___internal___contentDigest'
-  | 'childWorkflowsYaml___children___internal___description'
-  | 'childWorkflowsYaml___children___internal___fieldOwners'
-  | 'childWorkflowsYaml___children___internal___ignoreType'
-  | 'childWorkflowsYaml___children___internal___mediaType'
-  | 'childWorkflowsYaml___children___internal___owner'
-  | 'childWorkflowsYaml___children___internal___type'
-  | 'childWorkflowsYaml___internal___content'
-  | 'childWorkflowsYaml___internal___contentDigest'
-  | 'childWorkflowsYaml___internal___description'
-  | 'childWorkflowsYaml___internal___fieldOwners'
-  | 'childWorkflowsYaml___internal___ignoreType'
-  | 'childWorkflowsYaml___internal___mediaType'
-  | 'childWorkflowsYaml___internal___owner'
-  | 'childWorkflowsYaml___internal___type'
-  | 'childWorkflowsYaml___name'
-  | 'childWorkflowsYaml___on___push___branches'
-  | 'childWorkflowsYaml___jobs___notify___runs_on'
-  | 'childWorkflowsYaml___jobs___notify___steps'
   | 'childrenPeopleYaml'
   | 'childrenPeopleYaml___id'
   | 'childrenPeopleYaml___parent___id'
@@ -1957,115 +1896,11 @@ export type FileFieldsEnum =
   | 'childrenPeopleYaml___name___mandarin'
   | 'childrenPeopleYaml___name___english'
   | 'childrenPeopleYaml___title'
-  | 'childrenPeopleYaml___image___sourceInstanceName'
-  | 'childrenPeopleYaml___image___absolutePath'
-  | 'childrenPeopleYaml___image___relativePath'
-  | 'childrenPeopleYaml___image___extension'
-  | 'childrenPeopleYaml___image___size'
-  | 'childrenPeopleYaml___image___prettySize'
-  | 'childrenPeopleYaml___image___modifiedTime'
-  | 'childrenPeopleYaml___image___accessTime'
-  | 'childrenPeopleYaml___image___changeTime'
-  | 'childrenPeopleYaml___image___birthTime'
-  | 'childrenPeopleYaml___image___root'
-  | 'childrenPeopleYaml___image___dir'
-  | 'childrenPeopleYaml___image___base'
-  | 'childrenPeopleYaml___image___ext'
-  | 'childrenPeopleYaml___image___name'
-  | 'childrenPeopleYaml___image___relativeDirectory'
-  | 'childrenPeopleYaml___image___dev'
-  | 'childrenPeopleYaml___image___mode'
-  | 'childrenPeopleYaml___image___nlink'
-  | 'childrenPeopleYaml___image___uid'
-  | 'childrenPeopleYaml___image___gid'
-  | 'childrenPeopleYaml___image___rdev'
-  | 'childrenPeopleYaml___image___ino'
-  | 'childrenPeopleYaml___image___atimeMs'
-  | 'childrenPeopleYaml___image___mtimeMs'
-  | 'childrenPeopleYaml___image___ctimeMs'
-  | 'childrenPeopleYaml___image___atime'
-  | 'childrenPeopleYaml___image___mtime'
-  | 'childrenPeopleYaml___image___ctime'
-  | 'childrenPeopleYaml___image___birthtime'
-  | 'childrenPeopleYaml___image___birthtimeMs'
-  | 'childrenPeopleYaml___image___blksize'
-  | 'childrenPeopleYaml___image___blocks'
-  | 'childrenPeopleYaml___image___publicURL'
-  | 'childrenPeopleYaml___image___childrenImageSharp'
-  | 'childrenPeopleYaml___image___childrenImageSharp___gatsbyImageData'
-  | 'childrenPeopleYaml___image___childrenImageSharp___id'
-  | 'childrenPeopleYaml___image___childrenImageSharp___children'
-  | 'childrenPeopleYaml___image___childImageSharp___gatsbyImageData'
-  | 'childrenPeopleYaml___image___childImageSharp___id'
-  | 'childrenPeopleYaml___image___childImageSharp___children'
-  | 'childrenPeopleYaml___image___childrenMdx'
-  | 'childrenPeopleYaml___image___childrenMdx___rawBody'
-  | 'childrenPeopleYaml___image___childrenMdx___fileAbsolutePath'
-  | 'childrenPeopleYaml___image___childrenMdx___slug'
-  | 'childrenPeopleYaml___image___childrenMdx___body'
-  | 'childrenPeopleYaml___image___childrenMdx___excerpt'
-  | 'childrenPeopleYaml___image___childrenMdx___headings'
-  | 'childrenPeopleYaml___image___childrenMdx___html'
-  | 'childrenPeopleYaml___image___childrenMdx___mdxAST'
-  | 'childrenPeopleYaml___image___childrenMdx___tableOfContents'
-  | 'childrenPeopleYaml___image___childrenMdx___timeToRead'
-  | 'childrenPeopleYaml___image___childrenMdx___id'
-  | 'childrenPeopleYaml___image___childrenMdx___children'
-  | 'childrenPeopleYaml___image___childMdx___rawBody'
-  | 'childrenPeopleYaml___image___childMdx___fileAbsolutePath'
-  | 'childrenPeopleYaml___image___childMdx___slug'
-  | 'childrenPeopleYaml___image___childMdx___body'
-  | 'childrenPeopleYaml___image___childMdx___excerpt'
-  | 'childrenPeopleYaml___image___childMdx___headings'
-  | 'childrenPeopleYaml___image___childMdx___html'
-  | 'childrenPeopleYaml___image___childMdx___mdxAST'
-  | 'childrenPeopleYaml___image___childMdx___tableOfContents'
-  | 'childrenPeopleYaml___image___childMdx___timeToRead'
-  | 'childrenPeopleYaml___image___childMdx___id'
-  | 'childrenPeopleYaml___image___childMdx___children'
-  | 'childrenPeopleYaml___image___childrenWorkflowsYaml'
-  | 'childrenPeopleYaml___image___childrenWorkflowsYaml___id'
-  | 'childrenPeopleYaml___image___childrenWorkflowsYaml___children'
-  | 'childrenPeopleYaml___image___childrenWorkflowsYaml___name'
-  | 'childrenPeopleYaml___image___childWorkflowsYaml___id'
-  | 'childrenPeopleYaml___image___childWorkflowsYaml___children'
-  | 'childrenPeopleYaml___image___childWorkflowsYaml___name'
-  | 'childrenPeopleYaml___image___childrenPeopleYaml'
-  | 'childrenPeopleYaml___image___childrenPeopleYaml___id'
-  | 'childrenPeopleYaml___image___childrenPeopleYaml___children'
-  | 'childrenPeopleYaml___image___childrenPeopleYaml___slug'
-  | 'childrenPeopleYaml___image___childrenPeopleYaml___title'
-  | 'childrenPeopleYaml___image___childrenPeopleYaml___expertise'
-  | 'childrenPeopleYaml___image___childrenPeopleYaml___headline'
-  | 'childrenPeopleYaml___image___childrenPeopleYaml___story'
-  | 'childrenPeopleYaml___image___childrenPeopleYaml___achievements'
-  | 'childrenPeopleYaml___image___childPeopleYaml___id'
-  | 'childrenPeopleYaml___image___childPeopleYaml___children'
-  | 'childrenPeopleYaml___image___childPeopleYaml___slug'
-  | 'childrenPeopleYaml___image___childPeopleYaml___title'
-  | 'childrenPeopleYaml___image___childPeopleYaml___expertise'
-  | 'childrenPeopleYaml___image___childPeopleYaml___headline'
-  | 'childrenPeopleYaml___image___childPeopleYaml___story'
-  | 'childrenPeopleYaml___image___childPeopleYaml___achievements'
-  | 'childrenPeopleYaml___image___id'
-  | 'childrenPeopleYaml___image___parent___id'
-  | 'childrenPeopleYaml___image___parent___children'
-  | 'childrenPeopleYaml___image___children'
-  | 'childrenPeopleYaml___image___children___id'
-  | 'childrenPeopleYaml___image___children___children'
-  | 'childrenPeopleYaml___image___internal___content'
-  | 'childrenPeopleYaml___image___internal___contentDigest'
-  | 'childrenPeopleYaml___image___internal___description'
-  | 'childrenPeopleYaml___image___internal___fieldOwners'
-  | 'childrenPeopleYaml___image___internal___ignoreType'
-  | 'childrenPeopleYaml___image___internal___mediaType'
-  | 'childrenPeopleYaml___image___internal___owner'
-  | 'childrenPeopleYaml___image___internal___type'
   | 'childrenPeopleYaml___expertise'
   | 'childrenPeopleYaml___headline'
   | 'childrenPeopleYaml___story'
+  | 'childrenPeopleYaml___contact___email'
   | 'childrenPeopleYaml___achievements'
-  | 'childrenPeopleYaml___socialNetworks___email'
   | 'childrenPeopleYaml___socialNetworks___github'
   | 'childrenPeopleYaml___socialNetworks___telegram'
   | 'childrenPeopleYaml___socialNetworks___linkedin'
@@ -2113,115 +1948,11 @@ export type FileFieldsEnum =
   | 'childPeopleYaml___name___mandarin'
   | 'childPeopleYaml___name___english'
   | 'childPeopleYaml___title'
-  | 'childPeopleYaml___image___sourceInstanceName'
-  | 'childPeopleYaml___image___absolutePath'
-  | 'childPeopleYaml___image___relativePath'
-  | 'childPeopleYaml___image___extension'
-  | 'childPeopleYaml___image___size'
-  | 'childPeopleYaml___image___prettySize'
-  | 'childPeopleYaml___image___modifiedTime'
-  | 'childPeopleYaml___image___accessTime'
-  | 'childPeopleYaml___image___changeTime'
-  | 'childPeopleYaml___image___birthTime'
-  | 'childPeopleYaml___image___root'
-  | 'childPeopleYaml___image___dir'
-  | 'childPeopleYaml___image___base'
-  | 'childPeopleYaml___image___ext'
-  | 'childPeopleYaml___image___name'
-  | 'childPeopleYaml___image___relativeDirectory'
-  | 'childPeopleYaml___image___dev'
-  | 'childPeopleYaml___image___mode'
-  | 'childPeopleYaml___image___nlink'
-  | 'childPeopleYaml___image___uid'
-  | 'childPeopleYaml___image___gid'
-  | 'childPeopleYaml___image___rdev'
-  | 'childPeopleYaml___image___ino'
-  | 'childPeopleYaml___image___atimeMs'
-  | 'childPeopleYaml___image___mtimeMs'
-  | 'childPeopleYaml___image___ctimeMs'
-  | 'childPeopleYaml___image___atime'
-  | 'childPeopleYaml___image___mtime'
-  | 'childPeopleYaml___image___ctime'
-  | 'childPeopleYaml___image___birthtime'
-  | 'childPeopleYaml___image___birthtimeMs'
-  | 'childPeopleYaml___image___blksize'
-  | 'childPeopleYaml___image___blocks'
-  | 'childPeopleYaml___image___publicURL'
-  | 'childPeopleYaml___image___childrenImageSharp'
-  | 'childPeopleYaml___image___childrenImageSharp___gatsbyImageData'
-  | 'childPeopleYaml___image___childrenImageSharp___id'
-  | 'childPeopleYaml___image___childrenImageSharp___children'
-  | 'childPeopleYaml___image___childImageSharp___gatsbyImageData'
-  | 'childPeopleYaml___image___childImageSharp___id'
-  | 'childPeopleYaml___image___childImageSharp___children'
-  | 'childPeopleYaml___image___childrenMdx'
-  | 'childPeopleYaml___image___childrenMdx___rawBody'
-  | 'childPeopleYaml___image___childrenMdx___fileAbsolutePath'
-  | 'childPeopleYaml___image___childrenMdx___slug'
-  | 'childPeopleYaml___image___childrenMdx___body'
-  | 'childPeopleYaml___image___childrenMdx___excerpt'
-  | 'childPeopleYaml___image___childrenMdx___headings'
-  | 'childPeopleYaml___image___childrenMdx___html'
-  | 'childPeopleYaml___image___childrenMdx___mdxAST'
-  | 'childPeopleYaml___image___childrenMdx___tableOfContents'
-  | 'childPeopleYaml___image___childrenMdx___timeToRead'
-  | 'childPeopleYaml___image___childrenMdx___id'
-  | 'childPeopleYaml___image___childrenMdx___children'
-  | 'childPeopleYaml___image___childMdx___rawBody'
-  | 'childPeopleYaml___image___childMdx___fileAbsolutePath'
-  | 'childPeopleYaml___image___childMdx___slug'
-  | 'childPeopleYaml___image___childMdx___body'
-  | 'childPeopleYaml___image___childMdx___excerpt'
-  | 'childPeopleYaml___image___childMdx___headings'
-  | 'childPeopleYaml___image___childMdx___html'
-  | 'childPeopleYaml___image___childMdx___mdxAST'
-  | 'childPeopleYaml___image___childMdx___tableOfContents'
-  | 'childPeopleYaml___image___childMdx___timeToRead'
-  | 'childPeopleYaml___image___childMdx___id'
-  | 'childPeopleYaml___image___childMdx___children'
-  | 'childPeopleYaml___image___childrenWorkflowsYaml'
-  | 'childPeopleYaml___image___childrenWorkflowsYaml___id'
-  | 'childPeopleYaml___image___childrenWorkflowsYaml___children'
-  | 'childPeopleYaml___image___childrenWorkflowsYaml___name'
-  | 'childPeopleYaml___image___childWorkflowsYaml___id'
-  | 'childPeopleYaml___image___childWorkflowsYaml___children'
-  | 'childPeopleYaml___image___childWorkflowsYaml___name'
-  | 'childPeopleYaml___image___childrenPeopleYaml'
-  | 'childPeopleYaml___image___childrenPeopleYaml___id'
-  | 'childPeopleYaml___image___childrenPeopleYaml___children'
-  | 'childPeopleYaml___image___childrenPeopleYaml___slug'
-  | 'childPeopleYaml___image___childrenPeopleYaml___title'
-  | 'childPeopleYaml___image___childrenPeopleYaml___expertise'
-  | 'childPeopleYaml___image___childrenPeopleYaml___headline'
-  | 'childPeopleYaml___image___childrenPeopleYaml___story'
-  | 'childPeopleYaml___image___childrenPeopleYaml___achievements'
-  | 'childPeopleYaml___image___childPeopleYaml___id'
-  | 'childPeopleYaml___image___childPeopleYaml___children'
-  | 'childPeopleYaml___image___childPeopleYaml___slug'
-  | 'childPeopleYaml___image___childPeopleYaml___title'
-  | 'childPeopleYaml___image___childPeopleYaml___expertise'
-  | 'childPeopleYaml___image___childPeopleYaml___headline'
-  | 'childPeopleYaml___image___childPeopleYaml___story'
-  | 'childPeopleYaml___image___childPeopleYaml___achievements'
-  | 'childPeopleYaml___image___id'
-  | 'childPeopleYaml___image___parent___id'
-  | 'childPeopleYaml___image___parent___children'
-  | 'childPeopleYaml___image___children'
-  | 'childPeopleYaml___image___children___id'
-  | 'childPeopleYaml___image___children___children'
-  | 'childPeopleYaml___image___internal___content'
-  | 'childPeopleYaml___image___internal___contentDigest'
-  | 'childPeopleYaml___image___internal___description'
-  | 'childPeopleYaml___image___internal___fieldOwners'
-  | 'childPeopleYaml___image___internal___ignoreType'
-  | 'childPeopleYaml___image___internal___mediaType'
-  | 'childPeopleYaml___image___internal___owner'
-  | 'childPeopleYaml___image___internal___type'
   | 'childPeopleYaml___expertise'
   | 'childPeopleYaml___headline'
   | 'childPeopleYaml___story'
+  | 'childPeopleYaml___contact___email'
   | 'childPeopleYaml___achievements'
-  | 'childPeopleYaml___socialNetworks___email'
   | 'childPeopleYaml___socialNetworks___github'
   | 'childPeopleYaml___socialNetworks___telegram'
   | 'childPeopleYaml___socialNetworks___linkedin'
@@ -2680,9 +2411,6 @@ export type SiteFieldsEnum =
   | 'siteMetadata___twitter'
   | 'port'
   | 'host'
-  | 'polyfill'
-  | 'pathPrefix'
-  | 'jsxRuntime'
   | 'id'
   | 'parent___id'
   | 'parent___parent___id'
@@ -2816,9 +2544,6 @@ export type SiteFilterInput = {
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
   port?: InputMaybe<IntQueryOperatorInput>;
   host?: InputMaybe<StringQueryOperatorInput>;
-  polyfill?: InputMaybe<BooleanQueryOperatorInput>;
-  pathPrefix?: InputMaybe<StringQueryOperatorInput>;
-  jsxRuntime?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -3928,9 +3653,6 @@ export type MdxFieldsEnum =
   | 'rawBody'
   | 'fileAbsolutePath'
   | 'frontmatter___title'
-  | 'frontmatter___slug'
-  | 'frontmatter___publishTime'
-  | 'frontmatter___author'
   | 'frontmatter___category'
   | 'frontmatter___embeddedImagesLocal'
   | 'frontmatter___embeddedImagesLocal___sourceInstanceName'
@@ -3999,13 +3721,6 @@ export type MdxFieldsEnum =
   | 'frontmatter___embeddedImagesLocal___childMdx___timeToRead'
   | 'frontmatter___embeddedImagesLocal___childMdx___id'
   | 'frontmatter___embeddedImagesLocal___childMdx___children'
-  | 'frontmatter___embeddedImagesLocal___childrenWorkflowsYaml'
-  | 'frontmatter___embeddedImagesLocal___childrenWorkflowsYaml___id'
-  | 'frontmatter___embeddedImagesLocal___childrenWorkflowsYaml___children'
-  | 'frontmatter___embeddedImagesLocal___childrenWorkflowsYaml___name'
-  | 'frontmatter___embeddedImagesLocal___childWorkflowsYaml___id'
-  | 'frontmatter___embeddedImagesLocal___childWorkflowsYaml___children'
-  | 'frontmatter___embeddedImagesLocal___childWorkflowsYaml___name'
   | 'frontmatter___embeddedImagesLocal___childrenPeopleYaml'
   | 'frontmatter___embeddedImagesLocal___childrenPeopleYaml___id'
   | 'frontmatter___embeddedImagesLocal___childrenPeopleYaml___children'
@@ -4183,191 +3898,6 @@ export type MdxSortInput = {
   order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
 
-export type WorkflowsYamlConnection = {
-  totalCount: Scalars['Int'];
-  edges: Array<WorkflowsYamlEdge>;
-  nodes: Array<WorkflowsYaml>;
-  pageInfo: PageInfo;
-  distinct: Array<Scalars['String']>;
-  max?: Maybe<Scalars['Float']>;
-  min?: Maybe<Scalars['Float']>;
-  sum?: Maybe<Scalars['Float']>;
-  group: Array<WorkflowsYamlGroupConnection>;
-};
-
-
-export type WorkflowsYamlConnectionDistinctArgs = {
-  field: WorkflowsYamlFieldsEnum;
-};
-
-
-export type WorkflowsYamlConnectionMaxArgs = {
-  field: WorkflowsYamlFieldsEnum;
-};
-
-
-export type WorkflowsYamlConnectionMinArgs = {
-  field: WorkflowsYamlFieldsEnum;
-};
-
-
-export type WorkflowsYamlConnectionSumArgs = {
-  field: WorkflowsYamlFieldsEnum;
-};
-
-
-export type WorkflowsYamlConnectionGroupArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  field: WorkflowsYamlFieldsEnum;
-};
-
-export type WorkflowsYamlEdge = {
-  next?: Maybe<WorkflowsYaml>;
-  node: WorkflowsYaml;
-  previous?: Maybe<WorkflowsYaml>;
-};
-
-export type WorkflowsYamlFieldsEnum =
-  | 'id'
-  | 'parent___id'
-  | 'parent___parent___id'
-  | 'parent___parent___parent___id'
-  | 'parent___parent___parent___children'
-  | 'parent___parent___children'
-  | 'parent___parent___children___id'
-  | 'parent___parent___children___children'
-  | 'parent___parent___internal___content'
-  | 'parent___parent___internal___contentDigest'
-  | 'parent___parent___internal___description'
-  | 'parent___parent___internal___fieldOwners'
-  | 'parent___parent___internal___ignoreType'
-  | 'parent___parent___internal___mediaType'
-  | 'parent___parent___internal___owner'
-  | 'parent___parent___internal___type'
-  | 'parent___children'
-  | 'parent___children___id'
-  | 'parent___children___parent___id'
-  | 'parent___children___parent___children'
-  | 'parent___children___children'
-  | 'parent___children___children___id'
-  | 'parent___children___children___children'
-  | 'parent___children___internal___content'
-  | 'parent___children___internal___contentDigest'
-  | 'parent___children___internal___description'
-  | 'parent___children___internal___fieldOwners'
-  | 'parent___children___internal___ignoreType'
-  | 'parent___children___internal___mediaType'
-  | 'parent___children___internal___owner'
-  | 'parent___children___internal___type'
-  | 'parent___internal___content'
-  | 'parent___internal___contentDigest'
-  | 'parent___internal___description'
-  | 'parent___internal___fieldOwners'
-  | 'parent___internal___ignoreType'
-  | 'parent___internal___mediaType'
-  | 'parent___internal___owner'
-  | 'parent___internal___type'
-  | 'children'
-  | 'children___id'
-  | 'children___parent___id'
-  | 'children___parent___parent___id'
-  | 'children___parent___parent___children'
-  | 'children___parent___children'
-  | 'children___parent___children___id'
-  | 'children___parent___children___children'
-  | 'children___parent___internal___content'
-  | 'children___parent___internal___contentDigest'
-  | 'children___parent___internal___description'
-  | 'children___parent___internal___fieldOwners'
-  | 'children___parent___internal___ignoreType'
-  | 'children___parent___internal___mediaType'
-  | 'children___parent___internal___owner'
-  | 'children___parent___internal___type'
-  | 'children___children'
-  | 'children___children___id'
-  | 'children___children___parent___id'
-  | 'children___children___parent___children'
-  | 'children___children___children'
-  | 'children___children___children___id'
-  | 'children___children___children___children'
-  | 'children___children___internal___content'
-  | 'children___children___internal___contentDigest'
-  | 'children___children___internal___description'
-  | 'children___children___internal___fieldOwners'
-  | 'children___children___internal___ignoreType'
-  | 'children___children___internal___mediaType'
-  | 'children___children___internal___owner'
-  | 'children___children___internal___type'
-  | 'children___internal___content'
-  | 'children___internal___contentDigest'
-  | 'children___internal___description'
-  | 'children___internal___fieldOwners'
-  | 'children___internal___ignoreType'
-  | 'children___internal___mediaType'
-  | 'children___internal___owner'
-  | 'children___internal___type'
-  | 'internal___content'
-  | 'internal___contentDigest'
-  | 'internal___description'
-  | 'internal___fieldOwners'
-  | 'internal___ignoreType'
-  | 'internal___mediaType'
-  | 'internal___owner'
-  | 'internal___type'
-  | 'name'
-  | 'on___push___branches'
-  | 'jobs___notify___runs_on'
-  | 'jobs___notify___steps'
-  | 'jobs___notify___steps___name'
-  | 'jobs___notify___steps___uses';
-
-export type WorkflowsYamlGroupConnection = {
-  totalCount: Scalars['Int'];
-  edges: Array<WorkflowsYamlEdge>;
-  nodes: Array<WorkflowsYaml>;
-  pageInfo: PageInfo;
-  distinct: Array<Scalars['String']>;
-  max?: Maybe<Scalars['Float']>;
-  min?: Maybe<Scalars['Float']>;
-  sum?: Maybe<Scalars['Float']>;
-  group: Array<WorkflowsYamlGroupConnection>;
-  field: Scalars['String'];
-  fieldValue?: Maybe<Scalars['String']>;
-};
-
-
-export type WorkflowsYamlGroupConnectionDistinctArgs = {
-  field: WorkflowsYamlFieldsEnum;
-};
-
-
-export type WorkflowsYamlGroupConnectionMaxArgs = {
-  field: WorkflowsYamlFieldsEnum;
-};
-
-
-export type WorkflowsYamlGroupConnectionMinArgs = {
-  field: WorkflowsYamlFieldsEnum;
-};
-
-
-export type WorkflowsYamlGroupConnectionSumArgs = {
-  field: WorkflowsYamlFieldsEnum;
-};
-
-
-export type WorkflowsYamlGroupConnectionGroupArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  field: WorkflowsYamlFieldsEnum;
-};
-
-export type WorkflowsYamlSortInput = {
-  fields?: InputMaybe<Array<InputMaybe<WorkflowsYamlFieldsEnum>>>;
-  order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
-};
-
 export type PeopleYamlConnection = {
   totalCount: Scalars['Int'];
   edges: Array<PeopleYamlEdge>;
@@ -4504,415 +4034,11 @@ export type PeopleYamlFieldsEnum =
   | 'name___mandarin'
   | 'name___english'
   | 'title'
-  | 'image___sourceInstanceName'
-  | 'image___absolutePath'
-  | 'image___relativePath'
-  | 'image___extension'
-  | 'image___size'
-  | 'image___prettySize'
-  | 'image___modifiedTime'
-  | 'image___accessTime'
-  | 'image___changeTime'
-  | 'image___birthTime'
-  | 'image___root'
-  | 'image___dir'
-  | 'image___base'
-  | 'image___ext'
-  | 'image___name'
-  | 'image___relativeDirectory'
-  | 'image___dev'
-  | 'image___mode'
-  | 'image___nlink'
-  | 'image___uid'
-  | 'image___gid'
-  | 'image___rdev'
-  | 'image___ino'
-  | 'image___atimeMs'
-  | 'image___mtimeMs'
-  | 'image___ctimeMs'
-  | 'image___atime'
-  | 'image___mtime'
-  | 'image___ctime'
-  | 'image___birthtime'
-  | 'image___birthtimeMs'
-  | 'image___blksize'
-  | 'image___blocks'
-  | 'image___publicURL'
-  | 'image___childrenImageSharp'
-  | 'image___childrenImageSharp___fixed___base64'
-  | 'image___childrenImageSharp___fixed___tracedSVG'
-  | 'image___childrenImageSharp___fixed___aspectRatio'
-  | 'image___childrenImageSharp___fixed___width'
-  | 'image___childrenImageSharp___fixed___height'
-  | 'image___childrenImageSharp___fixed___src'
-  | 'image___childrenImageSharp___fixed___srcSet'
-  | 'image___childrenImageSharp___fixed___srcWebp'
-  | 'image___childrenImageSharp___fixed___srcSetWebp'
-  | 'image___childrenImageSharp___fixed___originalName'
-  | 'image___childrenImageSharp___fluid___base64'
-  | 'image___childrenImageSharp___fluid___tracedSVG'
-  | 'image___childrenImageSharp___fluid___aspectRatio'
-  | 'image___childrenImageSharp___fluid___src'
-  | 'image___childrenImageSharp___fluid___srcSet'
-  | 'image___childrenImageSharp___fluid___srcWebp'
-  | 'image___childrenImageSharp___fluid___srcSetWebp'
-  | 'image___childrenImageSharp___fluid___sizes'
-  | 'image___childrenImageSharp___fluid___originalImg'
-  | 'image___childrenImageSharp___fluid___originalName'
-  | 'image___childrenImageSharp___fluid___presentationWidth'
-  | 'image___childrenImageSharp___fluid___presentationHeight'
-  | 'image___childrenImageSharp___gatsbyImageData'
-  | 'image___childrenImageSharp___original___width'
-  | 'image___childrenImageSharp___original___height'
-  | 'image___childrenImageSharp___original___src'
-  | 'image___childrenImageSharp___resize___src'
-  | 'image___childrenImageSharp___resize___tracedSVG'
-  | 'image___childrenImageSharp___resize___width'
-  | 'image___childrenImageSharp___resize___height'
-  | 'image___childrenImageSharp___resize___aspectRatio'
-  | 'image___childrenImageSharp___resize___originalName'
-  | 'image___childrenImageSharp___id'
-  | 'image___childrenImageSharp___parent___id'
-  | 'image___childrenImageSharp___parent___children'
-  | 'image___childrenImageSharp___children'
-  | 'image___childrenImageSharp___children___id'
-  | 'image___childrenImageSharp___children___children'
-  | 'image___childrenImageSharp___internal___content'
-  | 'image___childrenImageSharp___internal___contentDigest'
-  | 'image___childrenImageSharp___internal___description'
-  | 'image___childrenImageSharp___internal___fieldOwners'
-  | 'image___childrenImageSharp___internal___ignoreType'
-  | 'image___childrenImageSharp___internal___mediaType'
-  | 'image___childrenImageSharp___internal___owner'
-  | 'image___childrenImageSharp___internal___type'
-  | 'image___childImageSharp___fixed___base64'
-  | 'image___childImageSharp___fixed___tracedSVG'
-  | 'image___childImageSharp___fixed___aspectRatio'
-  | 'image___childImageSharp___fixed___width'
-  | 'image___childImageSharp___fixed___height'
-  | 'image___childImageSharp___fixed___src'
-  | 'image___childImageSharp___fixed___srcSet'
-  | 'image___childImageSharp___fixed___srcWebp'
-  | 'image___childImageSharp___fixed___srcSetWebp'
-  | 'image___childImageSharp___fixed___originalName'
-  | 'image___childImageSharp___fluid___base64'
-  | 'image___childImageSharp___fluid___tracedSVG'
-  | 'image___childImageSharp___fluid___aspectRatio'
-  | 'image___childImageSharp___fluid___src'
-  | 'image___childImageSharp___fluid___srcSet'
-  | 'image___childImageSharp___fluid___srcWebp'
-  | 'image___childImageSharp___fluid___srcSetWebp'
-  | 'image___childImageSharp___fluid___sizes'
-  | 'image___childImageSharp___fluid___originalImg'
-  | 'image___childImageSharp___fluid___originalName'
-  | 'image___childImageSharp___fluid___presentationWidth'
-  | 'image___childImageSharp___fluid___presentationHeight'
-  | 'image___childImageSharp___gatsbyImageData'
-  | 'image___childImageSharp___original___width'
-  | 'image___childImageSharp___original___height'
-  | 'image___childImageSharp___original___src'
-  | 'image___childImageSharp___resize___src'
-  | 'image___childImageSharp___resize___tracedSVG'
-  | 'image___childImageSharp___resize___width'
-  | 'image___childImageSharp___resize___height'
-  | 'image___childImageSharp___resize___aspectRatio'
-  | 'image___childImageSharp___resize___originalName'
-  | 'image___childImageSharp___id'
-  | 'image___childImageSharp___parent___id'
-  | 'image___childImageSharp___parent___children'
-  | 'image___childImageSharp___children'
-  | 'image___childImageSharp___children___id'
-  | 'image___childImageSharp___children___children'
-  | 'image___childImageSharp___internal___content'
-  | 'image___childImageSharp___internal___contentDigest'
-  | 'image___childImageSharp___internal___description'
-  | 'image___childImageSharp___internal___fieldOwners'
-  | 'image___childImageSharp___internal___ignoreType'
-  | 'image___childImageSharp___internal___mediaType'
-  | 'image___childImageSharp___internal___owner'
-  | 'image___childImageSharp___internal___type'
-  | 'image___childrenMdx'
-  | 'image___childrenMdx___rawBody'
-  | 'image___childrenMdx___fileAbsolutePath'
-  | 'image___childrenMdx___frontmatter___title'
-  | 'image___childrenMdx___frontmatter___slug'
-  | 'image___childrenMdx___frontmatter___publishTime'
-  | 'image___childrenMdx___frontmatter___author'
-  | 'image___childrenMdx___frontmatter___category'
-  | 'image___childrenMdx___frontmatter___embeddedImagesLocal'
-  | 'image___childrenMdx___slug'
-  | 'image___childrenMdx___body'
-  | 'image___childrenMdx___excerpt'
-  | 'image___childrenMdx___headings'
-  | 'image___childrenMdx___headings___value'
-  | 'image___childrenMdx___headings___depth'
-  | 'image___childrenMdx___html'
-  | 'image___childrenMdx___mdxAST'
-  | 'image___childrenMdx___tableOfContents'
-  | 'image___childrenMdx___timeToRead'
-  | 'image___childrenMdx___wordCount___paragraphs'
-  | 'image___childrenMdx___wordCount___sentences'
-  | 'image___childrenMdx___wordCount___words'
-  | 'image___childrenMdx___id'
-  | 'image___childrenMdx___parent___id'
-  | 'image___childrenMdx___parent___children'
-  | 'image___childrenMdx___children'
-  | 'image___childrenMdx___children___id'
-  | 'image___childrenMdx___children___children'
-  | 'image___childrenMdx___internal___content'
-  | 'image___childrenMdx___internal___contentDigest'
-  | 'image___childrenMdx___internal___description'
-  | 'image___childrenMdx___internal___fieldOwners'
-  | 'image___childrenMdx___internal___ignoreType'
-  | 'image___childrenMdx___internal___mediaType'
-  | 'image___childrenMdx___internal___owner'
-  | 'image___childrenMdx___internal___type'
-  | 'image___childMdx___rawBody'
-  | 'image___childMdx___fileAbsolutePath'
-  | 'image___childMdx___frontmatter___title'
-  | 'image___childMdx___frontmatter___slug'
-  | 'image___childMdx___frontmatter___publishTime'
-  | 'image___childMdx___frontmatter___author'
-  | 'image___childMdx___frontmatter___category'
-  | 'image___childMdx___frontmatter___embeddedImagesLocal'
-  | 'image___childMdx___slug'
-  | 'image___childMdx___body'
-  | 'image___childMdx___excerpt'
-  | 'image___childMdx___headings'
-  | 'image___childMdx___headings___value'
-  | 'image___childMdx___headings___depth'
-  | 'image___childMdx___html'
-  | 'image___childMdx___mdxAST'
-  | 'image___childMdx___tableOfContents'
-  | 'image___childMdx___timeToRead'
-  | 'image___childMdx___wordCount___paragraphs'
-  | 'image___childMdx___wordCount___sentences'
-  | 'image___childMdx___wordCount___words'
-  | 'image___childMdx___id'
-  | 'image___childMdx___parent___id'
-  | 'image___childMdx___parent___children'
-  | 'image___childMdx___children'
-  | 'image___childMdx___children___id'
-  | 'image___childMdx___children___children'
-  | 'image___childMdx___internal___content'
-  | 'image___childMdx___internal___contentDigest'
-  | 'image___childMdx___internal___description'
-  | 'image___childMdx___internal___fieldOwners'
-  | 'image___childMdx___internal___ignoreType'
-  | 'image___childMdx___internal___mediaType'
-  | 'image___childMdx___internal___owner'
-  | 'image___childMdx___internal___type'
-  | 'image___childrenWorkflowsYaml'
-  | 'image___childrenWorkflowsYaml___id'
-  | 'image___childrenWorkflowsYaml___parent___id'
-  | 'image___childrenWorkflowsYaml___parent___children'
-  | 'image___childrenWorkflowsYaml___children'
-  | 'image___childrenWorkflowsYaml___children___id'
-  | 'image___childrenWorkflowsYaml___children___children'
-  | 'image___childrenWorkflowsYaml___internal___content'
-  | 'image___childrenWorkflowsYaml___internal___contentDigest'
-  | 'image___childrenWorkflowsYaml___internal___description'
-  | 'image___childrenWorkflowsYaml___internal___fieldOwners'
-  | 'image___childrenWorkflowsYaml___internal___ignoreType'
-  | 'image___childrenWorkflowsYaml___internal___mediaType'
-  | 'image___childrenWorkflowsYaml___internal___owner'
-  | 'image___childrenWorkflowsYaml___internal___type'
-  | 'image___childrenWorkflowsYaml___name'
-  | 'image___childWorkflowsYaml___id'
-  | 'image___childWorkflowsYaml___parent___id'
-  | 'image___childWorkflowsYaml___parent___children'
-  | 'image___childWorkflowsYaml___children'
-  | 'image___childWorkflowsYaml___children___id'
-  | 'image___childWorkflowsYaml___children___children'
-  | 'image___childWorkflowsYaml___internal___content'
-  | 'image___childWorkflowsYaml___internal___contentDigest'
-  | 'image___childWorkflowsYaml___internal___description'
-  | 'image___childWorkflowsYaml___internal___fieldOwners'
-  | 'image___childWorkflowsYaml___internal___ignoreType'
-  | 'image___childWorkflowsYaml___internal___mediaType'
-  | 'image___childWorkflowsYaml___internal___owner'
-  | 'image___childWorkflowsYaml___internal___type'
-  | 'image___childWorkflowsYaml___name'
-  | 'image___childrenPeopleYaml'
-  | 'image___childrenPeopleYaml___id'
-  | 'image___childrenPeopleYaml___parent___id'
-  | 'image___childrenPeopleYaml___parent___children'
-  | 'image___childrenPeopleYaml___children'
-  | 'image___childrenPeopleYaml___children___id'
-  | 'image___childrenPeopleYaml___children___children'
-  | 'image___childrenPeopleYaml___internal___content'
-  | 'image___childrenPeopleYaml___internal___contentDigest'
-  | 'image___childrenPeopleYaml___internal___description'
-  | 'image___childrenPeopleYaml___internal___fieldOwners'
-  | 'image___childrenPeopleYaml___internal___ignoreType'
-  | 'image___childrenPeopleYaml___internal___mediaType'
-  | 'image___childrenPeopleYaml___internal___owner'
-  | 'image___childrenPeopleYaml___internal___type'
-  | 'image___childrenPeopleYaml___slug'
-  | 'image___childrenPeopleYaml___name___mandarin'
-  | 'image___childrenPeopleYaml___name___english'
-  | 'image___childrenPeopleYaml___title'
-  | 'image___childrenPeopleYaml___image___sourceInstanceName'
-  | 'image___childrenPeopleYaml___image___absolutePath'
-  | 'image___childrenPeopleYaml___image___relativePath'
-  | 'image___childrenPeopleYaml___image___extension'
-  | 'image___childrenPeopleYaml___image___size'
-  | 'image___childrenPeopleYaml___image___prettySize'
-  | 'image___childrenPeopleYaml___image___modifiedTime'
-  | 'image___childrenPeopleYaml___image___accessTime'
-  | 'image___childrenPeopleYaml___image___changeTime'
-  | 'image___childrenPeopleYaml___image___birthTime'
-  | 'image___childrenPeopleYaml___image___root'
-  | 'image___childrenPeopleYaml___image___dir'
-  | 'image___childrenPeopleYaml___image___base'
-  | 'image___childrenPeopleYaml___image___ext'
-  | 'image___childrenPeopleYaml___image___name'
-  | 'image___childrenPeopleYaml___image___relativeDirectory'
-  | 'image___childrenPeopleYaml___image___dev'
-  | 'image___childrenPeopleYaml___image___mode'
-  | 'image___childrenPeopleYaml___image___nlink'
-  | 'image___childrenPeopleYaml___image___uid'
-  | 'image___childrenPeopleYaml___image___gid'
-  | 'image___childrenPeopleYaml___image___rdev'
-  | 'image___childrenPeopleYaml___image___ino'
-  | 'image___childrenPeopleYaml___image___atimeMs'
-  | 'image___childrenPeopleYaml___image___mtimeMs'
-  | 'image___childrenPeopleYaml___image___ctimeMs'
-  | 'image___childrenPeopleYaml___image___atime'
-  | 'image___childrenPeopleYaml___image___mtime'
-  | 'image___childrenPeopleYaml___image___ctime'
-  | 'image___childrenPeopleYaml___image___birthtime'
-  | 'image___childrenPeopleYaml___image___birthtimeMs'
-  | 'image___childrenPeopleYaml___image___blksize'
-  | 'image___childrenPeopleYaml___image___blocks'
-  | 'image___childrenPeopleYaml___image___publicURL'
-  | 'image___childrenPeopleYaml___image___childrenImageSharp'
-  | 'image___childrenPeopleYaml___image___childrenMdx'
-  | 'image___childrenPeopleYaml___image___childrenWorkflowsYaml'
-  | 'image___childrenPeopleYaml___image___childrenPeopleYaml'
-  | 'image___childrenPeopleYaml___image___id'
-  | 'image___childrenPeopleYaml___image___children'
-  | 'image___childrenPeopleYaml___expertise'
-  | 'image___childrenPeopleYaml___headline'
-  | 'image___childrenPeopleYaml___story'
-  | 'image___childrenPeopleYaml___achievements'
-  | 'image___childrenPeopleYaml___socialNetworks___email'
-  | 'image___childrenPeopleYaml___socialNetworks___github'
-  | 'image___childrenPeopleYaml___socialNetworks___telegram'
-  | 'image___childrenPeopleYaml___socialNetworks___linkedin'
-  | 'image___childrenPeopleYaml___socialNetworks___facebook'
-  | 'image___childrenPeopleYaml___socialNetworks___portal'
-  | 'image___childPeopleYaml___id'
-  | 'image___childPeopleYaml___parent___id'
-  | 'image___childPeopleYaml___parent___children'
-  | 'image___childPeopleYaml___children'
-  | 'image___childPeopleYaml___children___id'
-  | 'image___childPeopleYaml___children___children'
-  | 'image___childPeopleYaml___internal___content'
-  | 'image___childPeopleYaml___internal___contentDigest'
-  | 'image___childPeopleYaml___internal___description'
-  | 'image___childPeopleYaml___internal___fieldOwners'
-  | 'image___childPeopleYaml___internal___ignoreType'
-  | 'image___childPeopleYaml___internal___mediaType'
-  | 'image___childPeopleYaml___internal___owner'
-  | 'image___childPeopleYaml___internal___type'
-  | 'image___childPeopleYaml___slug'
-  | 'image___childPeopleYaml___name___mandarin'
-  | 'image___childPeopleYaml___name___english'
-  | 'image___childPeopleYaml___title'
-  | 'image___childPeopleYaml___image___sourceInstanceName'
-  | 'image___childPeopleYaml___image___absolutePath'
-  | 'image___childPeopleYaml___image___relativePath'
-  | 'image___childPeopleYaml___image___extension'
-  | 'image___childPeopleYaml___image___size'
-  | 'image___childPeopleYaml___image___prettySize'
-  | 'image___childPeopleYaml___image___modifiedTime'
-  | 'image___childPeopleYaml___image___accessTime'
-  | 'image___childPeopleYaml___image___changeTime'
-  | 'image___childPeopleYaml___image___birthTime'
-  | 'image___childPeopleYaml___image___root'
-  | 'image___childPeopleYaml___image___dir'
-  | 'image___childPeopleYaml___image___base'
-  | 'image___childPeopleYaml___image___ext'
-  | 'image___childPeopleYaml___image___name'
-  | 'image___childPeopleYaml___image___relativeDirectory'
-  | 'image___childPeopleYaml___image___dev'
-  | 'image___childPeopleYaml___image___mode'
-  | 'image___childPeopleYaml___image___nlink'
-  | 'image___childPeopleYaml___image___uid'
-  | 'image___childPeopleYaml___image___gid'
-  | 'image___childPeopleYaml___image___rdev'
-  | 'image___childPeopleYaml___image___ino'
-  | 'image___childPeopleYaml___image___atimeMs'
-  | 'image___childPeopleYaml___image___mtimeMs'
-  | 'image___childPeopleYaml___image___ctimeMs'
-  | 'image___childPeopleYaml___image___atime'
-  | 'image___childPeopleYaml___image___mtime'
-  | 'image___childPeopleYaml___image___ctime'
-  | 'image___childPeopleYaml___image___birthtime'
-  | 'image___childPeopleYaml___image___birthtimeMs'
-  | 'image___childPeopleYaml___image___blksize'
-  | 'image___childPeopleYaml___image___blocks'
-  | 'image___childPeopleYaml___image___publicURL'
-  | 'image___childPeopleYaml___image___childrenImageSharp'
-  | 'image___childPeopleYaml___image___childrenMdx'
-  | 'image___childPeopleYaml___image___childrenWorkflowsYaml'
-  | 'image___childPeopleYaml___image___childrenPeopleYaml'
-  | 'image___childPeopleYaml___image___id'
-  | 'image___childPeopleYaml___image___children'
-  | 'image___childPeopleYaml___expertise'
-  | 'image___childPeopleYaml___headline'
-  | 'image___childPeopleYaml___story'
-  | 'image___childPeopleYaml___achievements'
-  | 'image___childPeopleYaml___socialNetworks___email'
-  | 'image___childPeopleYaml___socialNetworks___github'
-  | 'image___childPeopleYaml___socialNetworks___telegram'
-  | 'image___childPeopleYaml___socialNetworks___linkedin'
-  | 'image___childPeopleYaml___socialNetworks___facebook'
-  | 'image___childPeopleYaml___socialNetworks___portal'
-  | 'image___id'
-  | 'image___parent___id'
-  | 'image___parent___parent___id'
-  | 'image___parent___parent___children'
-  | 'image___parent___children'
-  | 'image___parent___children___id'
-  | 'image___parent___children___children'
-  | 'image___parent___internal___content'
-  | 'image___parent___internal___contentDigest'
-  | 'image___parent___internal___description'
-  | 'image___parent___internal___fieldOwners'
-  | 'image___parent___internal___ignoreType'
-  | 'image___parent___internal___mediaType'
-  | 'image___parent___internal___owner'
-  | 'image___parent___internal___type'
-  | 'image___children'
-  | 'image___children___id'
-  | 'image___children___parent___id'
-  | 'image___children___parent___children'
-  | 'image___children___children'
-  | 'image___children___children___id'
-  | 'image___children___children___children'
-  | 'image___children___internal___content'
-  | 'image___children___internal___contentDigest'
-  | 'image___children___internal___description'
-  | 'image___children___internal___fieldOwners'
-  | 'image___children___internal___ignoreType'
-  | 'image___children___internal___mediaType'
-  | 'image___children___internal___owner'
-  | 'image___children___internal___type'
-  | 'image___internal___content'
-  | 'image___internal___contentDigest'
-  | 'image___internal___description'
-  | 'image___internal___fieldOwners'
-  | 'image___internal___ignoreType'
-  | 'image___internal___mediaType'
-  | 'image___internal___owner'
-  | 'image___internal___type'
   | 'expertise'
   | 'headline'
   | 'story'
+  | 'contact___email'
   | 'achievements'
-  | 'socialNetworks___email'
   | 'socialNetworks___github'
   | 'socialNetworks___telegram'
   | 'socialNetworks___linkedin'
@@ -4965,15 +4091,260 @@ export type PeopleYamlSortInput = {
   order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
 
-export type EveryoneQueryVariables = Exact<{ [key: string]: never; }>;
+export type StaticImageConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<StaticImageEdge>;
+  nodes: Array<StaticImage>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<StaticImageGroupConnection>;
+};
 
 
-export type EveryoneQuery = { people: { nodes: Array<{ id: string, slug?: string | undefined, name?: { mandarin?: string | undefined, english?: string | undefined } | undefined, image?: { childImageSharp?: { gatsbyImageData: any } | undefined } | undefined }> } };
+export type StaticImageConnectionDistinctArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+export type StaticImageConnectionMaxArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+export type StaticImageConnectionMinArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+export type StaticImageConnectionSumArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+export type StaticImageConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: StaticImageFieldsEnum;
+};
+
+export type StaticImageEdge = {
+  next?: Maybe<StaticImage>;
+  node: StaticImage;
+  previous?: Maybe<StaticImage>;
+};
+
+export type StaticImageFieldsEnum =
+  | 'id'
+  | 'parent___id'
+  | 'parent___parent___id'
+  | 'parent___parent___parent___id'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___children___children'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___children'
+  | 'parent___children___id'
+  | 'parent___children___parent___id'
+  | 'parent___children___parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___children___children'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'children'
+  | 'children___id'
+  | 'children___parent___id'
+  | 'children___parent___parent___id'
+  | 'children___parent___parent___children'
+  | 'children___parent___children'
+  | 'children___parent___children___id'
+  | 'children___parent___children___children'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___children'
+  | 'children___children___id'
+  | 'children___children___parent___id'
+  | 'children___children___parent___children'
+  | 'children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___children___children'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'sourceInstanceName'
+  | 'relativePath'
+  | 'extension'
+  | 'prettySize'
+  | 'modifiedTime'
+  | 'accessTime'
+  | 'changeTime'
+  | 'birthTime'
+  | 'root'
+  | 'dir'
+  | 'base'
+  | 'ext'
+  | 'name'
+  | 'absolutePath'
+  | 'relativeDirectory'
+  | 'dev'
+  | 'mode'
+  | 'nlink'
+  | 'uid'
+  | 'rdev'
+  | 'blksize'
+  | 'ino'
+  | 'size'
+  | 'blocks'
+  | 'atimeMs'
+  | 'mtimeMs'
+  | 'ctimeMs'
+  | 'birthtimeMs'
+  | 'atime'
+  | 'mtime'
+  | 'ctime'
+  | 'birthtime';
+
+export type StaticImageGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<StaticImageEdge>;
+  nodes: Array<StaticImage>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<StaticImageGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type StaticImageGroupConnectionDistinctArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+export type StaticImageGroupConnectionMaxArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+export type StaticImageGroupConnectionMinArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+export type StaticImageGroupConnectionSumArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+export type StaticImageGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: StaticImageFieldsEnum;
+};
+
+export type StaticImageFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+  sourceInstanceName?: InputMaybe<StringQueryOperatorInput>;
+  relativePath?: InputMaybe<StringQueryOperatorInput>;
+  extension?: InputMaybe<StringQueryOperatorInput>;
+  prettySize?: InputMaybe<StringQueryOperatorInput>;
+  modifiedTime?: InputMaybe<DateQueryOperatorInput>;
+  accessTime?: InputMaybe<DateQueryOperatorInput>;
+  changeTime?: InputMaybe<DateQueryOperatorInput>;
+  birthTime?: InputMaybe<DateQueryOperatorInput>;
+  root?: InputMaybe<StringQueryOperatorInput>;
+  dir?: InputMaybe<StringQueryOperatorInput>;
+  base?: InputMaybe<StringQueryOperatorInput>;
+  ext?: InputMaybe<StringQueryOperatorInput>;
+  name?: InputMaybe<StringQueryOperatorInput>;
+  absolutePath?: InputMaybe<StringQueryOperatorInput>;
+  relativeDirectory?: InputMaybe<StringQueryOperatorInput>;
+  dev?: InputMaybe<IntQueryOperatorInput>;
+  mode?: InputMaybe<IntQueryOperatorInput>;
+  nlink?: InputMaybe<IntQueryOperatorInput>;
+  uid?: InputMaybe<IntQueryOperatorInput>;
+  rdev?: InputMaybe<IntQueryOperatorInput>;
+  blksize?: InputMaybe<IntQueryOperatorInput>;
+  ino?: InputMaybe<IntQueryOperatorInput>;
+  size?: InputMaybe<IntQueryOperatorInput>;
+  blocks?: InputMaybe<IntQueryOperatorInput>;
+  atimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  mtimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  ctimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  birthtimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  atime?: InputMaybe<DateQueryOperatorInput>;
+  mtime?: InputMaybe<DateQueryOperatorInput>;
+  ctime?: InputMaybe<DateQueryOperatorInput>;
+  birthtime?: InputMaybe<DateQueryOperatorInput>;
+};
+
+export type StaticImageSortInput = {
+  fields?: InputMaybe<Array<InputMaybe<StaticImageFieldsEnum>>>;
+  order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
+};
 
 export type ArticlesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ArticlesQuery = { articles: { nodes: Array<{ id: string, name: string, childMdx?: { wordCount?: { words?: number | undefined } | undefined, frontmatter?: { title: string, slug?: string | undefined, publishTime?: number | undefined, author?: string | undefined } | undefined } | undefined }> } };
+export type ArticlesQuery = { articles: { nodes: Array<{ id: string, name: string, childMdx?: { slug?: string | undefined, frontmatter?: { title: string } | undefined } | undefined }> } };
 
 export type ContactQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4990,14 +4361,14 @@ export type ArticleQueryVariables = Exact<{
 }>;
 
 
-export type ArticleQuery = { article: { nodes: Array<{ name: string, changeTime: any, birthTime: any, childMdx?: { body: string, frontmatter?: { title: string, publishTime?: number | undefined, author?: string | undefined } | undefined } | undefined }> } };
+export type ArticleQuery = { article: { nodes: Array<{ name: string, changeTime: any, birthTime: any, childMdx?: { body: string, frontmatter?: { title: string } | undefined } | undefined }> } };
 
 export type PersonQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
 
 
-export type PersonQuery = { person?: { achievements?: Array<string | undefined> | undefined, expertise?: Array<string | undefined> | undefined, headline?: string | undefined, id: string, slug?: string | undefined, story?: string | undefined, title?: string | undefined, name?: { english?: string | undefined, mandarin?: string | undefined } | undefined, profilePicture?: { id: string, childImageSharp?: { gatsbyImageData: any } | undefined } | undefined, socialNetworks?: { email?: string | undefined, github?: string | undefined, telegram?: string | undefined, facebook?: string | undefined, linkedin?: string | undefined, portal?: string | undefined } | undefined } | undefined };
+export type PersonQuery = { person?: { achievements?: Array<string | undefined> | undefined, expertise?: Array<string | undefined> | undefined, headline?: string | undefined, id: string, slug?: string | undefined, story?: string | undefined, title?: string | undefined, name?: { english?: string | undefined, mandarin?: string | undefined } | undefined, contact?: { email?: string | undefined } | undefined, socialNetworks?: { github?: string | undefined, telegram?: string | undefined, facebook?: string | undefined, linkedin?: string | undefined, portal?: string | undefined } | undefined } | undefined, profilePicture?: { id: string, childImageSharp?: { gatsbyImageData: any } | undefined } | undefined };
 
 export type SiteMetadataQueryVariables = Exact<{ [key: string]: never; }>;
 

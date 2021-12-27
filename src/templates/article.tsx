@@ -10,10 +10,11 @@ export interface ArticlePageTemplateProps {
 
 const ArticlePageTemplate: React.FC<ArticlePageTemplateProps> = ({ data }) => {
   const mdx = data.article.nodes[0]
+  const mdxTitle = mdx.childMdx?.frontmatter?.title
   const mdxBody = mdx.childMdx?.body
 
   return (
-    <SimpleLayout title={mdx.name}>
+    <SimpleLayout title={mdxTitle ?? mdx.name}>
       {mdxBody && (
         <MDXRenderer>
           {mdxBody}
@@ -35,6 +36,8 @@ export const query = graphql`
         childMdx {
           frontmatter {
             title
+            publishTime
+            author
           }
           body
         }

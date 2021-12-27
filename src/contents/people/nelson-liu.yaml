@@ -3,6 +3,7 @@ name:
   mandarin: 劉于誠
   english: Nelson Liu
 title: Co-founder
+image: "../../images/people/nelson-liu.jpeg"
 expertise:
   - JavaScript/TypeScript
   - React
@@ -10,10 +11,9 @@ expertise:
 headline: Sic Parvis Magna
 story: >
   Greatness starts from small beginnings
-contact:
-  email: nelson@purefunc.net
 achievements:
   - 2021 加入純函式
 socialNetworks:
+  email: mailto:nelson@purefunc.net
   github: https://github.com/nelsliu9121
   telegram: https://t.me/nelsliu

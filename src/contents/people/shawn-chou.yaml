@@ -11,9 +11,8 @@ expertise:
 headline: play to earn ?
 story: >
   Ready to enter the meta universe or whatever verse
-contact:
-  email: shawn@purefunc.net
 achievements:
-  - 2021 加入純函式
+    - 2021 加入純函式
 socialNetworks:
+  email: mailto:shawn@purefunc.net
   github: https://github.com/qqdog1

@@ -15,7 +15,7 @@ import { faCompass, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { Link } from '@/components/common/Link'
 
 export interface SocialNetworkDisplayProps {
-  socialNetworks?: Record<string, string>
+  socialNetworks?: Record<string, string> | undefined
   className?: string
 }
 
