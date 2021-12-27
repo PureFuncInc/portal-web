@@ -1,28 +1,28 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import type { PortfolioQuery } from '@/generated/graphql-types'
+import type { PortfolioFileNodeFragment } from '@graphqlTypes'
 import { Link } from '@/components/common/Link'
 
-export interface PortfolioProjectProps {
-  project: PortfolioQuery['projects']['nodes'][number]
+export interface PortfolioItemProps {
+  item: PortfolioFileNodeFragment['nodes'][number]
 }
 
-export const PortfolioProject: React.FC<PortfolioProjectProps> = ({
-  project,
+export const PortfolioItem: React.FC<PortfolioItemProps> = ({
+  item,
 }) => {
-  const image = getImage(project.childMdx?.frontmatter?.embeddedImagesLocal?.[0]?.childImageSharp?.gatsbyImageData)
+  const image = getImage(item.childMdx?.frontmatter?.embeddedImagesLocal?.[0]?.childImageSharp?.gatsbyImageData)
 
   return (
-    <Container to={project.childMdx?.slug ?? '/projects'}>
+    <Container to={`/${item.childMdx?.slug ?? 'portfolio'}`}>
       {image && (
         <GatsbyImage
-          alt={project.name}
+          alt={item.name}
           image={image} />
       )}
 
       <Name>
-        {project.childMdx?.frontmatter?.title ?? project.name}
+        {item.childMdx?.frontmatter?.title ?? item.name}
       </Name>
     </Container>
   )

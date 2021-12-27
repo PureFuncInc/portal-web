@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-import type { ArticleQuery } from '@/generated/graphql-types'
+import type { ArticleQuery } from '@graphqlTypes'
 import { SimpleLayout } from '@/components/layouts/SimpleLayout'
 
 export interface ArticlePageTemplateProps {

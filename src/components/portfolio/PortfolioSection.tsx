@@ -1,17 +1,17 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { Label } from '../common/Label'
-import type { PortfolioQuery } from '@/generated/graphql-types'
-import { PortfolioProject } from '@/components/portfolio/PortfolioProject'
+import type { PortfolioFileNodeFragment } from '@graphqlTypes'
+import { PortfolioItem } from '@/components/portfolio/PortfolioItem'
 
 export interface PortfolioSectionProps {
   name: string
-  projects: PortfolioQuery['projects']['nodes']
+  items: PortfolioFileNodeFragment['nodes']
 }
 
 export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
   name,
-  projects,
+  items,
 }) => {
   return (
     <Container>
@@ -19,13 +19,13 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
         {name}
       </ContainerLabel>
 
-      <Projects>
-        {projects.map(project => (
-          <ProjectContainer key={project.id}>
-            <PortfolioProject project={project} />
-          </ProjectContainer>
+      <Items>
+        {items.map(project => (
+          <ItemContainer key={project.id}>
+            <PortfolioItem item={project} />
+          </ItemContainer>
         ))}
-      </Projects>
+      </Items>
     </Container>
   )
 }
@@ -40,14 +40,14 @@ const ContainerLabel = styled(Label)`
   font-size: ${({ theme }) => theme.size.great};
 `
 
-const Projects = styled.div`
+const Items = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
   margin-top: 25px;
 `
 
-const ProjectContainer = styled.div`
+const ItemContainer = styled.div`
   flex: 0 0 25%;
   margin-right: 15px;
 `

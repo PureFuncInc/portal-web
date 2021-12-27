@@ -25,6 +25,6 @@ const getGlobalStyles = theme => css`
     font-family: 'Noto Sans', 'Noto Sans TC', sans-serif, 'Noto Serif',  serif;
     background-size: cover;
     background-repeat: repeat-x;
-    background-image: ${theme.gradient.background};
+    background-image: ${theme.background.gradient};
   }
 `

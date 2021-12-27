@@ -34,8 +34,13 @@ const LogoContainer = styled.div`
 
 const NavMenuContainer = styled.div`
   position: absolute;
-  bottom: 15%;
+  bottom: 15vh;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: ${({ theme }) => theme.background.plain};
+
+  ${({ theme }) => theme.breakpoint.phone} {
+    bottom: 5vh;
+    transform: translate(-50%, 0%);
+  }
 `
