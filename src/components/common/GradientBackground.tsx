@@ -57,7 +57,8 @@ const Background = styled.div`
   bottom: 0;
   right: 0;
   overflow: hidden;
-  background-color: #FFF;
+  background: ${({ theme }) => theme.background.gradient};
+
 
   &:before {
     animation-name: ${RotateAnimation};
@@ -70,9 +71,9 @@ const Background = styled.div`
     left: -100%;
     bottom: -100%;
     right: -100%;
-    background-image: radial-gradient(at right top, var(--right-top-corner), transparent 60%),
-                      radial-gradient(at right bottom, var(--right-bottom-corner), transparent 60%),
-                      radial-gradient(at left bottom, var(--left-bottom-corner), transparent 60%),
-                      radial-gradient(at left top, var(--left-top-corner), transparent 60%);
+    background-image: radial-gradient(at right top, var(--right-top-corner), transparent 50%),
+                      radial-gradient(at right bottom, var(--right-bottom-corner), transparent 50%),
+                      radial-gradient(at left bottom, var(--left-bottom-corner), transparent 50%),
+                      radial-gradient(at left top, var(--left-top-corner), transparent 50%);
   }
 `

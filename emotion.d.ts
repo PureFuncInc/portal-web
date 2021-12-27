@@ -11,8 +11,11 @@ declare module '@emotion/react' {
       shadow: string
       background: string
     }
-    gradient: {
-      background: string
+    background: {
+      body: string
+      plain: string
+      gradient: string
+      primary: string
     }
     size: {
       great: string
@@ -24,6 +27,11 @@ declare module '@emotion/react' {
     }
     image: {
       logo: string
+    }
+    breakpoint: {
+      phone: string
+      tablet: string
+      desktop: string
     }
   }
 }

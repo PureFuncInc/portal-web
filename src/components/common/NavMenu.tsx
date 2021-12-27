@@ -23,7 +23,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
       </NavItem>
       <NavItem>
         <Link to='/portfolio'>
-          代表作
+          服務項目
         </Link>
       </NavItem>
       <NavItem>
@@ -42,6 +42,7 @@ const Nav = styled.nav`
 `
 
 const NavItem = styled.li`
-  flex-grow: 1;
-  padding: 25px 35px;
+  flex: 1 1 auto;
+  text-align: center;
+  padding: 25px 0;
 `

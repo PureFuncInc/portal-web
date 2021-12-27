@@ -6,16 +6,19 @@ export const defaultTheme: Theme = {
   color: {
     primary: 'rgb(232,150,25)',
     secondary: 'rgb(0,56,107)',
-    text: '#2B2B2B',
-    lightText: '#EFEFEF',
+    text: '#FFFFFF',
+    lightText: '#CFCFCF',
     border: '#666',
-    shadow: 'rgba(0, 0, 0, 0.15)',
+    shadow: 'rgba(255, 255, 255, 0.65)',
     background: 'rgb(0,56,107)',
   },
-  gradient: {
-    background: 'linear-gradient(to bottom, #EEE, #FFF)',
+  background: {
+    body: '#111',
+    plain: '#333',
+    gradient: 'linear-gradient(to bottom, #111, #2C2C2C)',
+    primary: 'rgb(0,56,107)',
   },
   image: {
-    logo: 'light',
+    logo: 'dark',
   },
 }

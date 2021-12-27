@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
-import type { ContactQuery } from '@/generated/graphql-types'
+import type { ContactQuery } from '@graphqlTypes'
 import { SimpleLayout } from '@/components/layouts/SimpleLayout'
 import { PageTitle } from '@/components/common/PageTitle'
 import { SocialNetworkDisplay } from '@/components/people/SocialNetworkDisplay'

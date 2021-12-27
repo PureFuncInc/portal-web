@@ -6,6 +6,7 @@ export const PageTitle = styled.h1`
   margin: 15px 0 12vh 60px;
   font-size: 4em;
   font-weight: bold;
-  background-color: #FFF;
+  color: ${({ theme }) => theme.color.text};
+  background-color: ${({ theme }) => theme.background.plain};
   box-shadow: 5px 5px rgba(0, 0, 0, 0.45);
 `

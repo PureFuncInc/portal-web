@@ -23,12 +23,16 @@ const Container = styled.div`
   position: relative;
   padding: 0 25px;
   max-height: 80px;
-  background-color: white;
+  background-color: ${({ theme }) => theme.background.plain};
   border-radius: 0 0 10px 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 3px ${({ theme }) => theme.color.shadow};
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  ${({ theme }) => theme.breakpoint.phone} {
+    border-radius: 0;
+  }
 `
 
 const StyledLogo = styled(Logo)`
@@ -37,6 +41,8 @@ const StyledLogo = styled(Logo)`
 `
 
 const Nav = styled(NavMenu)`
+  flex: 1;
+  margin-left: 15px;
   z-index: 2;
 `
 
@@ -46,5 +52,13 @@ const Background = styled(GradientBackground)`
 
   &:before {
     border-radius: 0 0 10px 10px;
+  }
+
+  ${({ theme }) => theme.breakpoint.phone} {
+    border-radius: 0;
+
+    &:before {
+      border-radius: 0;
+    }
   }
 `
