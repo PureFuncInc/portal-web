@@ -7,7 +7,9 @@ exports.createPages = async ({ actions, graphql }) => {
         nodes {
           name
           childMdx {
-            slug
+            frontmatter {
+              slug
+            }
           }
         }
       }
@@ -26,11 +28,11 @@ exports.createPages = async ({ actions, graphql }) => {
 
   data.articles?.nodes?.forEach(node => {
     const name = node.name
-    const slug = node.childMdx.slug
+    const slug = node.childMdx.frontmatter.slug
 
     actions.createPage({
-      path: slug,
-      component: require.resolve('./src/templates/articles.tsx'),
+      path: `/articles/${slug}`,
+      component: require.resolve('./src/templates/article.tsx'),
       context: {
         name,
         slug,
@@ -43,7 +45,7 @@ exports.createPages = async ({ actions, graphql }) => {
 
     actions.createPage({
       path: `people/${slug}`,
-      component: require.resolve('./src/templates/people.tsx'),
+      component: require.resolve('./src/templates/person.tsx'),
       context: {
         slug,
       },

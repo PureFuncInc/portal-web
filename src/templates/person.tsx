@@ -7,21 +7,19 @@ import type { PersonQuery } from '@graphqlTypes'
 import { SimpleLayout } from '@/components/layouts/SimpleLayout'
 import { SocialNetworkDisplay } from '@/components/people/SocialNetworkDisplay'
 import { RoundedGatsbyImage } from '@/components/common/RoundedImage'
-import { ContactsDisplay } from '@/components/people/ContactsDisplay'
 import { Label } from '@/components/common/Label'
 
-export interface PeoplePageTemplateProps {
+export interface PersonPageTemplateProps {
   data: PersonQuery
 }
 
-const PeoplePageTemplate: React.FC<PeoplePageTemplateProps> = ({
+const PersonPageTemplate: React.FC<PersonPageTemplateProps> = ({
   data: {
     person,
-    profilePicture,
   },
 }) => {
   const name = `${person?.name?.mandarin} ${person?.name?.english}`
-  const profilePictureImage = getImage(profilePicture?.childImageSharp?.gatsbyImageData)
+  const profilePictureImage = getImage(person?.profilePicture?.childImageSharp?.gatsbyImageData)
 
   return (
     <SimpleLayout title={name}>
@@ -92,14 +90,6 @@ const PeoplePageTemplate: React.FC<PeoplePageTemplateProps> = ({
 
             <ContentBlock>
               <ContentLabel>
-                Contacts
-              </ContentLabel>
-
-              <ContactsDisplay contact={person?.contact} />
-            </ContentBlock>
-
-            <ContentBlock>
-              <ContentLabel>
                 Social Networks
               </ContentLabel>
 
@@ -112,7 +102,7 @@ const PeoplePageTemplate: React.FC<PeoplePageTemplateProps> = ({
   )
 }
 
-export default PeoplePageTemplate
+export default PersonPageTemplate
 
 export const query = graphql`
   query Person($slug: String!) {
@@ -121,10 +111,18 @@ export const query = graphql`
         english
         mandarin
       }
-      contact {
-        email
+      profilePicture: image {
+        id
+        childImageSharp {
+          gatsbyImageData(
+            width: 250
+            transformOptions: {cropFocus: CENTER}
+            aspectRatio: 1
+          )
+        }
       }
       socialNetworks {
+        email
         github
         telegram
         facebook
@@ -138,20 +136,6 @@ export const query = graphql`
       slug
       story
       title
-    }
-    profilePicture: file(
-      sourceInstanceName: {eq: "images"}
-      relativeDirectory: {eq: "people"}
-      name: {eq: $slug}
-    ) {
-      id
-      childImageSharp {
-        gatsbyImageData(
-          width: 250
-          transformOptions: {cropFocus: CENTER}
-          aspectRatio: 1
-        )
-      }
     }
   }
 `

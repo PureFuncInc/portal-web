@@ -9,10 +9,9 @@ expertise:
 headline: Begin each day as if it were on purpose.
 story: >
   Coder, Leader, Architecture
-contact:
-  email: wade@purefunc.net
 achievements:
-  - 2021 加入純函式
+    - 2021 加入純函式
 socialNetworks:
+  email: mailto:wade@purefunc.net
   linkedin: https://www.linkedin.com/in/wade-wu-a88158178/
   telegram: https://t.me/wade_wu

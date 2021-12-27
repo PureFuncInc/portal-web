@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 export const Label = styled.h4`
-  padding: 15px;
+  padding: 25px 15px;
   margin-right: 15px;
   color: ${({ theme }) => theme.color.text};
   background-color: ${({ theme }) => theme.background.plain};

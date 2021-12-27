@@ -25,6 +25,7 @@ export const H3 = styled.h1`
 export const Paragraph = styled.p`
   color: ${({ theme }) => theme.color.text};
   line-height: 1.25rem;
+  margin-bottom: 10px;
 `
 
 export default {

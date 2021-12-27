@@ -9,10 +9,9 @@ expertise:
 headline: TDD Follower
 story: >
   The code always easy to testing
-contact:
-  email: carlos@purefunc.net
 achievements:
-  - 2021 加入純函式
+    - 2021 加入純函式
 socialNetworks:
+  email: mailto:carlos@purefunc.net
   github: https://github.com/echoulen
   telegram: https://t.me/CarlosLee

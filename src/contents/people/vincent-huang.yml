@@ -10,11 +10,10 @@ expertise:
 headline: 10X Engineer > 10 * 1X Engineers
 story: >
   Coder, Speaker, Mentor and Leader
-contact:
-  email: vincent@purefunc.net
 achievements:
-  - 2021 加入純函式
+    - 2021 加入純函式
 socialNetworks:
+  email: mailto:vincent@purefunc.net
   portal: https://jianminhuang.cc
   github: https://github.com/Jian-Min-Huang
   linkedin: https://www.linkedin.com/in/jian-min-huang-14731410b

@@ -10,11 +10,10 @@ expertise:
 headline: Talk is cheap. Show me your code.
 story: >
   Coder, from better to best
-contact:
-  email: daniel@purefunc.net
 achievements:
-  - 2021 加入純函式
+    - 2021 加入純函式
 socialNetworks:
+  email: mailto:daniel@purefunc.net
   github: https://github.com/HsuanYuLee
   linkedin: https://www.linkedin.com/in/danel-lee-59b139118/
   facebook: https://www.facebook.com/LeHsuanYu
