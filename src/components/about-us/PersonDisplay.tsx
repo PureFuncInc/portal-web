@@ -1,7 +1,7 @@
 import React from 'react'
-import { GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import styled from '@emotion/styled'
-import type { EveryoneQuery } from '@/generated/graphql-types'
+import type { EveryoneQuery } from '@graphqlTypes'
 
 export interface PersonDisplayProps {
   person: EveryoneQuery['people']['nodes'][number]

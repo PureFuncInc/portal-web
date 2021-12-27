@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import type { ArticlesQuery } from '@/generated/graphql-types'
+import type { ArticlesQuery } from '@graphqlTypes'
 import { ArticleItem } from '@/components/articles/ArticlesList/ArticleItem'
 
 export interface ArticlesListProps {

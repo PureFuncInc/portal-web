@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
 import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
+import type { PortfolioQuery } from '@graphqlTypes'
 import { SimpleLayout } from '@/components/layouts/SimpleLayout'
 import { PageTitle } from '@/components/common/PageTitle'
-import type { PortfolioQuery } from '@/generated/graphql-types'
 import { PortfolioSection } from '@/components/portfolio/PortfolioSection'
 
 export interface PortfolioPageProps {
@@ -15,29 +15,31 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
 }) => {
   const sections = useMemo(
     () =>
-      data.projects.nodes.reduce<Record<string, PortfolioQuery['projects']['nodes']>>(
-        (accu, curr) => {
-          const category = curr.childMdx?.frontmatter?.category
+      [ ...data.projects.nodes,
+        ...data.expertise.nodes ]
+        .reduce<Record<string, PortfolioQuery['projects']['nodes']>>(
+          (accu, curr) => {
+            const category = curr.childMdx?.frontmatter?.category
 
-          if (category) {
-            if (category in accu) {
-              accu[category].push(curr)
-            } else {
-              accu[category] = [ curr ]
+            if (category) {
+              if (category in accu) {
+                accu[category].push(curr)
+              } else {
+                accu[category] = [ curr ]
+              }
             }
-          }
 
-          return accu
-        },
-        {},
-      ),
-    [ data.projects.nodes ],
+            return accu
+          },
+          {},
+        ),
+    [ data.expertise.nodes, data.projects.nodes ],
   )
 
   return (
-    <SimpleLayout title='代表作'>
+    <SimpleLayout title='服務項目'>
       <PageTitle>
-        代表作
+        服務項目
       </PageTitle>
 
       <Sections>
@@ -46,7 +48,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
             <PortfolioSection
               key={name}
               name={name}
-              projects={projects} />
+              items={projects} />
           ))}
       </Sections>
     </SimpleLayout>
@@ -58,18 +60,27 @@ export const query = graphql`
     projects: allFile(
       filter: {sourceInstanceName: {eq: "pages"}, relativeDirectory: {eq: "projects"}}
     ) {
-      nodes {
-        id
-        name
-        childMdx {
-          slug
-          frontmatter {
-            category
-            title
-            embeddedImagesLocal {
-              childImageSharp {
-                gatsbyImageData
-              }
+      ...PortfolioFileNode
+    }
+    expertise: allFile(
+      filter: {sourceInstanceName: {eq: "pages"}, relativeDirectory: {eq: "expertise"}}
+    ) {
+      ...PortfolioFileNode
+    }
+  }
+
+  fragment PortfolioFileNode on FileConnection {
+    nodes {
+      id
+      name
+      childMdx {
+        slug
+        frontmatter {
+          category
+          title
+          embeddedImagesLocal {
+            childImageSharp {
+              gatsbyImageData
             }
           }
         }

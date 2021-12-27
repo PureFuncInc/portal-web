@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 export const Label = styled.h4`
   padding: 25px 15px;
   margin-right: 15px;
-  background-color: #FFF;
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.45);
+  color: ${({ theme }) => theme.color.text};
+  background-color: ${({ theme }) => theme.background.plain};
+  box-shadow: 5px 5px ${({ theme }) => theme.color.shadow};
 `

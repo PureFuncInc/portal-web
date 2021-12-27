@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import styled from '@emotion/styled'
-import type { EveryoneQuery } from '@/generated/graphql-types'
+import type { EveryoneQuery } from '@graphqlTypes'
 import { Link } from '@/components/common/Link'
 import { PersonDisplay } from '@/components/about-us/PersonDisplay'
 

@@ -34,6 +34,10 @@ const Container = styled.div`
 const LayoutContainer = styled.div`
   margin: 0 15vw 120px;
   min-height: 60vh;
+
+  ${({ theme }) => theme.breakpoint.phone} {
+    margin: 0 0 120px;
+  }
 `
 
 const MainContainer = styled.main`

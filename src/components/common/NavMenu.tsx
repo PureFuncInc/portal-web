@@ -23,7 +23,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
       </NavItem>
       <NavItem>
         <NavLink to='/portfolio'>
-          代表作
+          服務項目
         </NavLink>
       </NavItem>
       <NavItem>

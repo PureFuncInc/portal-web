@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import type { ArticlesQuery } from '@graphqlTypes'
 import { SimpleLayout } from '@/components/layouts/SimpleLayout'
-import type { ArticlesQuery } from '@/generated/graphql-types'
 import { PageTitle } from '@/components/common/PageTitle'
 import { ArticlesList } from '@/components/articles/ArticlesList/ArticlesList'
 
