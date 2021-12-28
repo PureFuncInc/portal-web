@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-import styled from '@emotion/styled'
+import { styled } from '@/utilities/stitches'
 import type { EveryoneQuery } from '@graphqlTypes'
 import { Link } from '@/components/common/Link'
 import { PersonDisplay } from '@/components/about-us/PersonDisplay'
@@ -43,10 +43,16 @@ export const EveryoneDisplay: React.FC = () => {
   )
 }
 
-const Container = styled.div`
-  display: flex;
-`
+const Container = styled(
+  'div',
+  {
+    display: 'flex',
+  },
+)
 
-const PersonContainer = styled.div`
-  flex-grow: 1;
-`
+const PersonContainer = styled(
+  'div',
+  {
+    flexGrow: 1,
+  },
+)

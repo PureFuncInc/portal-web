@@ -1,12 +1,11 @@
 import { graphql } from 'gatsby'
 import React from 'react'
 import { getImage } from 'gatsby-plugin-image'
-import styled from '@emotion/styled'
-import { css } from '@emotion/react'
+import { css, styled } from '@/utilities/stitches'
 import type { PersonQuery } from '@graphqlTypes'
 import { SimpleLayout } from '@/components/layouts/SimpleLayout'
 import { SocialNetworkDisplay } from '@/components/people/SocialNetworkDisplay'
-import { RoundedGatsbyImage } from '@/components/common/RoundedImage'
+import { GatsbyImage } from '@/components/common/Image'
 import { Label } from '@/components/common/Label'
 
 export interface PersonPageTemplateProps {
@@ -25,9 +24,9 @@ const PersonPageTemplate: React.FC<PersonPageTemplateProps> = ({
     <SimpleLayout title={name}>
       <Container>
         <SideContainer>
-          <BigName>
+          <Name size='big'>
             {person?.name?.mandarin}
-          </BigName>
+          </Name>
 
           <Name>
             {person?.name?.english}
@@ -140,68 +139,106 @@ export const query = graphql`
   }
 `
 
-const FlexAsColumn = css`
-  display: flex;
-  flex-direction: column;
-`
+const FlexAsColumn = css({
+  display: 'flex',
+  flexDirection: 'column',
+})
 
-const Container = styled.div`
-  display: flex;
-`
+const Container = styled(
+  'div',
+  {
+    display: 'flex',
+  },
+)
 
-const SideContainer = styled.aside`
-  ${FlexAsColumn};
-  flex-grow: 0;
-  flex-basis: 250px;
-`
+const SideContainer = styled(
+  'aside',
+  {
+    ...FlexAsColumn,
+    flexGrow: 0,
+    flexBasis: 250,
+  },
+)
 
-const ContentContainer = styled.div`
-  ${FlexAsColumn};
-  flex-grow: 1;
-  margin-left: 25px;
-`
+const ContentContainer = styled(
+  'div',
+  {
+    ...FlexAsColumn,
+    flexGrow: 1,
+    marginLeft: 25,
+  },
+)
 
-const Name = styled.h2`
-  font-size: 1.8em;
-`
+const Name = styled(
+  'h2',
+  {
+    fontSize: '1.8em',
+    color: '$text',
+    variants: {
+      size: {
+        big: {
+          fontSize: '4em',
+        },
+      },
+    },
+  },
+)
 
-const BigName = styled(Name)`
-  font-size: 4em;
-`
+const ProfilePicture = styled(
+  GatsbyImage,
+  {
+    marginTop: 25,
+  },
+)
 
-const ProfilePicture = styled(RoundedGatsbyImage)`
-  margin-top: 25px;
-`
+const Headline = styled(
+  'h3',
+  {
+    color: '$text',
+    marginBottom: 5,
+    fontSize: '1.35em',
+  },
+)
 
-const Headline = styled.h3`
-  margin-bottom: 5px;
-  font-size: 1.35em;
-`
+const Title = styled(
+  'h4',
+  {
+    color: '#666',
+  },
+)
 
-const Title = styled.h4`
-  color: #666;
-`
+const Content = styled(
+  'div',
+  {
+    marginTop: 25,
+  },
+)
 
-const Content = styled.div`
-  margin-top: 25px;
-`
+const ContentBlock = styled(
+  'div',
+  {
+    display: 'flex',
+    marginBottom: 15,
 
-const ContentBlock = styled.div`
-  display: flex;
-  margin-bottom: 15px;
+    '& > *': {
+      flex: 1,
+    },
+  },
+)
 
-  & > * {
-    flex: 1;
-  }
-`
+const ContentLabel = styled(
+  Label,
+  {
+    flexGrow: 0,
+    flexBasis: 120,
+  },
+)
 
-const ContentLabel = styled(Label)`
-  flex-grow: 0;
-  flex-basis: 120px;
-`
-
-const Story = styled.p`
-  max-width: 50vw;
-  margin-bottom: 25px;
-  line-height: 1.25;
-`
+const Story = styled(
+  'p',
+  {
+    maxWidth: '50vw',
+    marginBottom: 25,
+    lineHeight: 1.25,
+  },
+)

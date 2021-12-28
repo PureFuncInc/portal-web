@@ -12,7 +12,7 @@
 ## 🏗 Built With
 
 - [GatsbyJS](https://gatsbyjs.com/)
-- [Emotion](https://emotion.sh/)
+- [Stitches](https://stitches.dev/)
 - [Font Awesome](https://fontawesome.com/)
 
 ## 🛠 Contribute

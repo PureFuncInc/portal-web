@@ -1,6 +1,6 @@
 import React from 'react'
-import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
+import { styled } from '@/utilities/stitches'
 import type { ContactQuery } from '@graphqlTypes'
 import { SimpleLayout } from '@/components/layouts/SimpleLayout'
 import { PageTitle } from '@/components/common/PageTitle'
@@ -48,11 +48,17 @@ export const query = graphql`
   }
 `
 
-const Section = styled.section`
-  display: flex;
-  align-items: flex-start;
-`
+const Section = styled(
+  'section',
+  {
+    display: 'flex',
+    alignItems: 'flex-start',
+  },
+)
 
-const SectionLabel = styled(Label)`
-  flex: 0 0 5vw;
-`
+const SectionLabel = styled(
+  Label,
+  {
+    flex: '0 0 5vw',
+  },
+)

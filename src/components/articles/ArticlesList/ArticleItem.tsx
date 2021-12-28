@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import { styled, theme } from '@/utilities/stitches'
 import type { ArticlesQuery } from '@graphqlTypes'
 import { Link } from '@/components/common/Link'
 import { DateTimeDisplay } from '@/components/common/DateTimeDisplay'
@@ -13,7 +13,7 @@ export const ArticleItem: React.FC<ArticleItemProps> = ({
 }) => {
   return (
     <Link to={`/articles/${article.childMdx?.frontmatter?.slug}`}>
-      <Item>
+      <Container>
         {article.childMdx?.frontmatter?.publishTime && (
           <StyledDateTime
             dateTime={article.childMdx.frontmatter.publishTime}
@@ -26,65 +26,76 @@ export const ArticleItem: React.FC<ArticleItemProps> = ({
 
         <Footer>
           {article.childMdx?.frontmatter?.author && (
-            <Author>
+            <FooterItem>
               {article.childMdx.frontmatter.author}
-            </Author>
+            </FooterItem>
           )}
 
           {article.childMdx?.wordCount?.words && (
-            <WordCount>
+            <FooterItem>
               {`${article.childMdx.wordCount.words}字`}
-            </WordCount>
+            </FooterItem>
           )}
         </Footer>
-      </Item>
+      </Container>
     </Link>
   )
 }
 
-const Item = styled.li`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  padding: 15px;
-  margin-right: 15px;
-  margin-bottom: 15px;
-  background-color: #FFF;
-  counter-increment: item-counter 1;
+const Container = styled(
+  'li',
+  {
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'relative',
+    padding: 15,
+    marginRight: 15,
+    marginBottom: 15,
+    backgroundColor: theme.background.plain,
+    counterIncrement: 'item-counter 1',
 
-  &:after {
-    position: absolute;
-    content: counter(item-counter);
-    font-size: ${({ theme }) => theme.size.greatest};
-    font-weight: bold;
-    color: rgba(0, 0, 0, 0.15);
-    top: 25px;
-    right: 25px;
-  }
-`
+    '&::after': {
+      position: 'absolute',
+      content: 'counter(item-counter)',
+      fontSize: '$greatest',
+      fontWeight: 'bold',
+      color: '$text',
+      opacity: 0.15,
+      top: 25,
+      right: 25,
+    },
+  },
+)
 
-const Title = styled.h5`
-  flex: 1;
-  margin: 25px 0;
-  font-weight: bold;
-  font-size: ${({ theme }) => theme.size.great};
-`
+const Title = styled(
+  'h5',
+  {
+    flex: 1,
+    margin: '25px 0',
+    fontWeight: 'bold',
+    fontSize: '$great',
+  },
+)
 
-const Footer = styled.div`
-  display: flex;
-`
+const Footer = styled(
+  'div',
+  {
+    display: 'flex',
+  },
+)
 
-const StyledDateTime = styled(DateTimeDisplay)`
-  flex: 0;
-  color: rgba(0, 0, 0, 0.65);
-`
+const StyledDateTime = styled(
+  DateTimeDisplay,
+  {
+    flex: 0,
+    color: '$lightText',
+  },
+)
 
-const Author = styled.span`
-  margin-right: 25px;
-  color: rgba(0, 0, 0, 0.65);
-`
-
-const WordCount = styled.span`
-  margin-right: 25px;
-  color: rgba(0, 0, 0, 0.65);
-`
+const FooterItem = styled(
+  'span',
+  {
+    marginRight: 25,
+    color: '$lightText',
+  },
+)

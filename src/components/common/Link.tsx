@@ -1,13 +1,15 @@
 import type { GatsbyLinkProps } from 'gatsby'
 import { Link as GatsbyLink } from 'gatsby'
 import React, { forwardRef } from 'react'
-import styled from '@emotion/styled'
+import type { VariantProps } from '@stitches/react'
+import { styled } from '@/utilities/stitches'
 
-export type LinkProps = Omit<GatsbyLinkProps<never>, 'ref'>
+export type LinkProps = Omit<GatsbyLinkProps<never>, 'ref'> & AnchorProps
 
 export const Link = forwardRef<never, LinkProps>(({
   children,
   to,
+  color,
   activeClassName,
   partiallyActive,
   ...other
@@ -18,6 +20,7 @@ export const Link = forwardRef<never, LinkProps>(({
     return (
       <GatsbyAnchor
         to={to}
+        color={color}
         activeClassName={activeClassName}
         partiallyActive={partiallyActive}
         {...other}>
@@ -30,6 +33,7 @@ export const Link = forwardRef<never, LinkProps>(({
     <Anchor
       href={to}
       ref={ref}
+      color={color}
       {...other}>
       {children}
     </Anchor>
@@ -38,19 +42,54 @@ export const Link = forwardRef<never, LinkProps>(({
 
 Link.displayName = 'Link'
 
-const Anchor = styled.a`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+const Anchor = styled(
+  'a',
+  {
+    display: 'flex',
+    alignItems: 'center',
+    textDecoration: 'none',
+    variants: {
+      color: {
+        normal: {
+          '&, &:visited, &:active': {
+            color: '$text',
+          },
+        },
+        light: {
+          '&, &:visited, &:active': {
+            color: '$lightText',
+          },
+        },
+      },
+    },
+    defaultVariants: {
+      color: 'normal',
+    },
+  },
+)
 
-  &, &:visited, &:active {
-    color: ${({ theme }) => theme.color.text};
-  }
-`
+type AnchorProps = VariantProps<typeof Anchor>
 
-const GatsbyAnchor = styled(GatsbyLink)`
-  text-decoration: none;
-  &, &:visited, &:active {
-    color: ${({ theme }) => theme.color.text};
-  }
-`
+const GatsbyAnchor = styled(
+  GatsbyLink,
+  {
+    textDecoration: 'none',
+    variants: {
+      color: {
+        normal: {
+          '&, &:visited, &:active': {
+            color: '$text',
+          },
+        },
+        light: {
+          '&, &:visited, &:active': {
+            color: '$lightText',
+          },
+        },
+      },
+    },
+    defaultVariants: {
+      color: 'normal',
+    },
+  },
+)

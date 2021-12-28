@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import { getTime } from 'date-fns'
+import { styled } from '@/utilities/stitches'
 import { formatDateTime, parseDateTime } from '@/utilities/DateTime'
 
 export interface DateTimeDisplayProps {
@@ -55,8 +56,13 @@ export const DateTimeDisplay: React.FC<DateTimeDisplayProps> = ({
   )
 
   return (
-    <span className={className}>
+    <Container className={className}>
       {formatted}
-    </span>
+    </Container>
   )
 }
+
+const Container = styled(
+  'span',
+  {},
+)

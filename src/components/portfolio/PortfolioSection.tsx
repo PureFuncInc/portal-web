@@ -1,6 +1,6 @@
 import React from 'react'
-import styled from '@emotion/styled'
 import { Label } from '../common/Label'
+import { styled } from '@/utilities/stitches'
 import type { PortfolioFileNodeFragment } from '@graphqlTypes'
 import { PortfolioItem } from '@/components/portfolio/PortfolioItem'
 
@@ -15,9 +15,9 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
 }) => {
   return (
     <Container>
-      <ContainerLabel>
+      <Label size='great'>
         {name}
-      </ContainerLabel>
+      </Label>
 
       <Items>
         {items.map(project => (
@@ -30,24 +30,29 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
   )
 }
 
-const Container = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`
+const Container = styled(
+  'section',
+  {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
+)
 
-const ContainerLabel = styled(Label)`
-  font-size: ${({ theme }) => theme.size.great};
-`
+const Items = styled(
+  'div',
+  {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginTop: 25,
+  },
+)
 
-const Items = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 25px;
-`
-
-const ItemContainer = styled.div`
-  flex: 0 0 25%;
-  margin-right: 15px;
-`
+const ItemContainer = styled(
+  'div',
+  {
+    flex: '0 0 25%',
+    marginRight: 15,
+  },
+)

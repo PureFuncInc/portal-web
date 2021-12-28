@@ -1,5 +1,5 @@
 {
-  "name": "purefunc-portal-gatsby",
+  "name": "@purefuncinc/portal-web",
   "version": "0.3.0",
   "private": true,
   "description": "PureFunc Official website",
@@ -16,18 +16,17 @@
     "lint": "eslint src"
   },
   "dependencies": {
-    "@emotion/react": "^11.6.0",
-    "@emotion/styled": "^11.6.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
+    "@graphql-codegen/add": "^3.1.0",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
+    "@stitches/react": "^1.2.6",
     "date-fns": "^2.27.0",
-    "emotion-reset": "^3.0.1",
     "gatsby": "^4.1.6",
-    "gatsby-plugin-emotion": "^7.2.0",
+    "gatsby-plugin-extract-schema": "^0.2.1",
     "gatsby-plugin-fontawesome-css": "^1.2.0",
     "gatsby-plugin-graphql-codegen": "^3.1.0",
     "gatsby-plugin-image": "^2.2.0",
@@ -45,8 +44,9 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
-    "remark-breaks": "^2.0.2",
     "react-player": "^2.9.0",
+    "remark-breaks": "^2.0.2",
+    "stitches-reset": "^1.0.0",
     "typescript": "^4.5.2"
   },
   "devDependencies": {

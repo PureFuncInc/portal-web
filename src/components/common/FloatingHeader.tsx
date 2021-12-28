@@ -1,6 +1,6 @@
 import React from 'react'
-import styled from '@emotion/styled'
 import { Link } from './Link'
+import { styled, theme } from '@/utilities/stitches'
 import { Logo } from '@/components/common/Logo'
 import { GradientBackground } from '@/components/common/GradientBackground'
 import { NavMenu } from '@/components/common/NavMenu'
@@ -19,46 +19,54 @@ export const FloatingHeader: React.FC = () => {
   )
 }
 
-const Container = styled.div`
-  position: relative;
-  padding: 0 25px;
-  max-height: 80px;
-  background-color: ${({ theme }) => theme.background.plain};
-  border-radius: 0 0 10px 10px;
-  box-shadow: 0 1px 3px ${({ theme }) => theme.color.shadow};
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+const Container = styled(
+  'div',
+  {
+    position: 'relative',
+    padding: '0 25px',
+    maxHeight: 80,
+    backgroundColor: theme.background.plain,
+    borderBottomRadius: 10,
+    boxShadow: '0 1px 3px $shadow',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    '@notDesktop': {
+      borderRadius: 'none',
+    },
+  },
+)
 
-  ${({ theme }) => theme.breakpoint.phone} {
-    border-radius: 0;
-  }
-`
+const StyledLogo = styled(
+  Logo,
+  {
+    zIndex: 2,
+    width: 160,
+  },
+)
 
-const StyledLogo = styled(Logo)`
-  z-index: 2;
-  width: 160px;
-`
+const Nav = styled(
+  NavMenu,
+  {
+    flex: 1,
+    marginLeft: 15,
+    zIndex: 2,
+  },
+)
 
-const Nav = styled(NavMenu)`
-  flex: 1;
-  margin-left: 15px;
-  z-index: 2;
-`
-
-const Background = styled(GradientBackground)`
-  z-index: 1;
-  border-radius: 0 0 10px 10px;
-
-  &:before {
-    border-radius: 0 0 10px 10px;
-  }
-
-  ${({ theme }) => theme.breakpoint.phone} {
-    border-radius: 0;
-
-    &:before {
-      border-radius: 0;
-    }
-  }
-`
+const Background = styled(
+  GradientBackground,
+  {
+    zIndex: 1,
+    borderBottomRadius: 10,
+    '&::before': {
+      borderBottomRadius: 10,
+    },
+    '@notDesktop': {
+      borderRadius: 'none',
+      '&::before': {
+        borderRadius: 'none',
+      },
+    },
+  },
+)

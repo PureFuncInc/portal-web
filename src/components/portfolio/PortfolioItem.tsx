@@ -1,6 +1,6 @@
 import React from 'react'
-import styled from '@emotion/styled'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { styled } from '@/utilities/stitches'
 import type { PortfolioFileNodeFragment } from '@graphqlTypes'
 import { Link } from '@/components/common/Link'
 
@@ -28,13 +28,19 @@ export const PortfolioItem: React.FC<PortfolioItemProps> = ({
   )
 }
 
-const Container = styled(Link)`
-  display: flex;
-  flex-direction: column;
-  border-radius: 6px;
-`
+const Container = styled(
+  Link,
+  {
+    display: 'flex',
+    flexDirection: 'column',
+    borderRadius: 6,
+  },
+)
 
-const Name = styled.h4`
-  font-size: ${({ theme }) => theme.size.great};
-  margin: 15px 0 25px;
-`
+const Name = styled(
+  'h4',
+  {
+    fontSize: '$great',
+    margin: '15px 0 25px',
+  },
+)

@@ -150,3 +150,6 @@ graphql-types.ts
 # JetBrains
 .run/
 .idea/
+
+# TypeScript
+tsconfig.json

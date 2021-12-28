@@ -1,6 +1,6 @@
 import React from 'react'
-import styled from '@emotion/styled'
 import { Link } from './Link'
+import { styled } from '@/utilities/stitches'
 
 export interface NavMenuProps {
   className?: string
@@ -35,17 +35,26 @@ export const NavMenu: React.FC<NavMenuProps> = ({
   )
 }
 
-const Nav = styled.nav`
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-`
+const Nav = styled(
+  'nav',
+  {
+    listStyle: 'none',
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+)
 
-const NavItem = styled.li`
-  flex-grow: 1;
-  padding: 25px 35px;
-`
+const NavItem = styled(
+  'li',
+  {
+    flexGrow: 1,
+    padding: '25px 35px',
+  },
+)
 
-const NavLink = styled(Link)`
-  font-weight: bold;
-`
+const NavLink = styled(
+  Link,
+  {
+    fontWeight: 'bold',
+  },
+)
