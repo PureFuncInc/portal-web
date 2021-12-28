@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { graphql } from 'gatsby'
-import styled from '@emotion/styled'
+import { styled } from '@/utilities/stitches'
 import type { PortfolioQuery } from '@graphqlTypes'
 import { SimpleLayout } from '@/components/layouts/SimpleLayout'
 import { PageTitle } from '@/components/common/PageTitle'
@@ -91,4 +91,4 @@ export const query = graphql`
 
 export default PortfolioPage
 
-const Sections = styled.div()
+const Sections = styled('div')

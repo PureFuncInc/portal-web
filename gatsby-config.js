@@ -15,12 +15,12 @@ module.exports = {
     twitter: 'https://www.twitter.com/purefunc/',
   },
   plugins: [
-    'gatsby-plugin-emotion',
     'gatsby-plugin-image',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-fontawesome-css',
     'gatsby-transformer-yaml',
+    'gatsby-plugin-extract-schema',
     {
       resolve: 'gatsby-plugin-graphql-codegen',
       options: {

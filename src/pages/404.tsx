@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import { styled } from '@/utilities/stitches'
 
 const PageNotFoundPage: React.FC = () => (
   <Container>
@@ -11,12 +11,18 @@ const PageNotFoundPage: React.FC = () => (
 
 export default PageNotFoundPage
 
-const Container = styled.div`
-  margin: 10vh auto;
-  width: 360px;
-`
+const Container = styled(
+  'div',
+  {
+    margin: '10vh auto',
+    width: 360,
+  },
+)
 
-const Giant404 = styled.h1`
-  text-align: center;
-  font-size: 8em;
-`
+const Giant404 = styled(
+  'h1',
+  {
+    textAlign: 'center',
+    fontSize: '8em',
+  },
+)

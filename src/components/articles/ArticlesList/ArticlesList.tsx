@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import { styled } from '@/utilities/stitches'
 import type { ArticlesQuery } from '@graphqlTypes'
 import { ArticleItem } from '@/components/articles/ArticlesList/ArticleItem'
 
@@ -21,6 +21,9 @@ export const ArticlesList: React.FC<ArticlesListProps> = ({
   )
 }
 
-const Container = styled.ul`
-  list-style: none;
-`
+const Container = styled(
+  'ul',
+  {
+    listStyle: 'none',
+  },
+)

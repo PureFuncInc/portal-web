@@ -1,6 +1,6 @@
 import React from 'react'
 import { StaticImage } from 'gatsby-plugin-image'
-import { useTheme } from '@emotion/react'
+import { theme } from '@/utilities/stitches'
 
 export interface LogoProps {
   className?: string
@@ -9,9 +9,7 @@ export interface LogoProps {
 export const Logo: React.FC<LogoProps> = ({
   className,
 }) => {
-  const { image: { logo } } = useTheme()
-
-  return logo === 'dark'
+  return theme.image.logo.value === 'dark'
     ? (
       <StaticImage
         className={className}

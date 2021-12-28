@@ -1,12 +1,15 @@
-import styled from '@emotion/styled'
+import { styled, theme } from '@/utilities/stitches'
 
-export const PageTitle = styled.h1`
-  display: inline-block;
-  padding: 15px 35px;
-  margin: 15px 0 12vh 60px;
-  font-size: 4em;
-  font-weight: bold;
-  color: ${({ theme }) => theme.color.text};
-  background-color: ${({ theme }) => theme.background.plain};
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.45);
-`
+export const PageTitle = styled(
+  'h1',
+  {
+    display: 'inline-block',
+    padding: '15px 35px',
+    margin: '15px 0 12vh 60px',
+    fontSize: '4em',
+    fontWeight: 'bold',
+    color: '$text',
+    backgroundColor: theme.background.plain,
+    boxShadow: '5px 5px $shadow',
+  },
+)

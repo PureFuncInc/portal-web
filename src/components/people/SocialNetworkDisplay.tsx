@@ -1,18 +1,8 @@
 import React from 'react'
-import type { IconDefinition } from '@fortawesome/free-brands-svg-icons'
-import {
-  faFacebook,
-  faGithub,
-  faLine,
-  faLinkedin,
-  faTelegram,
-  faTwitter,
-  faYoutube,
-} from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import styled from '@emotion/styled'
-import { faCompass, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { styled } from '@/utilities/stitches'
 import { Link } from '@/components/common/Link'
+import { socialNetworkIconMap } from '@/components/people/SocialNetworkIconMap'
 
 export interface SocialNetworkDisplayProps {
   socialNetworks?: Record<string, string> | undefined
@@ -27,13 +17,13 @@ export const SocialNetworkDisplay: React.FC<SocialNetworkDisplayProps> = ({
     <List className={className}>
       {
         Object.entries(socialNetworks)
-          .filter(([ name, url ]) => url && name in iconMap)
+          .filter(([ name, url ]) => url && name in socialNetworkIconMap)
           .map(([ name, url ]) => (
             <ListItem key={name}>
               <Link to={url}>
                 <Icon
                   fixedWidth
-                  icon={iconMap[name]} />
+                  icon={socialNetworkIconMap[name]} />
 
                 <ContentContainer>
                   <Label>
@@ -52,39 +42,42 @@ export const SocialNetworkDisplay: React.FC<SocialNetworkDisplayProps> = ({
   )
 }
 
-const List = styled.ul`
-  list-style: none;
-`
+const List = styled(
+  'ul',
+  {
+    listStyle: 'none',
+  },
+)
 
-const ListItem = styled.li`
-  display: flex;
-  padding: 6px 0;
-`
+const ListItem = styled(
+  'li',
+  {
+    display: 'flex',
+    padding: '6px 0',
+  },
+)
 
-const ContentContainer = styled.div`
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  margin-left: 12px;
-`
+const ContentContainer = styled(
+  'div',
+  {
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    marginLeft: 12,
+  },
+)
 
-const Label = styled.span`
-  font-size: ${({ theme }) => theme.size.littler};
-`
+const Label = styled(
+  'span',
+  {
+    fontSize: '$littler',
+  },
+)
 
-const Icon = styled(FontAwesomeIcon)`
-  font-size: 24px;
-  line-height: 48px;
-`
-
-const iconMap: Record<string, IconDefinition> = {
-  portal: faCompass,
-  email: faEnvelope,
-  youtube: faYoutube,
-  facebook: faFacebook,
-  github: faGithub,
-  line: faLine,
-  twitter: faTwitter,
-  linkedin: faLinkedin,
-  telegram: faTelegram,
-}
+const Icon = styled(
+  FontAwesomeIcon,
+  {
+    fontSize: 24,
+    lineHeight: '48px',
+  },
+)
