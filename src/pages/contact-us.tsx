@@ -43,6 +43,7 @@ export const query = graphql`
         youtube
         facebook
         twitter
+        discord
       }
     }
   }

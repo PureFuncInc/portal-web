@@ -282,6 +282,7 @@ export type SiteSiteMetadata = {
   youtube?: Maybe<Scalars['String']>;
   facebook?: Maybe<Scalars['String']>;
   twitter?: Maybe<Scalars['String']>;
+  discord?: Maybe<Scalars['String']>;
 };
 
 export type SiteFunction = Node & {
@@ -2618,6 +2619,7 @@ export type SiteSiteMetadataFilterInput = {
   youtube?: InputMaybe<StringQueryOperatorInput>;
   facebook?: InputMaybe<StringQueryOperatorInput>;
   twitter?: InputMaybe<StringQueryOperatorInput>;
+  discord?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type SiteConnection = {
@@ -2675,6 +2677,7 @@ export type SiteFieldsEnum =
   | 'siteMetadata___youtube'
   | 'siteMetadata___facebook'
   | 'siteMetadata___twitter'
+  | 'siteMetadata___discord'
   | 'polyfill'
   | 'pathPrefix'
   | 'jsxRuntime'
@@ -4966,12 +4969,12 @@ export type EveryoneQuery = { people: { nodes: Array<{ id: string, slug?: string
 export type ArticlesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ArticlesQuery = { articles: { nodes: Array<{ id: string, name: string, childMdx?: { wordCount?: { words?: number | undefined } | undefined, frontmatter?: { title: string, slug?: string | undefined, publishTime?: number | undefined, author?: string | undefined } | undefined } | undefined }> } };
+export type ArticlesQuery = { articles: { nodes: Array<{ id: string, name: string, childMdx?: { frontmatter?: { title: string, slug?: string | undefined, publishTime?: number | undefined, author?: string | undefined } | undefined } | undefined }> } };
 
 export type ContactQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ContactQuery = { site?: { siteMetadata?: { email?: string | undefined, youtube?: string | undefined, facebook?: string | undefined, twitter?: string | undefined } | undefined } | undefined };
+export type ContactQuery = { site?: { siteMetadata?: { email?: string | undefined, youtube?: string | undefined, facebook?: string | undefined, twitter?: string | undefined, discord?: string | undefined } | undefined } | undefined };
 
 export type PortfolioQueryVariables = Exact<{ [key: string]: never; }>;
 

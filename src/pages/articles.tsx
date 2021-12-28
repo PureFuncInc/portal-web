@@ -41,9 +41,6 @@ export const query = graphql`
         id
         name
         childMdx {
-          wordCount {
-            words
-          }
           frontmatter {
             title
             slug

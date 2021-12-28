@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { keyframes, styled, theme } from '@/utilities/stitches'
+import { keyframes, styled } from '@/utilities/stitches'
 import { generateRandomColor } from '@/utilities/generateColor'
 
 export interface GradientBackgroundProps {
@@ -54,7 +54,6 @@ const Background = styled(
     zIndex: -1,
     overflow: 'hidden',
     absoluteFilled: 0,
-    backgroundImage: theme.background.gradient,
     '&::before': {
       animationName: RotateAnimation,
       animationPlayState: 'var(--rotate-animation-play-state)',

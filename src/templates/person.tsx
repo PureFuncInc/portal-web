@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby'
 import React from 'react'
 import { getImage } from 'gatsby-plugin-image'
-import { css, styled } from '@/utilities/stitches'
+import { styled } from '@/utilities/stitches'
 import type { PersonQuery } from '@graphqlTypes'
 import { SimpleLayout } from '@/components/layouts/SimpleLayout'
 import { SocialNetworkDisplay } from '@/components/people/SocialNetworkDisplay'
@@ -139,11 +139,6 @@ export const query = graphql`
   }
 `
 
-const FlexAsColumn = css({
-  display: 'flex',
-  flexDirection: 'column',
-})
-
 const Container = styled(
   'div',
   {
@@ -154,16 +149,19 @@ const Container = styled(
 const SideContainer = styled(
   'aside',
   {
-    ...FlexAsColumn,
+    display: 'flex',
+    flexDirection: 'column',
     flexGrow: 0,
     flexBasis: 250,
+    marginRight: 25,
   },
 )
 
 const ContentContainer = styled(
   'div',
   {
-    ...FlexAsColumn,
+    display: 'flex',
+    flexDirection: 'column',
     flexGrow: 1,
     marginLeft: 25,
   },

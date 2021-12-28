@@ -7,14 +7,14 @@ export const GatsbyImage = styled(
     variants: {
       shape: {
         rounded: {
-          borderRadius: '50%',
+          borderRadius: '$rounded',
         },
         roundCornered: {
-          borderRadius: 10,
+          borderRadius: '$roundCornered',
         },
       },
     },
-    defaultVariant: {
+    defaultVariants: {
       shape: 'rounded',
     },
   },

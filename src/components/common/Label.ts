@@ -7,7 +7,7 @@ export const Label = styled(
     marginRight: 15,
     color: '$text',
     backgroundColor: theme.background.plain,
-    boxShadow: '5px 5px $shadow',
+    boxShadow: '5px 5px $label',
     variants: {
       size: {
         great: {

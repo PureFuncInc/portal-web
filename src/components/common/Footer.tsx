@@ -15,11 +15,6 @@ export const Footer: React.FC = () => {
           color='light'>
           隱私權政策
         </DeclarationLink>
-        <DeclarationLink
-          to='/agreement'
-          color='light'>
-          資料使用同意聲明
-        </DeclarationLink>
       </Declarations>
     </Container>
   )
@@ -33,7 +28,7 @@ const Container = styled(
     alignItems: 'center',
     backgroundColor: theme.background.primary,
     padding: '35px 15vw',
-    boxShadow: '0 3px 1px $shadow inset',
+    boxShadow: '0 3px 3px $footer inset',
   },
 )
 

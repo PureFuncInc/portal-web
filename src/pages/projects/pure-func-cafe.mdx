@@ -8,10 +8,14 @@ import { SimpleLayout } from '@/components/layouts/SimpleLayout'
 import { PageTitle } from "@/components/common/PageTitle";
 import YouTubePlayer from "react-player/youtube";
 
-export default SimpleLayout
+export default ({children}) => (
+  <SimpleLayout title='純函式咖啡廳'>
+    {children}
+  </SimpleLayout>
+)
 
 <PageTitle>
   純函式咖啡廳
 </PageTitle>
 
-<YouTubePlayer url='https://www.youtube.com/watch?v=7w1tTAi9lhA' />
+<YouTubePlayer url='https://youtu.be/IT3uNWAisYk' />

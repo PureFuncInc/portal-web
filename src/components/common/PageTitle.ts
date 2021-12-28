@@ -10,6 +10,6 @@ export const PageTitle = styled(
     fontWeight: 'bold',
     color: '$text',
     backgroundColor: theme.background.plain,
-    boxShadow: '5px 5px $shadow',
+    boxShadow: '5px 5px $label',
   },
 )
