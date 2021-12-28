@@ -9,11 +9,11 @@ module.exports = {
   siteMetadata: {
     siteUrl: 'https://purefunc.net',
     title: '$_purefunc',
-    email: 'mailto:hi@purefunc.net',
+    email: 'mailto:help@purefunc.net',
     image: '/placeholder.png',
-    youtube: 'https://www.youtube.com/channel/UCiaBjaYilzLG5mmSqpP8fWg',
-    facebook: 'https://www.facebook.com/groups/purefunc/',
-    twitter: 'https://www.twitter.com/purefunc/',
+    youtube: 'https://youtube.com/channel/UCiaBjaYilzLG5mmSqpP8fWg',
+    facebook: 'https://facebook.com/groups/purefunc/',
+    discord: 'https://discord.gg/efJaWUKkz3',
   },
   plugins: [
     'gatsby-plugin-image',

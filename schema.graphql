@@ -365,6 +365,7 @@ type SiteSiteMetadata {
   youtube: String
   facebook: String
   twitter: String
+  discord: String
 }
 
 type SiteFunction implements Node {
@@ -2297,6 +2298,7 @@ input SiteSiteMetadataFilterInput {
   youtube: StringQueryOperatorInput
   facebook: StringQueryOperatorInput
   twitter: StringQueryOperatorInput
+  discord: StringQueryOperatorInput
 }
 
 type SiteConnection {
@@ -2327,6 +2329,7 @@ enum SiteFieldsEnum {
   siteMetadata___youtube
   siteMetadata___facebook
   siteMetadata___twitter
+  siteMetadata___discord
   polyfill
   pathPrefix
   jsxRuntime

@@ -34,6 +34,7 @@ export const Link = forwardRef<never, LinkProps>(({
       href={to}
       ref={ref}
       color={color}
+      target='_blank'
       {...other}>
       {children}
     </Anchor>

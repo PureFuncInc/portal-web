@@ -33,7 +33,7 @@ const Container = styled(
   {
     display: 'flex',
     flexDirection: 'column',
-    borderRadius: 6,
+    borderRadius: '$roundCornered',
   },
 )
 

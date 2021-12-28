@@ -1,5 +1,6 @@
 import type { IconDefinition } from '@fortawesome/free-brands-svg-icons'
 import {
+  faDiscord,
   faFacebook,
   faGithub,
   faLine,
@@ -20,4 +21,5 @@ export const socialNetworkIconMap: Record<string, IconDefinition> = {
   twitter: faTwitter,
   linkedin: faLinkedin,
   telegram: faTelegram,
+  discord: faDiscord,
 }

@@ -26,8 +26,8 @@ const Container = styled(
     padding: '0 25px',
     maxHeight: 80,
     backgroundColor: theme.background.plain,
-    borderBottomRadius: 10,
-    boxShadow: '0 1px 3px $shadow',
+    borderBottomRadius: '$roundCornered',
+    boxShadow: '0 1px 3px $label',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -58,9 +58,9 @@ const Background = styled(
   GradientBackground,
   {
     zIndex: 1,
-    borderBottomRadius: 10,
+    borderBottomRadius: '$roundCornered',
     '&::before': {
-      borderBottomRadius: 10,
+      borderBottomRadius: '$roundCornered',
     },
     '@notDesktop': {
       borderRadius: 'none',
