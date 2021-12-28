@@ -3,6 +3,7 @@ require('dotenv')
   .config({
     path: `.env.${process.env.NODE_ENV}`,
   })
+const { plugin: addPlugin } = require('@graphql-codegen/add')
 
 module.exports = {
   siteMetadata: {
@@ -20,13 +21,28 @@ module.exports = {
     'gatsby-plugin-sitemap',
     'gatsby-plugin-fontawesome-css',
     'gatsby-transformer-yaml',
-    'gatsby-plugin-extract-schema',
+    {
+      resolve: 'gatsby-plugin-extract-schema',
+      options: {
+        adjustSchema: async schema => {
+          return '# @generated\n' + schema
+        },
+      },
+    },
     {
       resolve: 'gatsby-plugin-graphql-codegen',
       options: {
         codegenConfig: {
           maybeValue: 'T | undefined',
         },
+        codegenPlugins: [
+          {
+            resolve: addPlugin,
+            options: {
+              content: '/** @generated */',
+            },
+          },
+        ],
       },
     },
     {

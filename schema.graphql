@@ -1,3 +1,4 @@
+# @generated
 # Add date formatting options.
 directive @dateformat(formatString: String, locale: String, fromNow: Boolean, difference: String) on FIELD_DEFINITION
 
