@@ -837,6 +837,15 @@ type PeopleYamlSocialNetworks {
   portal: String
 }
 
+type Package implements Node {
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+  name: String
+  version: String
+}
+
 type Query {
   file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, publicURL: StringQueryOperatorInput, childrenImageSharp: ImageSharpFilterListInput, childImageSharp: ImageSharpFilterInput, childrenMdx: MdxFilterListInput, childMdx: MdxFilterInput, childrenWorkflowsYaml: WorkflowsYamlFilterListInput, childWorkflowsYaml: WorkflowsYamlFilterInput, childrenPeopleYaml: PeopleYamlFilterListInput, childPeopleYaml: PeopleYamlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): File
   allFile(filter: FileFilterInput, sort: FileSortInput, skip: Int, limit: Int): FileConnection!
@@ -860,6 +869,8 @@ type Query {
   allWorkflowsYaml(filter: WorkflowsYamlFilterInput, sort: WorkflowsYamlSortInput, skip: Int, limit: Int): WorkflowsYamlConnection!
   peopleYaml(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, slug: StringQueryOperatorInput, name: PeopleYamlNameFilterInput, title: StringQueryOperatorInput, image: FileFilterInput, expertise: StringQueryOperatorInput, headline: StringQueryOperatorInput, story: StringQueryOperatorInput, achievements: StringQueryOperatorInput, socialNetworks: PeopleYamlSocialNetworksFilterInput): PeopleYaml
   allPeopleYaml(filter: PeopleYamlFilterInput, sort: PeopleYamlSortInput, skip: Int, limit: Int): PeopleYamlConnection!
+  package(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, name: StringQueryOperatorInput, version: StringQueryOperatorInput): Package
+  allPackage(filter: PackageFilterInput, sort: PackageSortInput, skip: Int, limit: Int): PackageConnection!
 }
 
 input StringQueryOperatorInput {
@@ -4163,5 +4174,142 @@ type PeopleYamlGroupConnection {
 
 input PeopleYamlSortInput {
   fields: [PeopleYamlFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+type PackageConnection {
+  totalCount: Int!
+  edges: [PackageEdge!]!
+  nodes: [Package!]!
+  pageInfo: PageInfo!
+  distinct(field: PackageFieldsEnum!): [String!]!
+  max(field: PackageFieldsEnum!): Float
+  min(field: PackageFieldsEnum!): Float
+  sum(field: PackageFieldsEnum!): Float
+  group(skip: Int, limit: Int, field: PackageFieldsEnum!): [PackageGroupConnection!]!
+}
+
+type PackageEdge {
+  next: Package
+  node: Package!
+  previous: Package
+}
+
+enum PackageFieldsEnum {
+  id
+  parent___id
+  parent___parent___id
+  parent___parent___parent___id
+  parent___parent___parent___children
+  parent___parent___children
+  parent___parent___children___id
+  parent___parent___children___children
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___children
+  parent___children___id
+  parent___children___parent___id
+  parent___children___parent___children
+  parent___children___children
+  parent___children___children___id
+  parent___children___children___children
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  children
+  children___id
+  children___parent___id
+  children___parent___parent___id
+  children___parent___parent___children
+  children___parent___children
+  children___parent___children___id
+  children___parent___children___children
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___children
+  children___children___id
+  children___children___parent___id
+  children___children___parent___children
+  children___children___children
+  children___children___children___id
+  children___children___children___children
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  name
+  version
+}
+
+type PackageGroupConnection {
+  totalCount: Int!
+  edges: [PackageEdge!]!
+  nodes: [Package!]!
+  pageInfo: PageInfo!
+  distinct(field: PackageFieldsEnum!): [String!]!
+  max(field: PackageFieldsEnum!): Float
+  min(field: PackageFieldsEnum!): Float
+  sum(field: PackageFieldsEnum!): Float
+  group(skip: Int, limit: Int, field: PackageFieldsEnum!): [PackageGroupConnection!]!
+  field: String!
+  fieldValue: String
+}
+
+input PackageFilterInput {
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+  name: StringQueryOperatorInput
+  version: StringQueryOperatorInput
+}
+
+input PackageSortInput {
+  fields: [PackageFieldsEnum]
   order: [SortOrderEnum] = [ASC]
 }
