@@ -11,9 +11,9 @@ module.exports = {
     title: '$_purefunc',
     email: 'mailto:help@purefunc.net',
     image: '/placeholder.png',
-    youtube: 'https://youtube.com/channel/UCiaBjaYilzLG5mmSqpP8fWg',
-    facebook: 'https://facebook.com/groups/purefunc/',
-    discord: 'https://discord.gg/efJaWUKkz3',
+    youtube: 'https://purefunc.net/youtube',
+    facebook: 'https://purefunc.net/facebook',
+    discord: 'https://purefunc.net/discord',
   },
   plugins: [
     'gatsby-plugin-image',
