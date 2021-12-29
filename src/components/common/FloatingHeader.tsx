@@ -1,16 +1,18 @@
 import React from 'react'
-import { Link } from './Link'
 import { styled, theme } from '@/utilities/stitches'
 import { Logo } from '@/components/common/Logo'
 import { GradientBackground } from '@/components/common/GradientBackground'
 import { NavMenu } from '@/components/common/NavMenu'
+import { Link } from '@/components/common/Link'
 
 export const FloatingHeader: React.FC = () => {
   return (
     <Container>
-      <Link to='/'>
-        <StyledLogo />
-      </Link>
+      <LogoContainer>
+        <Link to='/'>
+          <StyledLogo />
+        </Link>
+      </LogoContainer>
 
       <Nav />
 
@@ -37,6 +39,13 @@ const Container = styled(
   },
 )
 
+const LogoContainer = styled(
+  'div',
+  {
+    flexGrow: 1,
+  },
+)
+
 const StyledLogo = styled(
   Logo,
   {
@@ -48,9 +57,12 @@ const StyledLogo = styled(
 const Nav = styled(
   NavMenu,
   {
-    flex: 1,
+    flexGrow: 2,
     marginLeft: 15,
     zIndex: 2,
+    '@notDesktop': {
+      flexGrow: 3,
+    },
   },
 )
 

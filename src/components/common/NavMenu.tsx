@@ -40,7 +40,9 @@ const Nav = styled(
   {
     listStyle: 'none',
     display: 'flex',
-    flexWrap: 'wrap',
+    '@notDesktop': {
+      flexWrap: 'wrap',
+    },
   },
 )
 
@@ -48,6 +50,7 @@ const NavItem = styled(
   'li',
   {
     flexGrow: 1,
+    textAlign: 'center',
     padding: '25px 35px',
   },
 )
