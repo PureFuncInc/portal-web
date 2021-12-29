@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 exports.createPages = async ({ actions, graphql }) => {
   const { data } = await graphql(`
     query {
