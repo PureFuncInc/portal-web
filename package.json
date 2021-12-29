@@ -1,6 +1,6 @@
 {
   "name": "@purefuncinc/portal-web",
-  "version": "0.3.0",
+  "version": "0.4.4",
   "private": true,
   "description": "PureFunc Official website",
   "author": "Nelson Liu <nelson@purefunc.net>",
