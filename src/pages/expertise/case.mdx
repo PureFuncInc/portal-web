@@ -6,6 +6,7 @@ embeddedImagesLocal:
 ---
 import { SimpleLayout } from '@/components/layouts/SimpleLayout'
 import { PageTitle } from "@/components/common/PageTitle";
+import { MDXHorizontalAlign } from "@/components/common/mdx/MDXHorizontalAlign";
 import YouTubePlayer from "react-player/youtube";
 
 export default ({children}) => (
@@ -18,4 +19,6 @@ export default ({children}) => (
   系統接案
 </PageTitle>
 
-<YouTubePlayer url="https://youtu.be/BnCqGY8UfHI" />
+<MDXHorizontalAlign>
+  <YouTubePlayer url="https://youtu.be/BnCqGY8UfHI" />
+</MDXHorizontalAlign>
