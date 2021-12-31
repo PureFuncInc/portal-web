@@ -7,7 +7,7 @@
   PureFunc Web Portal
 </h1>
 
-[![Release](https://github.com/PureFuncInc/portal-web/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/PureFuncInc/portal-web/actions/workflows/main.yml)
+[![Build](https://github.com/PureFuncInc/portal-web/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/PureFuncInc/portal-web/actions/workflows/build.yml)
 
 ## 🏗 Built With
 
