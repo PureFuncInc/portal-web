@@ -74,6 +74,13 @@ export const {
       bottom: value,
       position: 'absolute',
     }),
+    fixedFilled: (value: string | number) => ({
+      top: value,
+      left: value,
+      right: value,
+      bottom: value,
+      position: 'fixed',
+    }),
     borderBottomRadius: (value: string | number) => ({
       borderBottomRightRadius: value,
       borderBottomLeftRadius: value,

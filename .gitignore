@@ -13,3 +13,7 @@ public
 
 # macos
 .DS_Store
+
+# graphql
+graphql-types.ts
+schema.graphql

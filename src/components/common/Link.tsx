@@ -46,7 +46,7 @@ Link.displayName = 'Link'
 const Anchor = styled(
   'a',
   {
-    display: 'flex',
+    display: 'inline-flex',
     alignItems: 'center',
     textDecoration: 'none',
     variants: {
@@ -74,6 +74,8 @@ type AnchorProps = VariantProps<typeof Anchor>
 const GatsbyAnchor = styled(
   GatsbyLink,
   {
+    display: 'inline-flex',
+    alignItems: 'center',
     textDecoration: 'none',
     variants: {
       color: {

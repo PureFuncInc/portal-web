@@ -6,7 +6,7 @@ export const MDXHeadline = styled(
     color: '$text',
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: '4em',
+    fontSize: '$greatest',
     marginBottom: 25,
   },
 )

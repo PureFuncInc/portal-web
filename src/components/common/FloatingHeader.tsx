@@ -4,22 +4,23 @@ import { Logo } from '@/components/common/Logo'
 import { GradientBackground } from '@/components/common/GradientBackground'
 import { NavMenu } from '@/components/common/NavMenu'
 import { Link } from '@/components/common/Link'
+import { DrawerNavMenu } from '@/components/common/DrawerNavMenu'
 
-export const FloatingHeader: React.FC = () => {
-  return (
-    <Container>
-      <LogoContainer>
-        <Link to='/'>
-          <StyledLogo />
-        </Link>
-      </LogoContainer>
+export const FloatingHeader: React.FC = () => (
+  <Container>
+    <Background rotate={false} />
 
-      <Nav />
+    <LogoContainer>
+      <Link to="/">
+        <StyledLogo />
+      </Link>
+    </LogoContainer>
 
-      <Background rotate={false} />
-    </Container>
-  )
-}
+    <Nav />
+
+    <DrawerNav />
+  </Container>
+)
 
 const Container = styled(
   'div',
@@ -34,6 +35,7 @@ const Container = styled(
     justifyContent: 'space-between',
     alignItems: 'center',
     '@notDesktop': {
+      padding: 25,
       borderRadius: 'none',
     },
   },
@@ -43,6 +45,8 @@ const LogoContainer = styled(
   'div',
   {
     flexGrow: 1,
+    display: 'flex',
+    alignItems: 'center',
   },
 )
 
@@ -50,7 +54,10 @@ const StyledLogo = styled(
   Logo,
   {
     zIndex: 2,
-    width: 160,
+    width: '10vw',
+    '@notDesktop': {
+      width: '30vw',
+    },
   },
 )
 
@@ -61,7 +68,17 @@ const Nav = styled(
     marginLeft: 15,
     zIndex: 2,
     '@notDesktop': {
-      flexGrow: 3,
+      display: 'none',
+    },
+  },
+)
+
+const DrawerNav = styled(
+  DrawerNavMenu,
+  {
+    zIndex: 3,
+    '@desktop': {
+      display: 'none',
     },
   },
 )

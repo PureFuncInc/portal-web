@@ -3,13 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { styled } from '@/utilities/stitches'
 import { Link } from '@/components/common/Link'
 import { socialNetworkIconMap } from '@/components/people/SocialNetworkIconMap'
+import type { PropsWithClassname } from '@/utilities/PropsWithClassname'
 
 export interface SocialNetworkDisplayProps {
   socialNetworks?: Record<string, string> | undefined
-  className?: string
 }
 
-export const SocialNetworkDisplay: React.FC<SocialNetworkDisplayProps> = ({
+export const SocialNetworkDisplay: React.FC<PropsWithClassname<SocialNetworkDisplayProps>> = ({
   socialNetworks = {},
   className,
 }) => {

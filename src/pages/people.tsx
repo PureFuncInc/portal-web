@@ -1,6 +1,7 @@
 import React from 'react'
 import { SimpleLayout } from '@/components/layouts/SimpleLayout'
 import { PageTitle } from '@/components/common/PageTitle'
+import { EveryoneDisplay } from '@/components/about-us/EveryoneDisplay'
 
 const PeoplePage: React.FC = () => {
   return (
@@ -8,6 +9,8 @@ const PeoplePage: React.FC = () => {
       <PageTitle>
         人物
       </PageTitle>
+
+      <EveryoneDisplay />
     </SimpleLayout>
   )
 }

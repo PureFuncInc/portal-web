@@ -33,11 +33,11 @@ export const EveryoneDisplay: React.FC = () => {
   return (
     <Container>
       {everyone.people.nodes.map(person => (
-        <PersonContainer key={person.id}>
-          <Link to={`/people/${person.slug}`}>
-            <PersonDisplay person={person} />
-          </Link>
-        </PersonContainer>
+        <Link
+          key={person.id}
+          to={`/people/${person.slug}`}>
+          <PersonDisplay person={person} />
+        </Link>
       ))}
     </Container>
   )
@@ -46,13 +46,12 @@ export const EveryoneDisplay: React.FC = () => {
 const Container = styled(
   'div',
   {
-    display: 'flex',
-  },
-)
-
-const PersonContainer = styled(
-  'div',
-  {
-    flexGrow: 1,
+    display: 'grid',
+    gridTemplateColumns: 'repeat(6, 1fr)',
+    gridColumnGap: '15px',
+    gridRowGap: '15px',
+    '@phone': {
+      gridTemplateColumns: 'repeat(2, 1fr)',
+    },
   },
 )
