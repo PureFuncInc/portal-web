@@ -14,6 +14,24 @@ module.exports = {
     youtube: 'https://purefunc.net/youtube',
     facebook: 'https://purefunc.net/facebook',
     discord: 'https://purefunc.net/discord',
+    navs: [
+      {
+        label: '關於 PureFunc',
+        pathname: '/about-us',
+      },
+      {
+        label: '部落格',
+        pathname: '/articles',
+      },
+      {
+        label: '服務項目',
+        pathname: '/portfolio',
+      },
+      {
+        label: '聯絡我們',
+        pathname: '/contact-us',
+      },
+    ],
   },
   plugins: [
     'gatsby-plugin-image',

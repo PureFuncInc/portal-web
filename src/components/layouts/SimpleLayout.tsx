@@ -37,7 +37,7 @@ const Container = styled(
 const LayoutContainer = styled(
   'div',
   {
-    margin: '0 15vw 120px',
+    margin: '0 10vw 120px',
     minHeight: '60vh',
     '@notDesktop': {
       margin: '0 0 120px',

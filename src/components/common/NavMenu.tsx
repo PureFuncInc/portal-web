@@ -1,36 +1,37 @@
 import React from 'react'
+import { graphql, useStaticQuery } from 'gatsby'
 import { Link } from './Link'
 import { styled } from '@/utilities/stitches'
+import type { NavMenuQuery } from '@graphqlTypes'
+import type { PropsWithClassname } from '@/utilities/PropsWithClassname'
 
-export interface NavMenuProps {
-  className?: string
-}
-
-export const NavMenu: React.FC<NavMenuProps> = ({
+export const NavMenu: React.FC<PropsWithClassname> = ({
   className,
 }) => {
+  const { site } = useStaticQuery<NavMenuQuery>(graphql`
+    query NavMenu {
+      site {
+        siteMetadata {
+          navs {
+            label
+            pathname
+          }
+        }
+      }
+    }
+  `)
+
   return (
     <Nav className={className}>
-      <NavItem>
-        <NavLink to='/about-us'>
-          關於 PureFunc
-        </NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink to='/articles'>
-          部落格
-        </NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink to='/portfolio'>
-          服務項目
-        </NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink to='/contact-us'>
-          聯絡我們
-        </NavLink>
-      </NavItem>
+      {site?.siteMetadata?.navs?.map((nav, index) => nav
+        ? (
+          <NavItem key={index}>
+            <NavLink to={nav.pathname ?? ''}>
+              {nav.label}
+            </NavLink>
+          </NavItem>
+        )
+        : null)}
     </Nav>
   )
 }
@@ -40,8 +41,10 @@ const Nav = styled(
   {
     listStyle: 'none',
     display: 'flex',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
     '@notDesktop': {
-      flexWrap: 'wrap',
+      flexDirection: 'column',
     },
   },
 )
@@ -50,14 +53,18 @@ const NavItem = styled(
   'li',
   {
     flexGrow: 1,
-    textAlign: 'center',
-    padding: '25px 35px',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
 )
 
 const NavLink = styled(
   Link,
   {
+    textAlign: 'center',
     fontWeight: 'bold',
+    padding: 25,
   },
 )

@@ -29,6 +29,10 @@ const Container = styled(
     backgroundColor: theme.background.primary,
     padding: '35px 15vw',
     boxShadow: '0 3px 3px $footer inset',
+    '@notDesktop': {
+      flexWrap: 'wrap',
+      padding: '35px 5vw',
+    },
   },
 )
 
@@ -39,7 +43,17 @@ const Copyright = styled(
   },
 )
 
-const Declarations = styled('div')
+const Declarations = styled(
+  'div',
+  {
+    flexGrow: 1,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    '@notDesktop': {
+      flexBasis: '100%',
+    },
+  },
+)
 
 const DeclarationLink = styled(
   Link,

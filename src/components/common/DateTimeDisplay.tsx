@@ -2,14 +2,14 @@ import React, { useMemo } from 'react'
 import { getTime } from 'date-fns'
 import { styled } from '@/utilities/stitches'
 import { formatDateTime, parseDateTime } from '@/utilities/DateTime'
+import type { PropsWithClassname } from '@/utilities/PropsWithClassname'
 
 export interface DateTimeDisplayProps {
   dateTime: Date | number | string | undefined | null
   form?: string | { format?: string; parse?: string }
-  className?: string
 }
 
-export const DateTimeDisplay: React.FC<DateTimeDisplayProps> = ({
+export const DateTimeDisplay: React.FC<PropsWithClassname<DateTimeDisplayProps>> = ({
   dateTime,
   form,
   className,

@@ -1,14 +1,13 @@
 import React, { useMemo } from 'react'
 import { keyframes, styled } from '@/utilities/stitches'
 import { generateRandomColor } from '@/utilities/generateColor'
+import type { PropsWithClassname } from '@/utilities/PropsWithClassname'
 
 export interface GradientBackgroundProps {
   rotate?: boolean
-
-  className?: string
 }
 
-export const GradientBackground: React.FC<GradientBackgroundProps> = ({
+export const GradientBackground: React.FC<PropsWithClassname<GradientBackgroundProps>> = ({
   children,
   className,
   rotate = true,

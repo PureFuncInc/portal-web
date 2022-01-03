@@ -175,7 +175,7 @@ const Name = styled(
     variants: {
       size: {
         big: {
-          fontSize: '4em',
+          fontSize: '$greatest',
         },
       },
     },
