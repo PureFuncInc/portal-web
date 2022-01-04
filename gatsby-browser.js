@@ -30,6 +30,7 @@ const globalStyles = globalCss({
   body: {
     fontFamily: "'Noto Sans', 'Noto Sans TC', sans-serif, 'Noto Serif', serif",
     color: '$text',
+    backgroundColor: theme.background.body,
     backgroundSize: 'cover',
     backgroundRepeat: 'repeat-x',
     backgroundImage: theme.background.gradient,
