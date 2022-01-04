@@ -1,8 +1,9 @@
 import React from 'react'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { getImage } from 'gatsby-plugin-image'
 import { styled } from '@/utilities/stitches'
 import type { PortfolioFileNodeFragment } from '@graphqlTypes'
 import { Link } from '@/components/common/Link'
+import { GatsbyImage } from '@/components/common/Image'
 
 export interface PortfolioItemProps {
   item: PortfolioFileNodeFragment['nodes'][number]

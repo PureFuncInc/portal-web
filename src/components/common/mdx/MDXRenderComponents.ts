@@ -1,5 +1,6 @@
 import type { MDXProviderComponentsProp } from '@mdx-js/react'
 import { styled } from '@/utilities/stitches'
+import { RegularImage } from '@/components/common/Image'
 
 export const H1 = styled(
   'h1',
@@ -50,6 +51,14 @@ export const A = styled(
   },
 )
 
+export const Img = styled(
+  RegularImage,
+  {
+    marginTop: 10,
+    marginBottom: 15,
+  },
+)
+
 export default {
   h1: H1,
   h2: H2,
@@ -57,4 +66,5 @@ export default {
   p: Paragraph,
   ul: Ul,
   a: A,
+  img: Img,
 } as MDXProviderComponentsProp
