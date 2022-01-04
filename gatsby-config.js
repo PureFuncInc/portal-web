@@ -39,6 +39,7 @@ module.exports = {
     'gatsby-plugin-sitemap',
     'gatsby-plugin-fontawesome-css',
     'gatsby-transformer-yaml',
+    'gatsby-plugin-minify',
     {
       resolve: 'gatsby-plugin-extract-schema',
       options: {
