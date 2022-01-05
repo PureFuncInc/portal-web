@@ -43,7 +43,7 @@ const Nav = styled(
     display: 'flex',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    '@notDesktop': {
+    '@phone': {
       flexDirection: 'column',
     },
   },

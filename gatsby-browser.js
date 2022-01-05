@@ -28,7 +28,8 @@ const globalStyles = globalCss({
     minHeight: '100vh',
   },
   body: {
-    fontFamily: "'Noto Sans', 'Noto Sans TC', sans-serif, 'Noto Serif', serif",
+    fontSize: 15,
+    fontFamily: "'Noto Sans TC', sans-serif",
     color: '$text',
     backgroundColor: theme.background.body,
     backgroundSize: 'cover',

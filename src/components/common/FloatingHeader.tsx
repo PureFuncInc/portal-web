@@ -30,11 +30,11 @@ const Container = styled(
     maxHeight: 80,
     backgroundColor: theme.background.plain,
     borderBottomRadius: '$roundCornered',
-    boxShadow: '0 1px 3px $label',
+    boxShadow: '0 1px 3px $footer',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    '@notDesktop': {
+    '@phone': {
       padding: 25,
       borderRadius: 'none',
     },
@@ -54,9 +54,13 @@ const StyledLogo = styled(
   Logo,
   {
     zIndex: 2,
+    maxWidth: 180,
     width: '10vw',
-    '@notDesktop': {
+    '@phone': {
       width: '30vw',
+    },
+    '@largePhone': {
+      width: '25vw',
     },
   },
 )
@@ -67,7 +71,7 @@ const Nav = styled(
     flexGrow: 2,
     marginLeft: 15,
     zIndex: 2,
-    '@notDesktop': {
+    '@phone': {
       display: 'none',
     },
   },
@@ -77,7 +81,7 @@ const DrawerNav = styled(
   DrawerNavMenu,
   {
     zIndex: 3,
-    '@desktop': {
+    '@notPhone': {
       display: 'none',
     },
   },
