@@ -6,6 +6,9 @@ export const RegularImage = styled(
   {
     width: '100%',
     objectFit: 'cover',
+    '@notPhone': {
+      maxWidth: 640,
+    },
     variants: {
       shape: {
         rounded: {

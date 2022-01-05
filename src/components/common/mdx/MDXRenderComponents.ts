@@ -33,13 +33,17 @@ export const Paragraph = styled(
   'p',
   {
     marginBottom: 10,
-    lineHeight: '1.25em',
+    fontFamily: '"Noto Serif TC", serif',
+    lineHeight: '1.5em',
   },
 )
 
 export const Ul = styled(
   'ul',
   {
+    listStylePosition: 'outside',
+    listStyleType: "'_'",
+    marginLeft: '$greater',
     marginBottom: '$great',
   },
 )

@@ -53,7 +53,7 @@ export const {
     },
     shadows: {
       label: 'rgba(255, 255, 255, 0.65)',
-      footer: 'rgba(255, 255, 255, 0.15)',
+      footer: 'rgba(155, 155, 155, 0.05)',
     },
     radii: {
       rounded: '50%',
@@ -61,10 +61,12 @@ export const {
     },
   },
   media: {
-    phone: '(max-width: 600px)',
+    phone: '(max-width: 599px)',
+    largePhone: '(min-width: 500px) AND (max-width: 899px)',
     tablet: '(min-width: 900px)',
     desktop: '(min-width: 1200px)',
     notDesktop: '(max-width: 1199px)',
+    notPhone: '(min-width: 600px)',
   },
   utils: {
     absoluteFilled: (value: string | number) => ({

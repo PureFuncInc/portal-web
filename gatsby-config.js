@@ -109,7 +109,7 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         google: {
-          families: [ 'Noto Sans TC', 'Noto Sans', 'Noto Serif' ],
+          families: [ 'Noto Sans TC', 'Noto Serif TC' ],
         },
       },
     },
